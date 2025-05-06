@@ -47,35 +47,54 @@ export default function Index() {
           )}
         </button>
       </div>
+
+      <header className="site-header">
+        <div className="header-content">
+          <h1 className="hero-title">Tomás Korenblit</h1>
+          <div className="hero-tagline">[Data Scientist & Problem Solver]</div>
+        </div>
+      </header>
       
+      <div className="desktop-icons">
+        <a href="https://github.com/tomaskorenblit" target="_blank" rel="noreferrer" className="desktop-icon" aria-label="Visit Tomás Korenblit's GitHub profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          <span>GitHub</span>
+        </a>
+
+        <a href="mailto:tomaskorenblit@gmail.com" className="desktop-icon" aria-label="Send email to tomaskorenblit@gmail.com">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span>Email</span>
+        </a>
+
+        <a href="https://linkedin.com/in/tomaskorenblit" target="_blank" rel="noreferrer" className="desktop-icon" aria-label="Visit Tomás Korenblit's LinkedIn profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+
       <div className="asymmetric-wrapper">
         {/* Left Column - Info Panel */}
         <div className="left-column" role="complementary">
           {/* Hero Section */}
-          <section className="hero-section" aria-labelledby="hero-title">
-            <h1 className="hero-title" id="hero-title">Tomás Korenblit</h1>
-            <div className="hero-tagline">
-              <span className="highlight">Data Scientist & Problem Solver</span>
-            </div>
-            
-            <p className="hero-intro">
-            Driven by curiosity, I’ve spent years crafting solutions to complex problems—whether it’s developing apps or applying machine learning models. Now, as a data scientist, I continue to innovate and create technologies that transform ideas into results.
+          <section className="hero-section" aria-labelledby="hero-intro">
+            <p className="hero-intro" id="hero-intro">
+              Driven by curiosity, I've spent years crafting solutions to complex problems—whether it's developing apps or applying machine learning models. Now, as a data scientist, I continue to innovate and create technologies that transform ideas into results.
             </p>
-            
-            <div className="contact-info">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink: 0}} aria-hidden="true">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
-              <a href="mailto:tomaskorenblit@gmail.com" rel="noreferrer" aria-label="Send email to tomaskorenblit@gmail.com">tomaskorenblit@gmail.com</a>
-            </div>
           </section>
           
           {/* Education Section */}
           <section className="education-container" aria-labelledby="education-title">
-            <h2 className="section-title" id="education-title">Education</h2>
+            <h2 className="section-title" id="education-title">BSc. Data Science</h2>
             <div className="education-content">
-              <h3>BSc in Data Science</h3>
               <p>Universidad Nacional de San Martín (UNSAM)<br />
                 Currently in third year<br />
                 <a href="https://unsam.edu.ar/escuelas/ecyt/661/ciencia/ciencia-de-datos" target="_blank" rel="noreferrer" aria-label="View Data Science curriculum at UNSAM">
@@ -168,13 +187,7 @@ export default function Index() {
             </div>
           </section>
         </div>
-        
-        <footer className="asymmetric-footer" role="contentinfo">
-          <p>
-            Built with <a href="https://remix.run/" target="_blank" rel="noreferrer" aria-label="Learn more about Remix">Remix</a> and
-            deployed by <a href="https://vercel.com/" target="_blank" rel="noreferrer" aria-label="Learn more about Vercel">Vercel</a>
-          </p>
-        </footer>
+      
       </div>
     </div>
   );
