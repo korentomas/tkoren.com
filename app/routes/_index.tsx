@@ -12,7 +12,10 @@ export const loader: LoaderFunction = async () => {
     format: 'webp'
   });
 
-  return json({ optimizedImagePath });
+  // Ensure the path starts with a forward slash
+  const imagePath = optimizedImagePath.startsWith('/') ? optimizedImagePath : `/${optimizedImagePath}`;
+
+  return json({ optimizedImagePath: imagePath });
 };
 
 export const meta: MetaFunction = () => {
@@ -119,14 +122,18 @@ export default function Index() {
   }, []);
 
   const handleImageLoad = () => {
+    console.log('Image loaded successfully');
     setIsLoading(false);
     setImageError(false);
   };
 
-  const handleImageError = () => {
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.error('Image failed to load:', e);
     setIsLoading(false);
     setImageError(true);
   };
+
+  console.log('Current image path:', optimizedImagePath);
 
   return (
     <div className="main-container" role="main">
@@ -160,14 +167,15 @@ export default function Index() {
         {/* Left Side */}
         <div className="left-side">
           <h1 className="name">Tomás Pablo Korenblit</h1>
+          <h2 className="title">Data Scientist</h2>
           <div className="profile-image" ref={imageRef}>
-            <canvas ref={canvasRef} className={isLoading ? 'visible' : ''} />
+            {/* <canvas ref={canvasRef} className={isLoading ? 'visible' : ''} /> */}
             <img 
               src={optimizedImagePath}
               alt="Tomás Korenblit" 
               onLoad={handleImageLoad}
               onError={handleImageError}
-              className={!isLoading ? 'loaded' : ''}
+              className={isLoading ? 'loading' : 'loaded'}
               draggable="false"
             />
             {imageError && (
@@ -176,7 +184,7 @@ export default function Index() {
               </div>
             )}
           </div>
-          <h2 className="title">Data Scientist</h2>
+          
           <div className="social-icons">
             <a href="https://github.com/tomaskorenblit" target="_blank" rel="noreferrer" aria-label="GitHub">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -221,6 +229,11 @@ export default function Index() {
                 <a href="https://boston-crime-deploy.herokuapp.com/" target="_blank" rel="noreferrer">
                   <h3>Boston Crime Analysis</h3>
                   <p>Interactive visualizations of Boston crime report data using Pandas, Plotly and Streamlit.</p>
+                  <div className="project-tags">
+                    <span className="tag">Data Analysis</span>
+                    <span className="tag">Visualization</span>
+                    <span className="tag">Python</span>
+                  </div>
                 </a>
               </div>
               
@@ -228,6 +241,44 @@ export default function Index() {
                 <a href="https://koren-rev-analysis.herokuapp.com/" target="_blank" rel="noreferrer">
                   <h3>Movie Review Sentiment Analysis</h3>
                   <p>Text classification and sentiment analysis on IMDb reviews with regex preprocessing, TfidfVectorizer, and sklearn.</p>
+                  <div className="project-tags">
+                    <span className="tag">NLP</span>
+                    <span className="tag">Machine Learning</span>
+                    <span className="tag">Python</span>
+                  </div>
+                </a>
+              </div>
+              <div className="project-card">
+                <a href="https://koren-rev-analysis.herokuapp.com/" target="_blank" rel="noreferrer">
+                  <h3>Movie Review Sentiment Analysis</h3>
+                  <p>Text classification and sentiment analysis on IMDb reviews with regex preprocessing, TfidfVectorizer, and sklearn.</p>
+                  <div className="project-tags">
+                    <span className="tag">NLP</span>
+                    <span className="tag">Machine Learning</span>
+                    <span className="tag">Python</span>
+                  </div>
+                </a>
+              </div>
+              <div className="project-card">
+                <a href="https://koren-rev-analysis.herokuapp.com/" target="_blank" rel="noreferrer">
+                  <h3>Movie Review Sentiment Analysis</h3>
+                  <p>Text classification and sentiment analysis on IMDb reviews with regex preprocessing, TfidfVectorizer, and sklearn.</p>
+                  <div className="project-tags">
+                    <span className="tag">NLP</span>
+                    <span className="tag">Machine Learning</span>
+                    <span className="tag">Python</span>
+                  </div>
+                </a>
+              </div>
+              <div className="project-card">
+                <a href="https://koren-rev-analysis.herokuapp.com/" target="_blank" rel="noreferrer">
+                  <h3>Movie Review Sentiment Analysis</h3>
+                  <p>Text classification and sentiment analysis on IMDb reviews with regex preprocessing, TfidfVectorizer, and sklearn.</p>
+                  <div className="project-tags">
+                    <span className="tag">NLP</span>
+                    <span className="tag">Machine Learning</span>
+                    <span className="tag">Python</span>
+                  </div>
                 </a>
               </div>
             </div>

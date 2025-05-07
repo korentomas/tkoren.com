@@ -4,23 +4,24 @@ import type { Theme, ThemeContextType, ThemeProviderProps } from '~/types/theme'
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
+  // Initialize with the server-rendered theme
   const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'light';
-    
-    // Check if theme is already set in HTML (from inline script)
-    const htmlTheme = document.documentElement.getAttribute('data-theme') as Theme;
-    if (htmlTheme) return htmlTheme;
-    
-    // Fallback to localStorage
-    const storedTheme = localStorage.getItem('theme') as Theme;
-    if (storedTheme) return storedTheme;
-    
-    // Finally, check system preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? 'dark' : 'light';
+    if (typeof document !== 'undefined') {
+      return document.documentElement.getAttribute('data-theme') as Theme || 'light';
+    }
+    return 'light';
   });
 
   useEffect(() => {
+    // Only run on client-side after hydration
+    const stored = localStorage.getItem('theme');
+    if (stored && stored !== theme) {
+      setTheme(stored as Theme);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Only update DOM after initial hydration
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
