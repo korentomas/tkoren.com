@@ -95,24 +95,6 @@ export default function Index() {
       <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="theme-toggle flex justify-end gap-2 mb-8">
           <button
-            onClick={toggleColorScheme}
-            className="color-scheme-toggle p-2 rounded-lg hover:bg-bg-element transition-colors"
-            aria-label={`Switch to ${colorScheme === 'blue' ? 'orange' : 'blue'} theme`}
-            aria-pressed={colorScheme === 'orange'}
-          >
-            {colorScheme === 'blue' ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 2v20M2 12h20" />
-              </svg>
-            )}
-          </button>
-          <button
             onClick={toggleTheme}
             className="p-2 rounded-lg hover:bg-bg-element transition-colors"
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}

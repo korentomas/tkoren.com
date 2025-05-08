@@ -1,50 +1,36 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import type { ThemeContextType, ThemeProviderProps, Theme, ColorScheme } from '~/types/theme';
+import { createContext, useContext, useEffect, useState } from 'react';
+import type { Theme } from '~/types/theme';
+
+interface ThemeContextType {
+  theme: Theme;
+  toggleTheme: () => void;
+}
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('light');
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('blue');
 
   useEffect(() => {
-    // Load saved preferences
     const savedTheme = localStorage.getItem('theme') as Theme;
-    const savedColorScheme = localStorage.getItem('colorScheme') as ColorScheme;
-    
-    if (savedTheme) setTheme(savedTheme);
-    if (savedColorScheme) setColorScheme(savedColorScheme);
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
   }, []);
 
   useEffect(() => {
-    // Update theme
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
-
-  useEffect(() => {
-    // Update color scheme
-    document.documentElement.setAttribute('data-color-scheme', colorScheme);
-    localStorage.setItem('colorScheme', colorScheme);
-  }, [colorScheme]);
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
-  const toggleColorScheme = () => {
-    setColorScheme(prev => prev === 'blue' ? 'orange' : 'blue');
-  };
-
-  const value = {
-    theme,
-    colorScheme,
-    toggleTheme,
-    toggleColorScheme
-  };
-
   return (
-    <ThemeContext.Provider value={value}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
