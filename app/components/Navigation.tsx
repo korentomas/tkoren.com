@@ -13,8 +13,8 @@ export default function Navigation() {
   return (
     <nav className="navigation">
       <div className="nav-content">
-        <Link to="/" className="nav-logo">
-          TK
+        <Link to="/" className="nav-logo-link">
+          <img src="/croco.png" alt="Logo" className="nav-logo-img" />
         </Link>
         <div className="nav-links">
           <Link
