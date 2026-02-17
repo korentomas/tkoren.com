@@ -16,12 +16,10 @@ export function Comments({ slug }: CommentsProps) {
 
     const script = document.createElement("script");
     script.src = "https://giscus.app/client.js";
-    script.setAttribute("data-repo", "tomaskorenblit/remix-portfolio-1");
-    // TODO: Configure these IDs after enabling GitHub Discussions on the repo
-    // and completing setup at https://giscus.app
-    script.setAttribute("data-repo-id", "");
-    script.setAttribute("data-category", "Blog Comments");
-    script.setAttribute("data-category-id", "");
+    script.setAttribute("data-repo", "korentomas/remix-portfolio");
+    script.setAttribute("data-repo-id", "R_kgDOOh7s6Q");
+    script.setAttribute("data-category", "General");
+    script.setAttribute("data-category-id", "DIC_kwDOOh7s6c4C2mR5");
     script.setAttribute("data-mapping", "specific");
     script.setAttribute("data-term", slug);
     script.setAttribute("data-strict", "0");
