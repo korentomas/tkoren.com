@@ -433,6 +433,20 @@ button:focus:not(:focus-visible) {
 }
 
 /* Comments */
+/* Shader backgrounds */
+.tile-shader-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--tile-radius);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.tile--identity > *:not(.tile-shader-bg) {
+  position: relative;
+  z-index: 1;
+}
+
 .comments-section {
   margin-top: 3rem;
   padding-top: 2rem;

@@ -7,6 +7,8 @@ import { getAllPosts } from "~/utils/blog.server";
 import type { BlogPost } from "~/utils/blog.server";
 import { Spoiler, Typewriter } from "~/components/EasterEgg";
 import { Comments } from "~/components/Comments";
+import { MeshGradient } from "@paper-design/shaders-react";
+import { ShaderBanner } from "~/components/ShaderBanner";
 
 const mdxComponents = {
   Spoiler,
@@ -131,7 +133,14 @@ export default function Index() {
         transition={wobble ? { duration: 0.5, ease: "easeInOut" } : { duration: 0.2 }}
       >
         {/* Identity Tile */}
-        <div className="tile tile--identity">
+        <div className="tile tile--identity" style={{ position: "relative", overflow: "hidden" }}>
+          <div className="tile-shader-bg">
+            <MeshGradient
+              colors={["#4A90D9", "#89CFF0", "#B8D4E3", "#F7F6F3"]}
+              speed={0.15}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.3 }}
+            />
+          </div>
           <div>
             <h1
               className={`identity-name${shimmer ? " shimmer" : ""}`}
@@ -262,6 +271,15 @@ export default function Index() {
                   damping: 30,
                 }}
               >
+                {postMeta?.shader && (
+                  <div style={{ marginBottom: "2rem", borderRadius: "var(--tile-radius)", overflow: "hidden" }}>
+                    <ShaderBanner
+                      shader={postMeta.shader}
+                      colors={postMeta.shaderColors}
+                      height="180px"
+                    />
+                  </div>
+                )}
                 {postMeta && (
                   <header className="post-header">
                     <div className="post-meta">

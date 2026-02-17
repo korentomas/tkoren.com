@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { getPost, getAllPosts } from "~/utils/blog.server";
 import { Spoiler, Typewriter } from "~/components/EasterEgg";
 import { Comments } from "~/components/Comments";
+import { ShaderBanner } from "~/components/ShaderBanner";
 
 const mdxComponents = {
   Spoiler,
@@ -45,6 +46,15 @@ export default function BlogPost() {
   return (
     <div className="post-overlay" style={{ position: "relative" }}>
       <article className="post-expanded">
+        {frontmatter.shader && (
+          <div style={{ marginBottom: "2rem", borderRadius: "var(--tile-radius)", overflow: "hidden" }}>
+            <ShaderBanner
+              shader={frontmatter.shader}
+              colors={frontmatter.shaderColors}
+              height="180px"
+            />
+          </div>
+        )}
         <header className="post-header">
           <div className="post-meta">
             {frontmatter.type} ·{" "}

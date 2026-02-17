@@ -4,6 +4,8 @@ export interface BlogPost {
   date: string;
   type: "essay" | "note";
   excerpt: string;
+  shader?: string; // "mesh-gradient" | "neuro-noise" | "dot-orbit" | etc.
+  shaderColors?: string[]; // custom colors for the shader
 }
 
 // Import all MDX files from the blog directory
