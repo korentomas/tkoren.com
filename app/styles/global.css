@@ -150,13 +150,15 @@ body.scroll-locked {
   margin-top: 1.5rem;
 }
 
-.identity-links a {
+.identity-links a,
+.identity-links button {
   color: var(--text-secondary);
   transition: color 0.2s ease-out;
   display: flex;
 }
 
-.identity-links a:hover {
+.identity-links a:hover,
+.identity-links button:hover {
   color: var(--accent);
 }
 
@@ -237,32 +239,23 @@ body.scroll-locked {
   padding: clamp(32px, 6vw, 64px) clamp(24px, 5vw, 48px);
 }
 
-/* Close button */
-.post-close {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  z-index: 101;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+/* Back button */
+.post-back {
+  display: inline-block;
+  background: none;
   border: none;
-  background: var(--tile-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: var(--tile-shadow);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  font-size: 1.25rem;
-  transition: color 0.2s ease-out, box-shadow 0.2s ease-out;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease-out;
 }
 
-.post-close:hover {
-  color: var(--text);
-  box-shadow: var(--tile-shadow-hover);
+.post-back:hover {
+  color: var(--accent);
 }
 
 /* Post content typography — Butterick rules */
@@ -384,10 +377,6 @@ body.scroll-locked {
     grid-row: auto;
   }
 
-  .post-close {
-    top: 16px;
-    right: 16px;
-  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -479,29 +468,3 @@ button:focus:not(:focus-visible) {
   width: 100% !important;
 }
 
-/* Theme toggle */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 150;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: var(--tile-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: var(--tile-shadow);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  transition: color 0.2s ease-out, box-shadow 0.2s ease-out, background 0.3s ease;
-}
-
-.theme-toggle:hover {
-  color: var(--text);
-  box-shadow: var(--tile-shadow-hover);
-}

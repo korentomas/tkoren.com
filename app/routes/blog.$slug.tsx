@@ -2,6 +2,7 @@ import type { LoaderFunctionArgs, MetaFunction } from "@vercel/remix";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { getPost, getAllPosts } from "~/utils/blog.server";
 import { Spoiler, Typewriter } from "~/components/EasterEgg";
 import { Comments } from "~/components/Comments";
@@ -46,6 +47,15 @@ export default function BlogPost() {
   return (
     <div className="post-overlay" style={{ position: "relative" }}>
       <article className="post-expanded" style={{ borderTop: `3px solid ${frontmatter.accent || "var(--accent)"}` }}>
+        <motion.a
+          href="/"
+          className="post-back"
+          initial={{ opacity: 0, x: -12 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
+        >
+          &larr; Back
+        </motion.a>
         {frontmatter.shader && (
           <div style={{ marginBottom: "2rem", borderRadius: "var(--tile-radius)", overflow: "hidden" }}>
             <ShaderBanner
@@ -70,11 +80,6 @@ export default function BlogPost() {
           {Component ? <Component components={mdxComponents} /> : null}
         </div>
         <Comments slug={slug} />
-        <nav style={{ marginTop: "3rem" }}>
-          <a href="/" style={{ color: "var(--accent)", textDecoration: "none" }}>
-            &larr; Back
-          </a>
-        </nav>
       </article>
     </div>
   );
