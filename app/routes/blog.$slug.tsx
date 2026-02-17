@@ -3,6 +3,12 @@ import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useState, useEffect } from "react";
 import { getPost, getAllPosts } from "~/utils/blog.server";
+import { Spoiler, Typewriter } from "~/components/EasterEgg";
+
+const mdxComponents = {
+  Spoiler,
+  Typewriter,
+};
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const slug = params.slug;
@@ -50,7 +56,7 @@ export default function BlogPost() {
           <h1 className="post-title">{frontmatter.title}</h1>
         </header>
         <div className="post-content">
-          {Component ? <Component /> : null}
+          {Component ? <Component components={mdxComponents} /> : null}
         </div>
         <nav style={{ marginTop: "3rem" }}>
           <a href="/" style={{ color: "var(--accent)", textDecoration: "none" }}>

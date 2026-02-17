@@ -1,10 +1,16 @@
 import type { MetaFunction } from "@vercel/remix";
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getAllPosts } from "~/utils/blog.server";
 import type { BlogPost } from "~/utils/blog.server";
+import { Spoiler, Typewriter } from "~/components/EasterEgg";
+
+const mdxComponents = {
+  Spoiler,
+  Typewriter,
+};
 
 export const loader = async () => {
   const posts = getAllPosts();
@@ -24,6 +30,15 @@ export default function Index() {
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
   const [PostComponent, setPostComponent] = useState<React.ComponentType | null>(null);
   const [postMeta, setPostMeta] = useState<BlogPost | null>(null);
+
+  // Easter egg state
+  const [nameClicks, setNameClicks] = useState(0);
+  const [shimmer, setShimmer] = useState(false);
+  const [wobble, setWobble] = useState(false);
+  const [hiddenMsg, setHiddenMsg] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+  const [inverted, setInverted] = useState(false);
+  const konamiRef = useRef<string[]>([]);
 
   const openPost = useCallback(async (slug: string) => {
     const mod = await import(`../blog/${slug}.mdx`);
@@ -64,24 +79,83 @@ export default function Index() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [expandedSlug, closePost]);
 
+  // Identity name click handler
+  const handleNameClick = useCallback(() => {
+    const next = nameClicks + 1;
+    setNameClicks(next);
+
+    if (next === 3) {
+      setShimmer(true);
+      setTimeout(() => setShimmer(false), 800);
+    }
+    if (next === 7) {
+      setWobble(true);
+      setTimeout(() => setWobble(false), 600);
+    }
+    if (next === 10) {
+      setHiddenMsg(true);
+      setTimeout(() => setHiddenMsg(false), 3000);
+      setNameClicks(0);
+    }
+  }, [nameClicks]);
+
+  // Konami code listener
+  useEffect(() => {
+    const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+    const handleKonami = (e: KeyboardEvent) => {
+      konamiRef.current.push(e.key);
+      if (konamiRef.current.length > KONAMI.length) {
+        konamiRef.current = konamiRef.current.slice(-KONAMI.length);
+      }
+      if (konamiRef.current.length === KONAMI.length && konamiRef.current.every((k, i) => k === KONAMI[i])) {
+        konamiRef.current = [];
+        setInverted(true);
+        setToast("nice");
+        setTimeout(() => setInverted(false), 2000);
+        setTimeout(() => setToast(null), 2500);
+      }
+    };
+    window.addEventListener("keydown", handleKonami);
+    return () => window.removeEventListener("keydown", handleKonami);
+  }, []);
+
   const hero = posts[0];
   const rest = posts.slice(1, 5);
 
   return (
-    <>
+    <div className={inverted ? "inverted" : ""} style={{ transition: "filter 0.5s ease" }}>
       <motion.div
         className="bento"
-        animate={{ opacity: expandedSlug ? 0 : 1 }}
-        transition={{ duration: 0.2 }}
+        animate={wobble ? { rotate: [0, -1, 1, -1, 0] } : { opacity: expandedSlug ? 0 : 1 }}
+        transition={wobble ? { duration: 0.5, ease: "easeInOut" } : { duration: 0.2 }}
       >
         {/* Identity Tile */}
         <div className="tile tile--identity">
           <div>
-            <h1 className="identity-name">Tomás Korenblit</h1>
+            <h1
+              className={`identity-name${shimmer ? " shimmer" : ""}`}
+              onClick={handleNameClick}
+              style={{ cursor: "pointer" }}
+            >
+              Tomás Korenblit
+            </h1>
             <p className="identity-bio">
               Building things with data, code, and occasionally 3D-printed
               plastic. Based in Buenos Aires.
             </p>
+            <AnimatePresence>
+              {hiddenMsg && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  style={{ fontSize: "0.75rem", color: "var(--text-secondary)", marginTop: "0.5rem" }}
+                >
+                  you found me
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
           <div className="identity-links">
             <a href="https://github.com/tomaskorenblit" target="_blank" rel="noreferrer" aria-label="GitHub">
@@ -201,13 +275,28 @@ export default function Index() {
                   </header>
                 )}
                 <div className="post-content">
-                  {PostComponent && <PostComponent />}
+                  {PostComponent && <PostComponent components={mdxComponents} />}
                 </div>
               </motion.article>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-    </>
+
+      {/* Toast */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            className="toast"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {toast}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
