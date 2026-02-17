@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { getAllPosts } from "~/utils/blog.server";
 import type { BlogPost } from "~/utils/blog.server";
 import { Spoiler, Typewriter } from "~/components/EasterEgg";
+import { Comments } from "~/components/Comments";
 
 const mdxComponents = {
   Spoiler,
@@ -277,6 +278,7 @@ export default function Index() {
                 <div className="post-content">
                   {PostComponent && <PostComponent components={mdxComponents} />}
                 </div>
+                {expandedSlug && <Comments slug={expandedSlug} />}
               </motion.article>
             </motion.div>
           </>

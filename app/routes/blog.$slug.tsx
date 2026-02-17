@@ -4,6 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 import { useState, useEffect } from "react";
 import { getPost, getAllPosts } from "~/utils/blog.server";
 import { Spoiler, Typewriter } from "~/components/EasterEgg";
+import { Comments } from "~/components/Comments";
 
 const mdxComponents = {
   Spoiler,
@@ -58,6 +59,7 @@ export default function BlogPost() {
         <div className="post-content">
           {Component ? <Component components={mdxComponents} /> : null}
         </div>
+        <Comments slug={slug} />
         <nav style={{ marginTop: "3rem" }}>
           <a href="/" style={{ color: "var(--accent)", textDecoration: "none" }}>
             &larr; Back
