@@ -336,8 +336,10 @@ body.scroll-locked {
 .post-overlay-bg {
   position: fixed;
   inset: 0;
-  background: var(--bg);
-  z-index: -1;
+  background: oklch(from var(--bg) l c h / 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 99;
 }
 
 .post-expanded {

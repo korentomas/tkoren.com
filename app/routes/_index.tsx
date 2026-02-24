@@ -18,6 +18,51 @@ const mdxComponents = {
   ImageGrid,
 };
 
+// Inline content for tall tiles — defined outside component to prevent remount
+function TallTileContent({ slug }: { slug: string }) {
+  const [Content, setContent] = useState<React.ComponentType | null>(null);
+  const [overflows, setOverflows] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    import(`../blog/${slug}.mdx`).then((mod) => setContent(() => mod.default));
+  }, [slug]);
+  useEffect(() => {
+    if (contentRef.current) {
+      setOverflows(contentRef.current.scrollHeight > contentRef.current.clientHeight);
+    }
+  }, [Content]);
+  return (
+    <>
+      <div className="tile-inline-content" ref={contentRef}>
+        {Content && <Content components={mdxComponents} />}
+      </div>
+      {overflows && (
+        <div className="tile-inline-fade">
+          <span className="tile-read-more">Read more</span>
+        </div>
+      )}
+    </>
+  );
+}
+
+function TilePreview({ post, height }: { post: BlogPost; height: string }) {
+  if (post.shader) {
+    return (
+      <div className="tile-preview">
+        <ShaderBanner shader={post.shader} colors={post.shaderColors} height={height} />
+      </div>
+    );
+  }
+  if (post.cover) {
+    return (
+      <div className="tile-preview">
+        <img src={post.cover} alt={post.title} loading="lazy" style={{ width: "100%", height, objectFit: "cover" }} />
+      </div>
+    );
+  }
+  return null;
+}
+
 export const loader = async () => {
   const posts = getAllPosts();
   return json({ posts });
@@ -205,57 +250,13 @@ export default function Index() {
 
   const visiblePosts = posts.slice(0, 5);
 
-  // Inline content for tall tiles — detects overflow for "Read more"
-  const TallTileContent = ({ slug }: { slug: string }) => {
-    const [Content, setContent] = useState<React.ComponentType | null>(null);
-    const [overflows, setOverflows] = useState(false);
-    const contentRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-      import(`../blog/${slug}.mdx`).then((mod) => setContent(() => mod.default));
-    }, [slug]);
-    useEffect(() => {
-      if (contentRef.current) {
-        setOverflows(contentRef.current.scrollHeight > contentRef.current.clientHeight);
-      }
-    }, [Content]);
-    return (
-      <>
-        <div className="tile-inline-content" ref={contentRef}>
-          {Content && <Content components={mdxComponents} />}
-        </div>
-        {overflows && (
-          <div className="tile-inline-fade">
-            <span className="tile-read-more">Read more</span>
-          </div>
-        )}
-      </>
-    );
-  };
-
-  const TilePreview = ({ post, height }: { post: BlogPost; height: string }) => {
-    if (post.shader) {
-      return (
-        <div className="tile-preview">
-          <ShaderBanner shader={post.shader} colors={post.shaderColors} height={height} />
-        </div>
-      );
-    }
-    if (post.cover) {
-      return (
-        <div className="tile-preview">
-          <img src={post.cover} alt={post.title} loading="lazy" style={{ width: "100%", height, objectFit: "cover" }} />
-        </div>
-      );
-    }
-    return null;
-  };
-
   return (
     <div className={inverted ? "inverted" : ""} style={{ transition: "filter 0.5s ease" }}>
       <motion.div
         className="bento"
-        animate={wobble ? { rotate: [0, -1, 1, -1, 0] } : { opacity: expandedSlug ? 0 : 1 }}
-        transition={wobble ? { duration: 0.5, ease: "easeInOut" } : { duration: 0.2 }}
+        animate={wobble ? { rotate: [0, -1, 1, -1, 0] } : undefined}
+        transition={wobble ? { duration: 0.5, ease: "easeInOut" } : undefined}
+        layout={false}
       >
         {/* Identity Tile */}
         <div className="tile tile--identity" style={{ position: "relative", overflow: "hidden" }}>
@@ -334,12 +335,12 @@ export default function Index() {
             <motion.div
               key={post.slug}
               className={`tile tile--${size} tile--clickable tile--colored`}
-              layoutId={`tile-${post.slug}`}
               onClick={() => openPost(post.slug)}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openPost(post.slug)}
               style={{ "--tile-hue": getHue(post) } as React.CSSProperties}
+              layout={false}
             >
               <TilePreview post={post} height={size === "small" ? "48px" : "80px"} />
               <div>
@@ -388,7 +389,8 @@ export default function Index() {
             >
               <motion.article
                 className="post-expanded"
-                layoutId={`tile-${expandedSlug}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
                   type: "spring",
                   stiffness: 200,
