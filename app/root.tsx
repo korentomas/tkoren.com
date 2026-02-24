@@ -8,7 +8,7 @@ import {
 import { Analytics } from "@vercel/analytics/remix";
 import styles from "./styles/global.css?url";
 
-const SITE_URL = "https://korenblit.vercel.app";
+const SITE_URL = "https://tkoren.com";
 
 export const links = () => [
   { rel: "stylesheet", href: styles },
@@ -20,7 +20,7 @@ export const links = () => [
 export const meta = () => [
   { name: "author", content: "Tomás Korenblit" },
   { name: "theme-color", content: "#F7F6F3" },
-  { name: "robots", content: "index, follow" },
+  { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
 ];
 
 export default function App() {

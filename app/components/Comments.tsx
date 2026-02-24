@@ -19,7 +19,7 @@ export function Comments({ slug }: CommentsProps) {
 
     const script = document.createElement("script");
     script.src = "https://giscus.app/client.js";
-    script.setAttribute("data-repo", "korentomas/tomaskorenblit.com");
+    script.setAttribute("data-repo", "korentomas/tkoren.com");
     script.setAttribute("data-repo-id", "R_kgDOOh7s6Q");
     script.setAttribute("data-category", "General");
     script.setAttribute("data-category-id", "DIC_kwDOOh7s6c4C2mR5");

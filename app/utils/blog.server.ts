@@ -6,7 +6,7 @@ export interface BlogPost {
   excerpt: string;
   shader?: string; // "mesh-gradient" | "neuro-noise" | "dot-orbit" | etc.
   shaderColors?: string[]; // custom colors for the shader
-  accent?: string; // unique tile color, e.g. "#4A90D9"
+  hue?: number; // oklch hue 0-360, auto-generated from slug if omitted
   cover?: string; // cover image path, e.g. "/blog/my-image.jpg"
 }
 

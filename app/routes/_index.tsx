@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { getAllPosts } from "~/utils/blog.server";
 import type { BlogPost } from "~/utils/blog.server";
 import { Spoiler, Typewriter } from "~/components/EasterEgg";
+import { Figure, ImageGrid } from "~/components/Figure";
 import { Comments } from "~/components/Comments";
 import { MeshGradient } from "@paper-design/shaders-react";
 import { ShaderBanner } from "~/components/ShaderBanner";
@@ -13,6 +14,8 @@ import { ShaderBanner } from "~/components/ShaderBanner";
 const mdxComponents = {
   Spoiler,
   Typewriter,
+  Figure,
+  ImageGrid,
 };
 
 export const loader = async () => {
@@ -20,28 +23,47 @@ export const loader = async () => {
   return json({ posts });
 };
 
-const SITE_URL = "https://korenblit.vercel.app";
+const SITE_URL = "https://tkoren.com";
 
 export const meta: MetaFunction = () => [
-  { title: "Tomás Korenblit" },
-  { name: "description", content: "Writing and work by Tomás Korenblit." },
+  { title: "Tomás Korenblit — Causal & Bayesian Data Scientist" },
+  { name: "description", content: "Tomás Korenblit is a causal and Bayesian data scientist, partner at Ascendancy. Writing about data, code, and 3D-printed telescopes." },
   { property: "og:type", content: "website" },
   { property: "og:url", content: SITE_URL },
-  { property: "og:title", content: "Tomás Korenblit" },
-  { property: "og:description", content: "Writing and work by Tomás Korenblit." },
+  { property: "og:title", content: "Tomás Korenblit — Causal & Bayesian Data Scientist" },
+  { property: "og:description", content: "Tomás Korenblit is a causal and Bayesian data scientist, partner at Ascendancy. Writing about data, code, and 3D-printed telescopes." },
   { property: "og:image", content: `${SITE_URL}/og-image.png` },
   { property: "og:image:width", content: "1200" },
   { property: "og:image:height", content: "630" },
+  { property: "og:image:alt", content: "Tomás Korenblit — personal site" },
+  { property: "og:locale", content: "en_US" },
+  { property: "og:site_name", content: "Tomás Korenblit" },
   { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Tomás Korenblit" },
-  { name: "twitter:description", content: "Writing and work by Tomás Korenblit." },
+  { name: "twitter:title", content: "Tomás Korenblit — Causal & Bayesian Data Scientist" },
+  { name: "twitter:description", content: "Causal and Bayesian data scientist, partner at Ascendancy. Writing about data, code, and 3D-printed telescopes." },
   { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
+  { name: "twitter:image:alt", content: "Tomás Korenblit — personal site" },
   {
     "script:ld+json": JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
       name: "Tomás Korenblit",
+      alternateName: "Tomas Korenblit",
       url: SITE_URL,
+      image: `${SITE_URL}/optimized-images/also_me-800w-90q.webp`,
+      email: "tomaskorenblit@gmail.com",
+      jobTitle: "Causal & Bayesian Data Scientist",
+      worksFor: {
+        "@type": "Organization",
+        name: "Ascendancy",
+      },
+      knowsAbout: [
+        "Causal inference",
+        "Bayesian statistics",
+        "Data science",
+        "3D printing",
+        "Software engineering",
+      ],
       sameAs: [
         "https://github.com/korentomas",
         "https://linkedin.com/in/tomaskorenblit",
@@ -163,8 +185,25 @@ export default function Index() {
     });
   }, []);
 
-  const hero = posts[0];
-  const rest = posts.slice(1, 5);
+  // Deterministic hue from slug when no hue is specified
+  const slugToHue = (slug: string): number => {
+    let hash = 0;
+    for (let i = 0; i < slug.length; i++) {
+      hash = slug.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return ((hash % 360) + 360) % 360;
+  };
+
+  const getHue = (post: BlogPost) => post.hue ?? slugToHue(post.slug);
+
+  // Bento size: hero is tall, essays are wide, notes are 1x1
+  const tileSize = (post: BlogPost, index: number): "tall" | "wide" | "small" => {
+    if (index === 0) return "tall";
+    if (post.type === "essay") return "wide";
+    return "small";
+  };
+
+  const visiblePosts = posts.slice(0, 5);
 
   const TilePreview = ({ post, height }: { post: BlogPost; height: string }) => {
     if (post.shader) {
@@ -195,37 +234,48 @@ export default function Index() {
         <div className="tile tile--identity" style={{ position: "relative", overflow: "hidden" }}>
           <div className="tile-shader-bg">
             <MeshGradient
-              colors={["#4A90D9", "#89CFF0", "#B8D4E3", "#F7F6F3"]}
+              colors={theme === "dark"
+                ? ["#3B6CB5", "#1A4F8A", "#2A3A5C", "#4A7AC7"]
+                : ["#4A90D9", "#89CFF0", "#B8D4E3", "#F7F6F3"]
+              }
               speed={0.15}
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.3 }}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: theme === "dark" ? 0.5 : 0.3 }}
             />
           </div>
-          <div>
-            <h1
-              className={`identity-name${shimmer ? " shimmer" : ""}`}
-              onClick={handleNameClick}
-              style={{ cursor: "pointer" }}
-            >
-              Tomás Korenblit
-            </h1>
-            <p className="identity-bio">
-              Data, code, and occasionally 3D-printed plastic. Based in Buenos Aires.
-            </p>
-            <AnimatePresence>
-              {hiddenMsg && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  style={{ fontSize: "0.75rem", color: "var(--text-secondary)", marginTop: "0.5rem" }}
-                >
-                  you found me
-                </motion.p>
-              )}
-            </AnimatePresence>
+          <div className="identity-image">
+            <img
+              src="/optimized-images/also_me-800w-90q.webp"
+              alt="Tomás Korenblit"
+              draggable="false"
+            />
           </div>
-          <div className="identity-links">
+          <div className="identity-content">
+            <div>
+              <h1
+                className={`identity-name${shimmer ? " shimmer" : ""}`}
+                onClick={handleNameClick}
+                style={{ cursor: "pointer" }}
+              >
+                Tomás Korenblit
+              </h1>
+              <p className="identity-bio">
+                Causal & Bayesian data scientist. Partner at Ascendancy. Buenos Aires.
+              </p>
+              <AnimatePresence>
+                {hiddenMsg && (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    style={{ fontSize: "0.75rem", color: "var(--text-secondary)", marginTop: "0.5rem" }}
+                  >
+                    you found me
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+            <div className="identity-links">
             <a href="https://github.com/korentomas" target="_blank" rel="noreferrer" aria-label="GitHub">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
             </a>
@@ -246,69 +296,39 @@ export default function Index() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
               )}
             </button>
+            </div>
           </div>
         </div>
 
-        {/* Hero blog tile — latest post */}
-        {hero && (
-          <motion.div
-            className="tile tile--hero tile--clickable tile--colored"
-            layoutId={`tile-${hero.slug}`}
-            onClick={() => openPost(hero.slug)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openPost(hero.slug)}
-            style={{
-              "--tile-accent": hero.accent || "var(--accent)",
-              borderLeft: `3px solid ${hero.accent || "var(--accent)"}`,
-              background: `linear-gradient(135deg, ${hero.accent || "var(--accent)"}11 0%, var(--tile-bg) 40%)`,
-            } as React.CSSProperties}
-          >
-            <TilePreview post={hero} height="80px" />
-            <div>
-              <span className="tile-type" style={{ color: hero.accent || "var(--text-secondary)" }}>{hero.type}</span>
-              <h2 className="tile-title">{hero.title}</h2>
-              <p className="tile-excerpt">{hero.excerpt}</p>
-            </div>
-            <span className="tile-date">
-              {new Date(hero.date).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-              })}
-            </span>
-          </motion.div>
-        )}
-
-        {/* Remaining tiles */}
-        {rest.map((post) => (
-          <motion.div
-            key={post.slug}
-            className="tile tile--small tile--clickable tile--colored"
-            layoutId={`tile-${post.slug}`}
-            onClick={() => openPost(post.slug)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openPost(post.slug)}
-            style={{
-              "--tile-accent": post.accent || "var(--accent)",
-              borderLeft: `3px solid ${post.accent || "var(--accent)"}`,
-              background: `linear-gradient(135deg, ${post.accent || "var(--accent)"}11 0%, var(--tile-bg) 40%)`,
-            } as React.CSSProperties}
-          >
-            <TilePreview post={post} height="48px" />
-            <div>
-              <span className="tile-type" style={{ color: post.accent || "var(--text-secondary)" }}>{post.type}</span>
-              <h2 className="tile-title">{post.title}</h2>
-              <p className="tile-excerpt">{post.excerpt}</p>
-            </div>
-            <span className="tile-date">
-              {new Date(post.date).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-              })}
-            </span>
-          </motion.div>
-        ))}
+        {/* Blog tiles — sized by type */}
+        {visiblePosts.map((post, i) => {
+          const size = tileSize(post, i);
+          return (
+            <motion.div
+              key={post.slug}
+              className={`tile tile--${size} tile--clickable tile--colored`}
+              layoutId={`tile-${post.slug}`}
+              onClick={() => openPost(post.slug)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openPost(post.slug)}
+              style={{ "--tile-hue": getHue(post) } as React.CSSProperties}
+            >
+              <TilePreview post={post} height={size === "small" ? "48px" : "80px"} />
+              <div>
+                <span className="tile-type">{post.type}</span>
+                <h2 className="tile-title">{post.title}</h2>
+                <p className="tile-excerpt">{post.excerpt}</p>
+              </div>
+              <span className="tile-date">
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                })}
+              </span>
+            </motion.div>
+          );
+        })}
 
         {/* View all tile */}
         {posts.length > 5 && (
@@ -345,8 +365,9 @@ export default function Index() {
                   damping: 30,
                 }}
                 style={{
-                  borderTop: `3px solid ${postMeta?.accent || "var(--accent)"}`,
-                }}
+                  "--tile-hue": postMeta ? getHue(postMeta) : 250,
+                  borderTop: "3px solid oklch(var(--accent-l, 0.52) 0.15 var(--tile-hue, 250))",
+                } as React.CSSProperties}
               >
                 <motion.button
                   className="post-back"

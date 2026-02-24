@@ -5,12 +5,15 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { getPost, getAllPosts } from "~/utils/blog.server";
 import { Spoiler, Typewriter } from "~/components/EasterEgg";
+import { Figure, ImageGrid } from "~/components/Figure";
 import { Comments } from "~/components/Comments";
 import { ShaderBanner } from "~/components/ShaderBanner";
 
 const mdxComponents = {
   Spoiler,
   Typewriter,
+  Figure,
+  ImageGrid,
 };
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -26,7 +29,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   });
 };
 
-const SITE_URL = "https://korenblit.vercel.app";
+const SITE_URL = "https://tkoren.com";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) return [{ title: "Tomás Korenblit" }];
@@ -47,24 +50,59 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     { property: "og:image", content: image },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
+    { property: "og:image:alt", content: frontmatter.title },
+    { property: "og:locale", content: "en_US" },
+    { property: "og:site_name", content: "Tomás Korenblit" },
+    { property: "article:published_time", content: frontmatter.date },
+    { property: "article:author", content: SITE_URL },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: frontmatter.title },
     { name: "twitter:description", content: frontmatter.excerpt },
     { name: "twitter:image", content: image },
+    { name: "twitter:image:alt", content: frontmatter.title },
     { tagName: "link", rel: "canonical", href: url },
     {
-      "script:ld+json": JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        headline: frontmatter.title,
-        description: frontmatter.excerpt,
-        datePublished: frontmatter.date,
-        url,
-        author: {
-          "@type": "Person",
-          name: "Tomás Korenblit",
+      "script:ld+json": JSON.stringify([
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: frontmatter.title,
+          description: frontmatter.excerpt,
+          datePublished: frontmatter.date,
+          dateModified: frontmatter.date,
+          url,
+          image,
+          author: {
+            "@type": "Person",
+            name: "Tomás Korenblit",
+            url: SITE_URL,
+            jobTitle: "Causal & Bayesian Data Scientist",
+          },
+          publisher: {
+            "@type": "Person",
+            name: "Tomás Korenblit",
+            url: SITE_URL,
+          },
         },
-      }),
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: SITE_URL,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: frontmatter.title,
+              item: url,
+            },
+          ],
+        },
+      ]),
     },
   ];
 };
@@ -81,7 +119,7 @@ export default function BlogPost() {
 
   return (
     <div className="post-overlay" style={{ position: "relative" }}>
-      <article className="post-expanded" style={{ borderTop: `3px solid ${frontmatter.accent || "var(--accent)"}` }}>
+      <article className="post-expanded" style={{ "--tile-hue": frontmatter.hue ?? 250, borderTop: "3px solid oklch(var(--accent-l, 0.52) 0.15 var(--tile-hue, 250))" } as React.CSSProperties}>
         <motion.a
           href="/"
           className="post-back"
