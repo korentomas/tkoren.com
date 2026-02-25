@@ -461,6 +461,10 @@ export default function Index() {
                   slug={expandedSlug}
                   Component={PostComponent}
                   onBack={closePost}
+                  onTagClick={(filter) => {
+                    closePost();
+                    handleFilter(filter);
+                  }}
                 />
               </motion.article>
             </motion.div>

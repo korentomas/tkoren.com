@@ -1,6 +1,6 @@
 import type { LoaderFunctionArgs, MetaFunction } from "@vercel/remix";
 import { json, redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 import { useState, useEffect } from "react";
 import { getPost } from "~/utils/blog.server";
 import type { BlogPost } from "~/utils/blog.server";
@@ -96,8 +96,9 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   ];
 };
 
-export default function BlogPost() {
+export default function BlogPostRoute() {
   const { slug, frontmatter } = useLoaderData<typeof loader>();
+  const navigate = useNavigate();
   const [Component, setComponent] = useState<React.ComponentType | null>(null);
 
   useEffect(() => {
@@ -116,6 +117,7 @@ export default function BlogPost() {
           frontmatter={frontmatter as BlogPost}
           slug={slug}
           Component={Component}
+          onTagClick={(filter) => navigate(`/?${filter.type}=${filter.value}`)}
         />
       </article>
     </div>

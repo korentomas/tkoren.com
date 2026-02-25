@@ -11,6 +11,7 @@ interface PostArticleProps {
   slug: string;
   Component: React.ComponentType<{ components?: Record<string, React.ComponentType> }> | null;
   onBack?: () => void;
+  onTagClick?: (filter: { type: "category" | "tag"; value: string }) => void;
 }
 
 /**
@@ -21,7 +22,7 @@ interface PostArticleProps {
  * Does NOT render the wrapping <article> element — each consumer provides
  * its own wrapper with route-specific styling and animation props.
  */
-export function PostArticle({ frontmatter, slug, Component, onBack }: PostArticleProps) {
+export function PostArticle({ frontmatter, slug, Component, onBack, onTagClick }: PostArticleProps) {
   return (
     <>
       {onBack ? (
@@ -74,11 +75,46 @@ export function PostArticle({ frontmatter, slug, Component, onBack }: PostArticl
           })}
         </div>
         <h1 className="post-title">{frontmatter.title}</h1>
+        {/* Project metadata bar */}
+        {frontmatter.type === "project" && (frontmatter.repo || frontmatter.demo || frontmatter.status) && (
+          <div className="post-project-meta">
+            {frontmatter.status && (
+              <span className={`tile-status tile-status--${frontmatter.status}`} aria-label={`Project status: ${frontmatter.status}`}>
+                <span className="tile-status-dot" aria-hidden="true" />
+                {frontmatter.status}
+              </span>
+            )}
+            {frontmatter.repo && (
+              <a href={frontmatter.repo} target="_blank" rel="noopener noreferrer" className="post-project-link" aria-label="View source code on GitHub">
+                GitHub ↗
+              </a>
+            )}
+            {frontmatter.demo && (
+              <a href={frontmatter.demo} target="_blank" rel="noopener noreferrer" className="post-project-link" aria-label="View live demo">
+                Demo ↗
+              </a>
+            )}
+          </div>
+        )}
       </header>
       <div className="post-content">
         {Component && <Component components={mdxComponents} />}
       </div>
       <Comments slug={slug} />
+      {frontmatter.tags && frontmatter.tags.length > 0 && (
+        <div className="post-tags">
+          {frontmatter.tags.map((tag) => (
+            <button
+              key={tag}
+              className="post-tag-pill"
+              onClick={() => onTagClick?.({ type: "tag", value: tag })}
+              aria-label={`Filter by ${tag}`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      )}
     </>
   );
 }
