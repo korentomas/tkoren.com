@@ -9,6 +9,7 @@ export interface BlogPost {
   hue?: number; // oklch hue 0-360, auto-generated from slug if omitted
   cover?: string; // cover image path, e.g. "/blog/my-image.jpg"
   layout?: "wide" | "tall" | "small"; // override tile size in bento grid
+  static?: boolean; // if true, tile is non-interactive (no hover, no click-to-open)
 }
 
 // Import all MDX files from the blog directory

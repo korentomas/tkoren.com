@@ -5,21 +5,34 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getAllPosts } from "~/utils/blog.server";
 import type { BlogPost } from "~/utils/blog.server";
-import { Spoiler, Typewriter } from "~/components/EasterEgg";
-import { Figure, ImageGrid } from "~/components/Figure";
-import { Comments } from "~/components/Comments";
 import { MeshGradient } from "@paper-design/shaders-react";
 import { ShaderBanner } from "~/components/ShaderBanner";
+import { PostArticle } from "~/components/PostArticle";
+import { SITE_URL, SITE, SOCIAL_LINKS, mdxComponents } from "~/utils/site-config";
 
-const mdxComponents = {
-  Spoiler,
-  Typewriter,
-  Figure,
-  ImageGrid,
-};
+/* ─── Layout ─────────────────────────────────────── */
+const MAX_VISIBLE_POSTS = 5;
+const DEFAULT_HUE = 250;
+
+/* ─── Animation ──────────────────────────────────── */
+const OVERLAY_EXIT_MS = 400;
+const SPRING_CONTENT = { type: "spring" as const, stiffness: 200, damping: 30 };
+const FADE_OVERLAY_BG = { duration: 0.2 };
+const FADE_OVERLAY = { duration: 0.3 };
+const FADE_TOAST = { duration: 0.3 };
+
+/* ─── Easter eggs ────────────────────────────────── */
+const SHIMMER_CLICKS = 3;
+const SHIMMER_MS = 800;
+const WOBBLE_CLICKS = 7;
+const WOBBLE_MS = 600;
+const REVEAL_CLICKS = 10;
+const REVEAL_MS = 3000;
+const KONAMI_INVERT_MS = 2000;
+const KONAMI_TOAST_MS = 2500;
 
 // Inline content for tall tiles — defined outside component to prevent remount
-function TallTileContent({ slug }: { slug: string }) {
+function TallTileContent({ slug, isStatic }: { slug: string; isStatic?: boolean }) {
   const [Content, setContent] = useState<React.ComponentType | null>(null);
   const [overflows, setOverflows] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -36,7 +49,7 @@ function TallTileContent({ slug }: { slug: string }) {
       <div className="tile-inline-content" ref={contentRef}>
         {Content && <Content components={mdxComponents} />}
       </div>
-      {overflows && (
+      {overflows && !isStatic && (
         <div className="tile-inline-fade">
           <span className="tile-read-more">Read more</span>
         </div>
@@ -68,50 +81,42 @@ export const loader = async () => {
   return json({ posts });
 };
 
-const SITE_URL = "https://tkoren.com";
-
 export const meta: MetaFunction = () => [
-  { title: "Tomás Korenblit — Causal & Bayesian Data Scientist" },
-  { name: "description", content: "Tomás Korenblit is a causal and Bayesian data scientist, partner at Ascendancy. Writing about data, code, and 3D-printed telescopes." },
+  { title: `${SITE.name} — ${SITE.title}` },
+  { name: "description", content: SITE.description },
   { property: "og:type", content: "website" },
   { property: "og:url", content: SITE_URL },
-  { property: "og:title", content: "Tomás Korenblit — Causal & Bayesian Data Scientist" },
-  { property: "og:description", content: "Tomás Korenblit is a causal and Bayesian data scientist, partner at Ascendancy. Writing about data, code, and 3D-printed telescopes." },
+  { property: "og:title", content: `${SITE.name} — ${SITE.title}` },
+  { property: "og:description", content: SITE.description },
   { property: "og:image", content: `${SITE_URL}/og-image.png` },
   { property: "og:image:width", content: "1200" },
   { property: "og:image:height", content: "630" },
-  { property: "og:image:alt", content: "Tomás Korenblit — personal site" },
+  { property: "og:image:alt", content: `${SITE.name} — personal site` },
   { property: "og:locale", content: "en_US" },
-  { property: "og:site_name", content: "Tomás Korenblit" },
+  { property: "og:site_name", content: SITE.name },
   { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "Tomás Korenblit — Causal & Bayesian Data Scientist" },
-  { name: "twitter:description", content: "Causal and Bayesian data scientist, partner at Ascendancy. Writing about data, code, and 3D-printed telescopes." },
+  { name: "twitter:title", content: `${SITE.name} — ${SITE.title}` },
+  { name: "twitter:description", content: SITE.shortDescription },
   { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
-  { name: "twitter:image:alt", content: "Tomás Korenblit — personal site" },
+  { name: "twitter:image:alt", content: `${SITE.name} — personal site` },
   {
     "script:ld+json": JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
-      name: "Tomás Korenblit",
-      alternateName: "Tomas Korenblit",
+      name: SITE.name,
+      alternateName: SITE.alternateName,
       url: SITE_URL,
-      image: `${SITE_URL}/optimized-images/also_me-800w-90q.webp`,
-      email: "tomaskorenblit@gmail.com",
-      jobTitle: "Causal & Bayesian Data Scientist",
+      image: `${SITE_URL}${SITE.image}`,
+      email: SITE.email,
+      jobTitle: SITE.title,
       worksFor: {
         "@type": "Organization",
-        name: "Ascendancy",
+        name: SITE.worksFor,
       },
-      knowsAbout: [
-        "Causal inference",
-        "Bayesian statistics",
-        "Data science",
-        "3D printing",
-        "Software engineering",
-      ],
+      knowsAbout: [...SITE.knowsAbout],
       sameAs: [
-        "https://github.com/korentomas",
-        "https://linkedin.com/in/tomaskorenblit",
+        SITE.social.github,
+        SITE.social.linkedin,
       ],
     }),
   },
@@ -148,7 +153,7 @@ export default function Index() {
     setTimeout(() => {
       setPostComponent(null);
       setPostMeta(null);
-    }, 400);
+    }, OVERLAY_EXIT_MS);
   }, []);
 
   useEffect(() => {
@@ -176,17 +181,17 @@ export default function Index() {
     const next = nameClicks + 1;
     setNameClicks(next);
 
-    if (next === 3) {
+    if (next === SHIMMER_CLICKS) {
       setShimmer(true);
-      setTimeout(() => setShimmer(false), 800);
+      setTimeout(() => setShimmer(false), SHIMMER_MS);
     }
-    if (next === 7) {
+    if (next === WOBBLE_CLICKS) {
       setWobble(true);
-      setTimeout(() => setWobble(false), 600);
+      setTimeout(() => setWobble(false), WOBBLE_MS);
     }
-    if (next === 10) {
+    if (next === REVEAL_CLICKS) {
       setHiddenMsg(true);
-      setTimeout(() => setHiddenMsg(false), 3000);
+      setTimeout(() => setHiddenMsg(false), REVEAL_MS);
       setNameClicks(0);
     }
   }, [nameClicks]);
@@ -203,8 +208,8 @@ export default function Index() {
         konamiRef.current = [];
         setInverted(true);
         setToast("nice");
-        setTimeout(() => setInverted(false), 2000);
-        setTimeout(() => setToast(null), 2500);
+        setTimeout(() => setInverted(false), KONAMI_INVERT_MS);
+        setTimeout(() => setToast(null), KONAMI_TOAST_MS);
       }
     };
     window.addEventListener("keydown", handleKonami);
@@ -248,7 +253,7 @@ export default function Index() {
     return "small";
   };
 
-  const visiblePosts = posts.slice(0, 5);
+  const visiblePosts = posts.slice(0, MAX_VISIBLE_POSTS);
 
   return (
     <div className={inverted ? "inverted" : ""} style={{ transition: "filter 0.5s ease" }}>
@@ -259,7 +264,7 @@ export default function Index() {
         layout={false}
       >
         {/* Identity Tile */}
-        <div className="tile tile--identity" style={{ position: "relative", overflow: "hidden" }}>
+        <div className="tile tile--identity">
           <div className="tile-shader-bg">
             <MeshGradient
               colors={theme === "dark"
@@ -272,8 +277,8 @@ export default function Index() {
           </div>
           <div className="identity-image">
             <img
-              src="/optimized-images/also_me-800w-90q.webp"
-              alt="Tomás Korenblit"
+              src={SITE.image}
+              alt={SITE.name}
               draggable="false"
             />
           </div>
@@ -284,10 +289,10 @@ export default function Index() {
                 onClick={handleNameClick}
                 style={{ cursor: "pointer" }}
               >
-                Tomás Korenblit
+                {SITE.name}
               </h1>
               <p className="identity-bio">
-                Causal & Bayesian data scientist. Partner at Ascendancy. Buenos Aires.
+                {SITE.bio}
               </p>
               <AnimatePresence>
                 {hiddenMsg && (
@@ -304,15 +309,11 @@ export default function Index() {
               </AnimatePresence>
             </div>
             <div className="identity-links">
-            <a href="https://github.com/korentomas" target="_blank" rel="noreferrer" aria-label="GitHub">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
-            </a>
-            <a href="https://linkedin.com/in/tomaskorenblit" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
-            </a>
-            <a href="mailto:tomaskorenblit@gmail.com" aria-label="Email">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
-            </a>
+            {SOCIAL_LINKS.map((link) => (
+              <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: link.icon }} />
+              </a>
+            ))}
             <button
               onClick={toggleTheme}
               aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
@@ -331,14 +332,17 @@ export default function Index() {
         {/* Blog tiles — sized by type */}
         {visiblePosts.map((post, i) => {
           const size = tileSize(post);
+          const interactive = !post.static;
           return (
             <motion.div
               key={post.slug}
-              className={`tile tile--${size} tile--clickable tile--colored`}
-              onClick={() => openPost(post.slug)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openPost(post.slug)}
+              className={`tile tile--${size}${interactive ? " tile--clickable" : ""} tile--colored`}
+              {...(interactive ? {
+                onClick: () => openPost(post.slug),
+                role: "button" as const,
+                tabIndex: 0,
+                onKeyDown: (e: React.KeyboardEvent) => (e.key === "Enter" || e.key === " ") && openPost(post.slug),
+              } : {})}
               style={{ "--tile-hue": getHue(post) } as React.CSSProperties}
               layout={false}
             >
@@ -350,7 +354,7 @@ export default function Index() {
                   <p className="tile-excerpt">{post.excerpt}</p>
                 )}
               </div>
-              {size === "tall" && <TallTileContent slug={post.slug} />}
+              {size === "tall" && <TallTileContent slug={post.slug} isStatic={post.static} />}
               <span className="tile-date">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   month: "short",
@@ -362,7 +366,7 @@ export default function Index() {
         })}
 
         {/* View all tile */}
-        {posts.length > 5 && (
+        {posts.length > MAX_VISIBLE_POSTS && (
           <div className="tile tile--small tile--viewall tile--clickable">
             <span className="viewall-text">View all writing →</span>
           </div>
@@ -378,70 +382,28 @@ export default function Index() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={FADE_OVERLAY_BG}
             />
             <motion.div
               className="post-overlay"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={FADE_OVERLAY}
             >
               <motion.article
-                className="post-expanded"
+                className="post-expanded post-expanded--colored"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 30,
-                }}
-                style={{
-                  "--tile-hue": postMeta ? getHue(postMeta) : 250,
-                  borderTop: "3px solid oklch(var(--accent-l, 0.52) 0.15 var(--tile-hue, 250))",
-                } as React.CSSProperties}
+                transition={SPRING_CONTENT}
+                style={{ "--tile-hue": postMeta ? getHue(postMeta) : DEFAULT_HUE } as React.CSSProperties}
               >
-                <motion.button
-                  className="post-back"
-                  onClick={closePost}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
-                  aria-label="Go back"
-                >
-                  &larr; Back
-                </motion.button>
-                {postMeta?.shader && (
-                  <div style={{ marginBottom: "2rem", borderRadius: "var(--tile-radius)", overflow: "hidden" }}>
-                    <ShaderBanner
-                      shader={postMeta.shader}
-                      colors={postMeta.shaderColors}
-                      height="180px"
-                    />
-                  </div>
-                )}
-                {postMeta?.cover && !postMeta?.shader && (
-                  <div style={{ marginBottom: "2rem", borderRadius: "var(--tile-radius)", overflow: "hidden" }}>
-                    <img src={postMeta.cover} alt={postMeta.title} style={{ width: "100%", height: "180px", objectFit: "cover", display: "block" }} />
-                  </div>
-                )}
-                {postMeta && (
-                  <header className="post-header">
-                    <div className="post-meta">
-                      {postMeta.type} ·{" "}
-                      {new Date(postMeta.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </div>
-                    <h1 className="post-title">{postMeta.title}</h1>
-                  </header>
-                )}
-                <div className="post-content">
-                  {PostComponent && <PostComponent components={mdxComponents} />}
-                </div>
-                {expandedSlug && <Comments slug={expandedSlug} />}
+                <PostArticle
+                  frontmatter={postMeta!}
+                  slug={expandedSlug}
+                  Component={PostComponent}
+                  onBack={closePost}
+                />
               </motion.article>
             </motion.div>
           </>
@@ -456,7 +418,7 @@ export default function Index() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3 }}
+            transition={FADE_TOAST}
           >
             {toast}
           </motion.div>
