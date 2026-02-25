@@ -7,8 +7,7 @@ import {
 } from "@remix-run/react";
 import { Analytics } from "@vercel/analytics/remix";
 import styles from "./styles/global.css?url";
-
-const SITE_URL = "https://tkoren.com";
+import { SITE_URL, SITE } from "~/utils/site-config";
 
 export const links = () => [
   { rel: "stylesheet", href: styles },
@@ -18,7 +17,7 @@ export const links = () => [
 ];
 
 export const meta = () => [
-  { name: "author", content: "Tomás Korenblit" },
+  { name: "author", content: SITE.name },
   { name: "theme-color", content: "#F7F6F3" },
   { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
 ];
