@@ -83,7 +83,7 @@ export const INTERESTS: Interest[] = [
   },
   {
     title: "AI safety",
-    body: "Alignment and interpretability? Fascinating problems. My take: LLMs alone won't safely get us there. We need to understand what these systems are doing inside before we trust what's coming out.",
+    body: "Alignment and interpretability are fascinating and I'm learning more and more every day. Yet I can't help but think that LLMs alone won't safely get us there; we need to understand what these systems are doing inside before we can trust what's coming out.",
   },
   {
     title: "Recreational thinking",
