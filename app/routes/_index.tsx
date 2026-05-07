@@ -38,14 +38,12 @@ export default function Index() {
   return (
     <main id="content">
       <p>
-        I'm a data scientist focused on causal inference and Bayesian
-        workflows. I help teams answer questions about <em>why</em> things
-        happen, not only <em>what</em> happened.
+        I'm a data scientist interested in causal inference, AI safety, and the
+        history and philosophy of science. Right now I'm focused on AI safety.
       </p>
 
       <p>
-        Outside work I read widely, think about AI safety, and tinker with
-        small tools for thinking.
+        Feel free to send an email if you want to talk.
       </p>
 
       <h2>Elsewhere</h2>

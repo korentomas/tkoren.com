@@ -3,20 +3,20 @@ export const SITE_URL = "https://tkoren.com";
 export const SITE = {
   name: "Tomás Korenblit",
   alternateName: "Tomas Korenblit",
-  title: "Causal & Bayesian Data Scientist",
-  bio: "Causal & Bayesian data scientist. Buenos Aires.",
+  title: "Bayesian Data Scientist",
+  bio: "Bayesian Data Scientist @ Buenos Aires.",
   email: "tomaskorenblit@gmail.com",
   image: "/optimized-images/also_me-800w-90q.webp",
   resumeUrl: "/resume/16-04-2026.pdf",
   description:
-    "Tomás Korenblit, causal and Bayesian data scientist. Notes on books, ideas, and what I'm working on.",
-  shortDescription: "Causal and Bayesian data scientist.",
+    "Tomás Korenblit, Bayesian Data Scientist. Notes on books, ideas, and what I'm working on.",
+  shortDescription: "Bayesian Data Scientist.",
   knowsAbout: [
-    "Causal inference",
-    "Bayesian statistics",
-    "Data science",
-    "AI safety",
-    "Software engineering",
+    "Causal Inference",
+    "Bayesian Statistics",
+    "Data Science",
+    "AI Safety",
+    "Software Engineering",
   ],
   social: {
     github: "https://github.com/korentomas",
@@ -78,20 +78,16 @@ export type Interest = { title: string; body: string };
 
 export const INTERESTS: Interest[] = [
   {
-    title: "Bayesian workflows",
-    body: "Priors as hypotheses, posteriors as arguments. I'm interested in pipelines that make uncertainty a first-class output, not an afterthought.",
-  },
-  {
-    title: "Causal inference in business",
-    body: "Most decisions inside companies are causal questions in disguise. DAGs, difference-in-differences, synthetic controls, whatever the setting demands.",
+    title: "Causal inference",
+    body: "Priors are awesome, online learning? Incredible. I live a Bayesian life, thinking of all events as they adapt my knowledge.",
   },
   {
     title: "AI safety",
-    body: "How do we keep increasingly capable systems reliably doing what we actually want? I'm drawn to the measurement and evaluation side: telling whether a model has internalized a rule versus pattern-matched around it.",
+    body: "Alignment and interpretability? Fascinating problems. My take: LLMs alone won't safely get us there. We need to understand what these systems are doing inside before we trust what's coming out.",
   },
   {
-    title: "Writing tools for thinking",
-    body: "Plain text, local files, a few well-aimed scripts. Less magic, more leverage.",
+    title: "Recreational thinking",
+    body: "Send me an email if you want to chat! I mean it.",
   },
 ];
 
@@ -109,15 +105,15 @@ export type NowSnapshot = {
 };
 
 export const NOW: NowSnapshot = {
-  date: "2026-04-21",
+  date: "2026-05-06",
   sections: [
     {
       heading: "Work",
-      body: "Applying to AI safety fellowships and working through BlueDot Impact courses.",
+      body: "Doing the BlueDot Technical AI Safety course, facilitated by BAISH (Buenos Aires AI Safety Hub).",
     },
     {
       heading: "Reading",
-      body: "Cannery Row by John Steinbeck.",
+      body: "El infinito en un junco by Irene Vallejo.",
     },
     {
       heading: "Writing",
