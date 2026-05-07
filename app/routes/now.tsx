@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@vercel/remix";
 import { Link } from "@remix-run/react";
 import { NOW, SITE, SITE_URL } from "~/utils/site-config";
+import { SparkleText } from "~/components/SparkleText";
 
 export const meta: MetaFunction = () => [
   { title: `Now · ${SITE.name}` },
@@ -29,7 +30,7 @@ export default function Now() {
         <section key={s.heading}>
           <h2>{s.heading}</h2>
           <p>
-            {s.body}
+            <SparkleText text={s.body} />
             {s.link && (
               <>
                 {" "}

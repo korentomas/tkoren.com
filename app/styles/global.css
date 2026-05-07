@@ -18,6 +18,7 @@
   --rule: #1c3a1c;
   --link: #b0ff7d;
   --link-visited: #70c040;
+  --sparkle: #d8ff55;
   --grain: none;
 }
 
@@ -29,6 +30,7 @@
   --rule: #d8cfbc;
   --link: #0b4aa2;
   --link-visited: #6c3e9e;
+  --sparkle: #c9751c;
   /* Chunkier, more visible grain: larger tile (400), lower baseFrequency
      (bigger noise blobs), 3 octaves, higher alpha. Reads as real paper. */
   --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.35' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.32 0 0 0 0 0.22 0 0 0 0 0.14 0 0 0 0.28 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
@@ -42,6 +44,7 @@
   --rule: #2a2520;
   --link: #8cc0ff;
   --link-visited: #c8a4d4;
+  --sparkle: #e8c67b;
   --grain: none;
 }
 
@@ -53,6 +56,7 @@
   --rule: #3a2a18;
   --link: #ffc870;
   --link-visited: #c88030;
+  --sparkle: #ffe6a0;
   --grain: none;
 }
 
@@ -64,6 +68,7 @@
   --rule: #334862;
   --link: #9ed4ff;
   --link-visited: #d4a8f0;
+  --sparkle: #ffd48a;
   --grain: none;
 }
 
@@ -75,6 +80,7 @@
   --rule: #3a2a45;
   --link: #e8b4f0;
   --link-visited: #b890c2;
+  --sparkle: #ffd48a;
   --grain: none;
 }
 
@@ -313,6 +319,17 @@ footer {
   max-width: var(--max-width);
   margin: 4rem auto;
   padding: 0 1.25rem;
+}
+
+/* Sparkle accent: a theme-colored glyph for emphasis.
+   Write ✦ in any content string wrapped by <SparkleText> and it
+   gets this color automatically. */
+.sparkle {
+  color: var(--sparkle);
+  font-size: 0.9em;
+  display: inline-block;
+  transform: translateY(-0.05em);
+  padding: 0 0.1em;
 }
 
 /* Theme picker (row of text buttons in the footer) */

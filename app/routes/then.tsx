@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@vercel/remix";
 import { Link } from "@remix-run/react";
 import { THEN, SITE, SITE_URL } from "~/utils/site-config";
+import { SparkleText } from "~/components/SparkleText";
 
 export const meta: MetaFunction = () => [
   { title: `Then · ${SITE.name}` },
@@ -41,7 +42,7 @@ export default function Then() {
               <div key={s.heading} className="stack">
                 <h3>{s.heading}</h3>
                 <p>
-                  {s.body}
+                  <SparkleText text={s.body} />
                   {s.link && (
                     <>
                       {" "}

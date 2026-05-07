@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@vercel/remix";
 import { BOOKS, SITE, SITE_URL } from "~/utils/site-config";
+import { SparkleText } from "~/components/SparkleText";
 
 export const meta: MetaFunction = () => [
   { title: `Books · ${SITE.name}` },
@@ -39,7 +40,11 @@ export default function Books() {
               {", "}
               <span className="book-author">{b.author}</span>
               {b.rating && <Stars n={b.rating} />}
-              {b.note && <span className="book-note">{b.note}</span>}
+              {b.note && (
+                <span className="book-note">
+                  <SparkleText text={b.note} />
+                </span>
+              )}
             </div>
           ))}
         </section>

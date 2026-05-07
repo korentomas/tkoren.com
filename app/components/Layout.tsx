@@ -1,6 +1,7 @@
 import { Link, useLocation } from "@remix-run/react";
 import { SITE } from "~/utils/site-config";
 import { ThemePicker } from "./ThemePicker";
+import { SparkleText } from "./SparkleText";
 
 export function TopNav({ current }: { current?: string }) {
   const links = [
@@ -44,7 +45,9 @@ export function SiteHeader() {
           <Link to="/">{SITE.name}</Link>
         </p>
       )}
-      <p className="site-tagline">{SITE.bio}</p>
+      <p className="site-tagline">
+        <SparkleText text={SITE.bio} />
+      </p>
       <TopNav current={pathname} />
     </header>
   );

@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@vercel/remix";
 import { INTERESTS, SITE, SITE_URL } from "~/utils/site-config";
+import { SparkleText } from "~/components/SparkleText";
 
 export const meta: MetaFunction = () => [
   { title: `Interests · ${SITE.name}` },
@@ -21,7 +22,7 @@ export default function Interests() {
       {INTERESTS.map((it) => (
         <section key={it.title}>
           <h2>{it.title}</h2>
-          <p>{it.body}</p>
+          <p><SparkleText text={it.body} /></p>
         </section>
       ))}
     </main>
