@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@vercel/remix";
-import { BOOKS, SITE, SITE_URL } from "~/utils/content.server";
+import { BOOKS, SITE, SITE_URL } from "~/utils/site-config";
 import { SparkleText } from "~/components/SparkleText";
 
 export const meta: MetaFunction = () => [

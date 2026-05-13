@@ -1,0 +1,13 @@
+.admin-shell { max-width: 60ch; margin: 4rem auto; padding: 0 1.5rem; font-family: var(--font-body, system-ui); }
+.admin-shell h1 { margin-bottom: 1rem; }
+.admin-shell nav ul { list-style: none; padding: 0; }
+.admin-shell nav li { margin: 0.5rem 0; }
+.admin-shell .save-row { display: flex; gap: 1rem; align-items: center; margin-top: 1.5rem; }
+.admin-shell button { padding: 0.5rem 1rem; cursor: pointer; }
+.admin-shell .field { display: flex; flex-direction: column; margin-bottom: 1rem; }
+.admin-shell label { font-weight: 600; margin-bottom: 0.25rem; }
+.admin-shell input, .admin-shell textarea { padding: 0.5rem; font: inherit; }
+.admin-shell textarea { min-height: 6rem; resize: vertical; }
+.admin-shell .error { color: #b00020; }
+.admin-shell .success { color: #0a7d2c; }
+.admin-shell .muted { color: #666; font-size: 0.9rem; }

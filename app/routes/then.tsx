@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@vercel/remix";
 import { Link } from "@remix-run/react";
-import { THEN, SITE, SITE_URL } from "~/utils/content.server";
+import { THEN, SITE, SITE_URL } from "~/utils/site-config";
 import { SparkleText } from "~/components/SparkleText";
 
 export const meta: MetaFunction = () => [
