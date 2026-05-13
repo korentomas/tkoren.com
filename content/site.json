@@ -12,5 +12,6 @@
   "social": {
     "github": "https://github.com/korentomas",
     "linkedin": "https://linkedin.com/in/tomaskorenblit"
-  }
+  },
+  "homeBio": "I'm a data scientist interested in causal inference, AI safety, and the history and philosophy of science. Right now I'm focused on AI safety.\n\nFeel free to send an email if you want to talk."
 }

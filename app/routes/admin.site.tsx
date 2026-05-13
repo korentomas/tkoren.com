@@ -33,6 +33,7 @@ export async function action({ request }: ActionFunctionArgs) {
       github: fd.get("social.github"),
       linkedin: fd.get("social.linkedin"),
     },
+    homeBio: fd.get("homeBio"),
   };
   const parsed = SiteSchema.safeParse(candidate);
   if (!parsed.success) return json({ ok: false, errors: parsed.error.format() }, { status: 400 });
@@ -71,6 +72,10 @@ export default function AdminSite() {
         <div className="field">
           <label htmlFor="social.linkedin">social.linkedin</label>
           <input id="social.linkedin" name="social.linkedin" defaultValue={site.social.linkedin} />
+        </div>
+        <div className="field">
+          <label htmlFor="homeBio">homeBio (shown on /, blank line = paragraph break)</label>
+          <textarea id="homeBio" name="homeBio" rows={8} defaultValue={site.homeBio} />
         </div>
         <div className="save-row">
           <button type="submit" disabled={submitting}>{submitting ? "Saving…" : "Save"}</button>

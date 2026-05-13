@@ -37,14 +37,9 @@ export const meta: MetaFunction = () => [
 export default function Index() {
   return (
     <main id="content">
-      <p>
-        I'm a data scientist interested in causal inference, AI safety, and the
-        history and philosophy of science. Right now I'm focused on AI safety.
-      </p>
-
-      <p>
-        Feel free to send an email if you want to talk.
-      </p>
+      {SITE.homeBio.split(/\n{2,}/).map((paragraph, i) => (
+        <p key={i}>{paragraph}</p>
+      ))}
 
       <h2>Elsewhere</h2>
       <ul>

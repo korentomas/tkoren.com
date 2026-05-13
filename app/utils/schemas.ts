@@ -15,6 +15,7 @@ export const SiteSchema = z.object({
     github: z.string().url(),
     linkedin: z.string().url(),
   }),
+  homeBio: z.string().min(1),
 });
 export type Site = z.infer<typeof SiteSchema>;
 
