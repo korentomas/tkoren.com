@@ -7,7 +7,8 @@
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "test": "playwright test",
-    "test:ui": "playwright test --ui",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -18,7 +19,8 @@
     "@vercel/remix": "2.10.0",
     "isbot": "^4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "zod": "4.4.3"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",
@@ -26,11 +28,13 @@
     "@remix-run/eslint-config": "2.10.0",
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.2.7",
+    "@vitest/ui": "4.1.6",
     "eslint": "^8.38.0",
     "terser": "5.39.0",
     "typescript": "^5.1.6",
     "vite": "^5.1.0",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "4.1.6"
   },
   "engines": {
     "node": ">=20.0.0"
