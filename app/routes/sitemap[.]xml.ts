@@ -1,4 +1,4 @@
-import { SITE_URL } from "~/utils/site-config";
+import { SITE_URL } from "~/utils/content.server";
 
 const PAGES = ["/", "/books", "/interests", "/now", "/then"];
 

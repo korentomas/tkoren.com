@@ -7,7 +7,7 @@ import {
 } from "@remix-run/react";
 import { Analytics } from "@vercel/analytics/remix";
 import styles from "./styles/global.css?url";
-import { SITE } from "~/utils/site-config";
+import { SITE } from "~/utils/content.server";
 import { SiteHeader, Footer } from "~/components/Layout";
 
 export const links = () => [

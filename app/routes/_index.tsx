@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@vercel/remix";
 import { Link } from "@remix-run/react";
-import { SITE, SITE_URL } from "~/utils/site-config";
+import { SITE, SITE_URL } from "~/utils/content.server";
 
 export const meta: MetaFunction = () => [
   { title: `${SITE.name} · ${SITE.title}` },

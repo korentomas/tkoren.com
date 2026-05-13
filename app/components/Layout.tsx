@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@remix-run/react";
-import { SITE } from "~/utils/site-config";
+import { SITE } from "~/utils/content.server";
 import { ThemePicker } from "./ThemePicker";
 import { SparkleText } from "./SparkleText";
 
