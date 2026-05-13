@@ -11,3 +11,5 @@
 .admin-shell .error { color: #b00020; }
 .admin-shell .success { color: #0a7d2c; }
 .admin-shell .muted { color: #666; font-size: 0.9rem; }
+.admin-shell a.button-link { display: inline-block; padding: 0.5rem 1rem; border: 1px solid #888; border-radius: 4px; text-decoration: none; color: inherit; cursor: pointer; }
+.admin-shell a.button-link:hover { background: #f5f5f5; }

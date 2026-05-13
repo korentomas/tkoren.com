@@ -61,7 +61,7 @@ export default function AdminInterests() {
         </div>
       </Form>
       <Form method="post" action="/admin/interests/add">
-        <button type="submit">Add empty row</button>
+        <button type="submit">Add starter row</button>
       </Form>
     </main>
   );

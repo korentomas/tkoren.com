@@ -3,6 +3,7 @@ import { json } from "@vercel/remix";
 import { Form, useActionData, useLoaderData, useNavigation, Link } from "@remix-run/react";
 import { requireAdmin } from "~/utils/auth.server";
 import { SiteSchema } from "~/utils/schemas";
+import type { Site } from "~/utils/schemas";
 import { SITE } from "~/utils/site-config";
 import { commitJsonFile } from "~/utils/github.server";
 import adminCss from "~/styles/admin.css?url";
@@ -49,10 +50,10 @@ export default function AdminSite() {
       <p><Link to="/admin">← Admin</Link></p>
       <h1>Site metadata</h1>
       <Form method="post">
-        {(["name","alternateName","title","bio","email","image","resumeUrl","shortDescription"] as const).map((k) => (
+        {(["name","alternateName","title","bio","email","image","resumeUrl","shortDescription"] as const satisfies readonly (keyof Site)[]).map((k) => (
           <div className="field" key={k}>
             <label htmlFor={k}>{k}</label>
-            <input id={k} name={k} defaultValue={(site as any)[k]} />
+            <input id={k} name={k} defaultValue={site[k] as string} />
           </div>
         ))}
         <div className="field">

@@ -80,33 +80,36 @@ content/
   then.json
 
 app/utils/
-  site-config.ts    # types + zod schemas only
-  content.server.ts # loads, validates, exports typed constants
+  schemas.ts        # zod schemas (single source of truth for types)
+  site-config.ts    # isomorphic: imports JSON, parses with zod, exports SITE/BOOKS/INTERESTS/NOW/THEN/SITE_URL
 ```
 
-### `content.server.ts` sketch
+### `site-config.ts` sketch
 
 ```ts
+// app/utils/site-config.ts (isomorphic loader)
+import { z } from "zod";
 import siteData from "../../content/site.json";
 import booksData from "../../content/books.json";
-import { SiteSchema, BookSectionSchema, /* ... */ } from "./site-config";
-import { z } from "zod";
+// ...
+import { SiteSchema, BookSectionSchema, /* ... */ } from "./schemas";
 
 export const SITE = SiteSchema.parse(siteData);
 export const BOOKS = z.array(BookSectionSchema).parse(booksData);
 // ...
+export const SITE_URL = "https://tkoren.com";
 ```
 
 Build-time validation. Malformed JSON fails the build loudly.
 
 ### Public page imports change
 
-```diff
-- import { BOOKS } from "~/utils/site-config";
-+ import { BOOKS } from "~/utils/content.server";
-```
+No path changes needed. Routes continue to import from `~/utils/site-config`,
+which now loads and validates content at module init.
 
-`content.server.ts` is server-only (the `.server.ts` suffix keeps it out of the client bundle).
+Note: zod parsing runs in both server and client bundles since `site-config.ts`
+is isomorphic. Bundle cost is ~50 KB. A future optimization would split into
+build-time validation + runtime-typed-plain-JSON for client.
 
 ### Migration
 

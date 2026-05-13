@@ -1,11 +1,11 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "@vercel/remix";
 import { redirect } from "@remix-run/server-runtime";
-import { clearSessionCookie } from "~/utils/auth.server";
+import { clearSessionCookie, isHttps } from "~/utils/auth.server";
 
-export async function action(_: ActionFunctionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   return new Response(null, {
     status: 302,
-    headers: { location: "/admin/login", "set-cookie": clearSessionCookie() },
+    headers: { location: "/admin/login", "set-cookie": clearSessionCookie(isHttps(request)) },
   });
 }
 

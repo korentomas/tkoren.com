@@ -12,10 +12,18 @@ import adminCss from "~/styles/admin.css?url";
 export const links = () => [{ rel: "stylesheet", href: adminCss }];
 
 const ALLOWED = new Set(["image/png", "image/jpeg", "image/webp", "image/gif"]);
+const MIME_TO_EXT: Record<string, string> = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/webp": "webp",
+  "image/gif": "gif",
+};
 const MAX_BYTES = 5 * 1024 * 1024;
 
-function slugify(name: string): string {
-  return name.toLowerCase().replace(/[^a-z0-9.]+/g, "-").replace(/^-+|-+$/g, "");
+function baseSlug(name: string): string {
+  // Strip extension, lowercase, keep only a-z 0-9, collapse separators to single -, trim hyphens.
+  const noExt = name.replace(/\.[^.]+$/, "");
+  return noExt.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -33,8 +41,9 @@ export async function action({ request }: ActionFunctionArgs) {
   if (file.size > MAX_BYTES) return json({ ok: false, error: "Too large (max 5 MB)" }, { status: 400 });
 
   const today = new Date().toISOString().slice(0, 10);
-  const safeName = slugify(file.name) || "upload";
-  const filename = `${today}-${safeName}`;
+  const slug = baseSlug(file.name) || "upload";
+  const ext = MIME_TO_EXT[file.type];
+  const filename = `${today}-${slug}.${ext}`;
   const bytes = new Uint8Array(await file.arrayBuffer());
   const b64 = Buffer.from(bytes).toString("base64");
 

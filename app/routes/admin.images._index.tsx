@@ -36,7 +36,7 @@ export default function AdminImages() {
     <main className="admin-shell">
       <p><Link to="/admin">← Admin</Link></p>
       <h1>Images</h1>
-      <p><Link to="/admin/images/upload"><button type="button">Upload new image</button></Link></p>
+      <p><Link to="/admin/images/upload" className="button-link">Upload new image</Link></p>
       <ul>
         {files.map((f) => (
           <li key={f.name} style={{ marginBottom: "0.5rem" }}>

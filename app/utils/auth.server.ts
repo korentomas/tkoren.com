@@ -26,7 +26,7 @@ export async function requireAdmin(request: Request): Promise<string> {
   return payload.user;
 }
 
-export function makeSessionCookie(user: string): string {
+export function makeSessionCookie(user: string, secure: boolean): string {
   const secret = getEnv("SESSION_SECRET");
   const token = signSession({ user }, secret, SESSION_TTL_SECONDS);
   const attrs = [
@@ -34,14 +34,14 @@ export function makeSessionCookie(user: string): string {
     "Path=/",
     "HttpOnly",
     "SameSite=Lax",
-    "Secure",
+    ...(secure ? ["Secure"] : []),
     `Max-Age=${SESSION_TTL_SECONDS}`,
   ];
   return attrs.join("; ");
 }
 
-export function clearSessionCookie(): string {
-  return `${SESSION_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Secure; Max-Age=0`;
+export function clearSessionCookie(secure: boolean): string {
+  return `${SESSION_COOKIE}=; Path=/; HttpOnly; SameSite=Lax;${secure ? " Secure;" : ""} Max-Age=0`;
 }
 
 // --- OAuth helpers ---
@@ -79,14 +79,18 @@ export async function exchangeCodeForUser(code: string): Promise<string> {
 
 const STATE_COOKIE = "tk_admin_oauth_state";
 
-export function makeStateCookie(state: string): string {
-  return `${STATE_COOKIE}=${state}; Path=/admin; HttpOnly; SameSite=Lax; Secure; Max-Age=600`;
+export function makeStateCookie(state: string, secure: boolean): string {
+  return `${STATE_COOKIE}=${state}; Path=/admin; HttpOnly; SameSite=Lax;${secure ? " Secure;" : ""} Max-Age=600`;
 }
 
 export function readStateCookie(request: Request): string | null {
   return parseCookie(request.headers.get("cookie"), STATE_COOKIE);
 }
 
-export function clearStateCookie(): string {
-  return `${STATE_COOKIE}=; Path=/admin; HttpOnly; SameSite=Lax; Secure; Max-Age=0`;
+export function clearStateCookie(secure: boolean): string {
+  return `${STATE_COOKIE}=; Path=/admin; HttpOnly; SameSite=Lax;${secure ? " Secure;" : ""} Max-Age=0`;
+}
+
+export function isHttps(request: Request): boolean {
+  return new URL(request.url).protocol === "https:";
 }
