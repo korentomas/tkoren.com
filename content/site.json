@@ -1,0 +1,16 @@
+{
+  "name": "Tomás Korenblit",
+  "alternateName": "Tomas Korenblit",
+  "title": "Bayesian Data Scientist",
+  "bio": "Bayesian Data Scientist @ Buenos Aires.",
+  "email": "tomaskorenblit@gmail.com",
+  "image": "/optimized-images/also_me-800w-90q.webp",
+  "resumeUrl": "/resume/16-04-2026.pdf",
+  "description": "Tomás Korenblit, Bayesian Data Scientist. Notes on books, ideas, and what I'm working on.",
+  "shortDescription": "Bayesian Data Scientist.",
+  "knowsAbout": ["Causal Inference", "Bayesian Statistics", "Data Science", "AI Safety", "Software Engineering"],
+  "social": {
+    "github": "https://github.com/korentomas",
+    "linkedin": "https://linkedin.com/in/tomaskorenblit"
+  }
+}

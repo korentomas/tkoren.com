@@ -6,6 +6,12 @@ import {
   InterestSchema,
   NowSnapshotSchema,
 } from "~/utils/schemas";
+import siteData from "../../content/site.json";
+import booksData from "../../content/books.json";
+import interestsData from "../../content/interests.json";
+import nowData from "../../content/now.json";
+import thenData from "../../content/then.json";
+import { z } from "zod";
 
 describe("SiteSchema", () => {
   it("accepts a valid site object", () => {
@@ -63,4 +69,12 @@ describe("NowSnapshotSchema", () => {
     });
     expect(result.success).toBe(true);
   });
+});
+
+describe("content files parse", () => {
+  it("site.json", () => { expect(SiteSchema.safeParse(siteData).success).toBe(true); });
+  it("books.json", () => { expect(z.array(BookSectionSchema).safeParse(booksData).success).toBe(true); });
+  it("interests.json", () => { expect(z.array(InterestSchema).safeParse(interestsData).success).toBe(true); });
+  it("now.json", () => { expect(NowSnapshotSchema.safeParse(nowData).success).toBe(true); });
+  it("then.json", () => { expect(z.array(NowSnapshotSchema).safeParse(thenData).success).toBe(true); });
 });

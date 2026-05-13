@@ -1,0 +1,9 @@
+{
+  "date": "2026-05-06",
+  "sections": [
+    { "heading": "Work", "body": "Doing the BlueDot Technical AI Safety course, facilitated by BAISH (Buenos Aires AI Safety Hub)." },
+    { "heading": "Reading", "body": "El infinito en un junco by Irene Vallejo." },
+    { "heading": "Writing", "body": "Drafting a paper on which instructions LLMs actually retain across long coding sessions (Not All Instructions Are Forgotten Equal). Bayesian ordered logistic over 244 compliance observations; treatment effects span an order of magnitude across instruction types.", "link": { "href": "/papers/not_all_instructions.pdf", "label": "Read the draft (PDF)" } },
+    { "heading": "Thinking about", "body": "AI safety, particularly how you tell whether a system has internalized a rule versus pattern-matched around it." }
+  ]
+}
