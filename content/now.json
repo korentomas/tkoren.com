@@ -3,7 +3,7 @@
   "sections": [
     { "heading": "Work", "body": "Doing the BlueDot Technical AI Safety course (facilitated by BAISH, the Buenos Aires AI Safety Hub) and self-studying ARENA on the side." },
     { "heading": "Reading", "body": "El infinito en un junco by Irene Vallejo." },
-    { "heading": "Writing", "body": "Drafting a paper on which instructions LLMs actually retain across long coding sessions (Not All Instructions Are Forgotten Equal). Bayesian ordered logistic over 244 compliance observations; treatment effects span an order of magnitude across instruction types.", "link": { "href": "/papers/not_all_instructions.pdf", "label": "Read the draft (PDF)" } },
+    { "heading": "Writing", "body": "I wanted to know why LLMs follow some instructions all session but forget others within a few turns. So I ran an experiment: 244 cases of an instruction being obeyed or ignored, fit with a Bayesian ordered logistic model. Some instruction types got followed about 10x more reliably than others.", "link": { "href": "/papers/not_all_instructions.pdf", "label": "Read the draft (PDF)" } },
     { "heading": "Thinking about", "body": "AI safety, particularly how you tell whether a system has internalized a rule versus pattern-matched around it." }
   ]
 }
