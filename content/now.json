@@ -4,6 +4,6 @@
     { "heading": "Work", "body": "Doing the BlueDot Technical AI Safety course (facilitated by BAISH, the Buenos Aires AI Safety Hub) and self-studying ARENA on the side." },
     { "heading": "Reading", "body": "El infinito en un junco by Irene Vallejo." },
     { "heading": "Writing", "body": "I wanted to know why LLMs follow some instructions all session but forget others within a few turns. So I ran an experiment: 244 cases of an instruction being obeyed or ignored, fit with a Bayesian ordered logistic model. Some instruction types got followed about 10x more reliably than others.", "link": { "href": "/papers/not_all_instructions.pdf", "label": "Read the draft (PDF)" } },
-    { "heading": "Thinking about", "body": "AI safety, particularly how you tell whether a system has internalized a rule versus pattern-matched around it." }
+    { "heading": "Thinking about", "body": "AI safety, effective altruism, and how to convince people to live a cognitively active life. If you want help disconnecting from social media and building more robust cognitive habits, chat with me!" }
   ]
 }
