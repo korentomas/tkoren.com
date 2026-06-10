@@ -235,6 +235,16 @@ hr {
 }
 
 /* Nav (the link row under the header) */
+.site-social {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+}
+
+.site-social a {
+  color: var(--link);
+}
+
 .topnav {
   display: flex;
   flex-wrap: wrap;

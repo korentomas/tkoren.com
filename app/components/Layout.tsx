@@ -50,6 +50,12 @@ export function SiteHeader() {
       <p className="site-tagline">
         <SparkleText text={SITE.bio} />
       </p>
+      <p className="site-social">
+        <a href={`mailto:${SITE.email}`}>Email</a> ·{" "}
+        <a href={SITE.social.github}>GitHub</a> ·{" "}
+        <a href={SITE.social.linkedin}>LinkedIn</a> ·{" "}
+        <a href={SITE.social.orcid}>ORCID</a>
+      </p>
       <TopNav current={pathname} />
     </header>
   );
@@ -58,12 +64,6 @@ export function SiteHeader() {
 export function Footer() {
   return (
     <footer>
-      <p>
-        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> ·{" "}
-        <a href={SITE.social.github}>GitHub</a> ·{" "}
-        <a href={SITE.social.linkedin}>LinkedIn</a> ·{" "}
-        <a href={SITE.social.orcid}>ORCID</a>
-      </p>
       <ThemePicker />
       <p className="muted">© {new Date().getFullYear()} {SITE.name}.</p>
     </footer>
