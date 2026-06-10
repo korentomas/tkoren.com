@@ -51,7 +51,7 @@ export function SiteHeader() {
         <SparkleText text={SITE.bio} />
       </p>
       <p className="site-social">
-        <a href={`mailto:${SITE.email}`}>Email</a> ·{" "}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> ·{" "}
         <a href={SITE.social.github}>GitHub</a> ·{" "}
         <a href={SITE.social.linkedin}>LinkedIn</a> ·{" "}
         <a href={SITE.social.orcid}>ORCID</a>
