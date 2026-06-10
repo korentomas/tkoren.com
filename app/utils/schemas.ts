@@ -78,6 +78,7 @@ export type ResearchEntry = z.infer<typeof ResearchEntrySchema>;
 export const WritingPieceSchema = z.object({
   title: z.string().min(1),
   year: z.string().min(1),
+  note: z.string().optional(),
   body: z.array(z.string().min(1)).min(1),
   coda: z.array(z.string().min(1)).optional(),
 });

@@ -21,7 +21,10 @@ export default function Writing() {
       {WRITING.map((piece) => (
         <article key={piece.title} className="writing-piece">
           <h2>{piece.title}</h2>
-          <p className="muted">{piece.year}</p>
+          <p className="muted">
+            {piece.year}
+            {piece.note && ` · ${piece.note}`}
+          </p>
           {piece.body.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}
