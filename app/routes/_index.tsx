@@ -41,6 +41,12 @@ export default function Index() {
         <p key={i}>{paragraph}</p>
       ))}
 
+      <p>
+        I also write fiction. There's a golem in a Polish village that obeys
+        every order, exactly. Whether that turns out to be a comfort or a
+        warning is the whole story. <Link to="/writing">Read it</Link>.
+      </p>
+
       <h2>Elsewhere</h2>
       <ul>
         <li>
