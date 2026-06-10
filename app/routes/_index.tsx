@@ -42,9 +42,9 @@ export default function Index() {
       ))}
 
       <p>
-        I also write fiction. There's a golem in a Polish village that obeys
-        every order, exactly. Whether that turns out to be a comfort or a
-        warning is the whole story. <Link to="/writing">Read it</Link>.
+        I also write. I wrote a story about the myth of the Golem, it's about
+        AI really. I would love if you <Link to="/writing">read it</Link> and{" "}
+        <a href={`mailto:${SITE.email}`}>send your thoughts over</a>.
       </p>
 
       <h2>Elsewhere</h2>
