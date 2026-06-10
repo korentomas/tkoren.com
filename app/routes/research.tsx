@@ -18,7 +18,7 @@ export default function Research() {
     <main id="content">
       <h1>Research</h1>
       <p className="lede">
-        Papers and open-source evaluation work, mostly on AI safety.
+        My papers, and the open-source evals that come with them. Mostly AI safety.
       </p>
 
       {RESEARCH.map((entry) => (
