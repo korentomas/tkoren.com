@@ -3,7 +3,7 @@
     "title": "Not All Instructions Are Forgotten Equal",
     "venue": "JAIIO 2026 (ASAID symposium)",
     "status": "Accepted, camera-ready in preparation",
-    "summary": "I wanted to know why LLMs follow some instructions for a whole session but drop others within a few turns. So I measured it: 5 models, 12 instruction types, 3 real codebases, fit with a Bayesian hierarchical ordered-logit model. Some instructions stuck about 10x more reliably than others, and one type actually got worse the more the model was reinforced on it.",
+    "summary": "I wanted to know why LLMs follow some instructions for a whole session and quietly drop others a few turns later. So I ran a small study and fit a Bayesian hierarchical ordered-logit model, mostly to keep the uncertainty honest. The tentative read: how well an instruction holds up depends a lot on which instruction it is, and at least one kind seems to get worse the more the model is reinforced on it. The intervals are wide and it's a single study, so I'd treat it as a direction to chase, not a settled result.",
     "note": "The benchmark behind it is open source, built on Inspect AI (UK AISI's eval framework): deterministic checkers plus a panel of LLM judges from different model families. Code's almost ready to release.",
     "links": [
       { "href": "/papers/not_all_instructions.pdf", "label": "Paper (PDF)" },
