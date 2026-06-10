@@ -2,6 +2,7 @@
   "date": "2026-06-09",
   "sections": [
     { "heading": "Work", "body": "Camera-ready season for Not All Instructions Are Forgotten Equal (JAIIO 2026). The reviewers asked for two things: baselines for every model, and a test of whether negation phrasing is what makes one instruction type degrade. Both experiments are running now; the benchmark goes public as an Inspect AI eval when they finish.", "link": { "href": "/research", "label": "More on the paper" } },
+    { "heading": "Writing", "body": "I wrote a short story, La amenaza del Golem: a golem in Chełm follows every order to the letter and grows past the rabbi who made it. The same instruction-following problem I study at work, in 16th-century clothes.", "link": { "href": "/writing", "label": "Read it" } },
     { "heading": "Learning", "body": "Starting BlueDot's Technical AI Safety Projects Sprint." }
   ]
 }
