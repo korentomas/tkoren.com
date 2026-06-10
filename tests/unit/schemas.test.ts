@@ -26,7 +26,7 @@ describe("SiteSchema", () => {
       description: "desc",
       shortDescription: "short desc",
       knowsAbout: ["AI Safety"],
-      social: { github: "https://github.com/korentomas", linkedin: "https://linkedin.com/in/x" },
+      social: { github: "https://github.com/korentomas", linkedin: "https://linkedin.com/in/x", orcid: "https://orcid.org/0009-0002-5682-8475" },
       homeBio: "First paragraph.\n\nSecond paragraph.",
     });
     expect(result.success).toBe(true);

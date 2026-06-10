@@ -29,7 +29,7 @@ export const meta: MetaFunction = () => [
       email: SITE.email,
       jobTitle: SITE.title,
       knowsAbout: [...SITE.knowsAbout],
-      sameAs: [SITE.social.github, SITE.social.linkedin],
+      sameAs: [SITE.social.github, SITE.social.linkedin, SITE.social.orcid],
     }),
   },
 ];
@@ -50,6 +50,9 @@ export default function Index() {
           <a href={SITE.social.linkedin}>LinkedIn</a> (work history)
         </li>
         <li>
+          <a href={SITE.social.orcid}>ORCID</a> (publications)
+        </li>
+        <li>
           <a href={`mailto:${SITE.email}`}>Email</a> (best way to reach me)
         </li>
         <li>
@@ -59,6 +62,12 @@ export default function Index() {
 
       <h2>Pages</h2>
       <ul>
+        <li>
+          <Link to="/research">Research</Link> (papers and open-source evals)
+        </li>
+        <li>
+          <Link to="/writing">Writing</Link> (short fiction)
+        </li>
         <li>
           <Link to="/books">Books</Link> (what I've read and liked)
         </li>

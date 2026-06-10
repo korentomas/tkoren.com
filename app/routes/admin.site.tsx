@@ -32,6 +32,7 @@ export async function action({ request }: ActionFunctionArgs) {
     social: {
       github: fd.get("social.github"),
       linkedin: fd.get("social.linkedin"),
+      orcid: fd.get("social.orcid"),
     },
     homeBio: fd.get("homeBio"),
   };
@@ -72,6 +73,10 @@ export default function AdminSite() {
         <div className="field">
           <label htmlFor="social.linkedin">social.linkedin</label>
           <input id="social.linkedin" name="social.linkedin" defaultValue={site.social.linkedin} />
+        </div>
+        <div className="field">
+          <label htmlFor="social.orcid">social.orcid</label>
+          <input id="social.orcid" name="social.orcid" defaultValue={site.social.orcid} />
         </div>
         <div className="field">
           <label htmlFor="homeBio">homeBio (shown on /, blank line = paragraph break)</label>

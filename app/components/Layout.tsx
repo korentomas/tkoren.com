@@ -6,6 +6,8 @@ import { SparkleText } from "./SparkleText";
 export function TopNav({ current }: { current?: string }) {
   const links = [
     { to: "/", label: "Home" },
+    { to: "/research", label: "Research" },
+    { to: "/writing", label: "Writing" },
     { to: "/books", label: "Books" },
     { to: "/interests", label: "Interests" },
     { to: "/now", label: "Now" },
@@ -59,7 +61,8 @@ export function Footer() {
       <p>
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a> ·{" "}
         <a href={SITE.social.github}>GitHub</a> ·{" "}
-        <a href={SITE.social.linkedin}>LinkedIn</a>
+        <a href={SITE.social.linkedin}>LinkedIn</a> ·{" "}
+        <a href={SITE.social.orcid}>ORCID</a>
       </p>
       <ThemePicker />
       <p className="muted">© {new Date().getFullYear()} {SITE.name}.</p>

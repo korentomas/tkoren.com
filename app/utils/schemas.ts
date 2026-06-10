@@ -14,6 +14,7 @@ export const SiteSchema = z.object({
   social: z.object({
     github: z.string().url(),
     linkedin: z.string().url(),
+    orcid: z.string().url(),
   }),
   homeBio: z.string().min(1),
 });
@@ -61,3 +62,23 @@ export const NowSnapshotSchema = z.object({
   sections: z.array(NowSectionSchema),
 });
 export type NowSnapshot = z.infer<typeof NowSnapshotSchema>;
+
+export const ResearchEntrySchema = z.object({
+  title: z.string().min(1),
+  venue: z.string().min(1),
+  status: z.string().optional(),
+  summary: z.string().min(1),
+  note: z.string().optional(),
+  links: z
+    .array(z.object({ href: z.string().min(1), label: z.string().min(1) }))
+    .optional(),
+});
+export type ResearchEntry = z.infer<typeof ResearchEntrySchema>;
+
+export const WritingPieceSchema = z.object({
+  title: z.string().min(1),
+  year: z.string().min(1),
+  body: z.array(z.string().min(1)).min(1),
+  coda: z.array(z.string().min(1)).optional(),
+});
+export type WritingPiece = z.infer<typeof WritingPieceSchema>;

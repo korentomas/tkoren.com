@@ -1,0 +1,13 @@
+[
+  {
+    "title": "Not All Instructions Are Forgotten Equal",
+    "venue": "JAIIO 2026 (ASAID symposium)",
+    "status": "Accepted, camera-ready in preparation",
+    "summary": "LLMs lose adherence to in-context instructions unevenly over long coding conversations: per-instruction effects span more than an order of magnitude, and one instruction type is actively harmed by reinforcement. Fit with a Bayesian hierarchical ordered-logit model across 5 models, 12 instruction types, and 3 real open-source codebases.",
+    "note": "The open-source benchmark is built on Inspect AI (UK AISI's eval framework): deterministic checkers plus a cross-family LLM judge panel. Code release imminent.",
+    "links": [
+      { "href": "/papers/not_all_instructions.pdf", "label": "Paper (PDF)" },
+      { "href": "https://orcid.org/0009-0002-5682-8475", "label": "ORCID" }
+    ]
+  }
+]

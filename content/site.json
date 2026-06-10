@@ -11,7 +11,8 @@
   "knowsAbout": ["Causal Inference", "Bayesian Statistics", "Data Science", "AI Safety", "Software Engineering"],
   "social": {
     "github": "https://github.com/korentomas",
-    "linkedin": "https://linkedin.com/in/tomaskorenblit"
+    "linkedin": "https://linkedin.com/in/tomaskorenblit",
+    "orcid": "https://orcid.org/0009-0002-5682-8475"
   },
-  "homeBio": "I'm a data scientist interested in causal inference, AI safety, and the history and philosophy of science. Right now I'm focused on AI safety.\n\nFeel free to send an email if you want to talk."
+  "homeBio": "I'm a data scientist interested in causal inference, AI safety, and the history and philosophy of science. Right now I'm focused on AI safety. Lately that means measuring how LLMs forget in-context instructions: my paper on this is accepted at JAIIO 2026, and I recently finished BlueDot's Technical AI Safety course.\n\nFeel free to send an email if you want to talk."
 }

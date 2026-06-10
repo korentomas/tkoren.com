@@ -1,9 +1,7 @@
 {
-  "date": "2026-05-18",
+  "date": "2026-06-09",
   "sections": [
-    { "heading": "Work", "body": "Doing the BlueDot Technical AI Safety course (facilitated by BAISH, the Buenos Aires AI Safety Hub) and self-studying ARENA on the side." },
-    { "heading": "Reading", "body": "El infinito en un junco by Irene Vallejo." },
-    { "heading": "Writing", "body": "I wanted to know why LLMs follow some instructions all session but forget others within a few turns. So I ran an experiment: 244 cases of an instruction being obeyed or ignored, fit with a Bayesian ordered logistic model. Some instruction types got followed about 10x more reliably than others.", "link": { "href": "/papers/not_all_instructions.pdf", "label": "Read the draft (PDF)" } },
-    { "heading": "Thinking about", "body": "AI safety, effective altruism, and how to convince people to live a cognitively active life. If you want help disconnecting from social media and building more robust cognitive habits, chat with me!" }
+    { "heading": "Work", "body": "Camera-ready season for Not All Instructions Are Forgotten Equal (JAIIO 2026). The reviewers asked for two things: baselines for every model, and a test of whether negation phrasing is what makes one instruction type degrade. Both experiments are running now; the benchmark goes public as an Inspect AI eval when they finish.", "link": { "href": "/research", "label": "More on the paper" } },
+    { "heading": "Learning", "body": "Starting BlueDot's Technical AI Safety Projects Sprint." }
   ]
 }

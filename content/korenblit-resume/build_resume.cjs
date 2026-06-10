@@ -178,6 +178,12 @@ const leftContent = [
   roleTitle("Lineup Optimization \u2014 Portland Trail Blazers"),
   roleMeta("NBA \u00B7 Thompson Sampling \u00B7 Live Experiment", "2025"),
   bullet("Modeled young-player development minutes via Thompson sampling for an NBA team, producing stint-based lineup recommendations. Findings shared with media analyst Tom Haberstroh."),
+
+  sectionTitle("Publications"),
+
+  roleTitle("Not All Instructions Are Forgotten Equal"),
+  roleMeta("JAIIO 2026 (ASAID) \u00B7 Accepted, camera-ready in preparation", "2026"),
+  bullet("Bayesian hierarchical ordered-logit study of how LLMs lose adherence to in-context instructions over long coding conversations; per-instruction effects span more than an order of magnitude. Open-source benchmark built on Inspect AI."),
 ];
 
 const rightContent = [
@@ -223,6 +229,20 @@ const rightContent = [
     spacing: { before: 0, after: 20 },
     children: [
       new TextRun({ text: "Expected Jun 2027", size: 14, color: MIST, font: BODY_FONT }),
+    ],
+  }),
+
+  new Paragraph({
+    spacing: { before: 120, after: 0 },
+    children: [
+      new TextRun({ text: "BlueDot Impact", bold: true, size: 17, color: INK, font: BODY_FONT }),
+    ],
+  }),
+  sidebarText("Technical AI Safety course"),
+  new Paragraph({
+    spacing: { before: 0, after: 20 },
+    children: [
+      new TextRun({ text: "2026", size: 14, color: MIST, font: BODY_FONT }),
     ],
   }),
 
@@ -320,6 +340,11 @@ const doc = new Document({
             new ExternalHyperlink({
               children: [new TextRun({ text: "LinkedIn", style: "Hyperlink", size: 15, font: BODY_FONT })],
               link: "https://www.linkedin.com/in/tomaskorenblit/",
+            }),
+            new TextRun({ text: "  ·  ", size: 15, color: CLOUD, font: BODY_FONT }),
+            new ExternalHyperlink({
+              children: [new TextRun({ text: "ORCID", style: "Hyperlink", size: 15, font: BODY_FONT })],
+              link: "https://orcid.org/0009-0002-5682-8475",
             }),
           ],
         }),
