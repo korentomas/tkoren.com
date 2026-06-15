@@ -19,7 +19,7 @@ export const meta: MetaFunction = () => [
   { name: "twitter:description", content: SITE.shortDescription },
   { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
   {
-    "script:ld+json": JSON.stringify({
+    "script:ld+json": {
       "@context": "https://schema.org",
       "@type": "Person",
       name: SITE.name,
@@ -30,7 +30,7 @@ export const meta: MetaFunction = () => [
       jobTitle: SITE.title,
       knowsAbout: [...SITE.knowsAbout],
       sameAs: [SITE.social.github, SITE.social.linkedin, SITE.social.orcid],
-    }),
+    },
   },
 ];
 
