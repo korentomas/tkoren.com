@@ -176,6 +176,15 @@ main {
   }
 }
 
+/* Pixel glyphs beside social links */
+.pixel-icon {
+  width: 0.95em;
+  height: 0.95em;
+  vertical-align: -0.12em;
+  margin-right: 0.3em;
+  image-rendering: pixelated;
+}
+
 /* Typography */
 h1,
 h2,
