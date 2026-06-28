@@ -26,10 +26,7 @@ export default function Books() {
   return (
     <main id="content">
       <h1>Books</h1>
-      <p className="lede">
-        A small, opinionated shelf. Not everything I've read, just what I'd
-        pass to a friend.
-      </p>
+      <p className="lede">A small shelf. Books I'd hand to a friend.</p>
 
       {BOOKS.map((section) => (
         <section key={section.section}>

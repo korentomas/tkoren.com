@@ -58,7 +58,7 @@ export default function Writing() {
   return (
     <main id="content">
       <h1>Writing</h1>
-      <p className="lede">Short fiction.</p>
+      <p className="lede">Stories.</p>
 
       {WRITING.map((piece) => (
         <article key={piece.title} className="writing-piece">
