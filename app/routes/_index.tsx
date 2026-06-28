@@ -64,7 +64,7 @@ export default function Index() {
           <Link to="/research">Research</Link> (papers and open-source evals)
         </li>
         <li>
-          <Link to="/writing">Writing</Link> (stories)
+          <Link to="/writing">Writing</Link> (fiction and non-fiction)
         </li>
         <li>
           <Link to="/books">Books</Link> (what I've read and liked)
