@@ -37,6 +37,17 @@ export const meta: MetaFunction = () => [
 export default function Index() {
   return (
     <main id="content">
+      <figure className="headshot">
+        <picture>
+          <source
+            srcSet="/optimized-images/tomas-400w-80q.webp 400w, /optimized-images/tomas-800w-90q.webp 800w"
+            sizes="9rem"
+            type="image/webp"
+          />
+          <img src="/tomas.png" alt="Tomás Korenblit" width={800} height={800} />
+        </picture>
+      </figure>
+
       {SITE.homeBio.split(/\n{2,}/).map((paragraph, i) => (
         <p key={i}>{paragraph}</p>
       ))}

@@ -2,7 +2,7 @@
    Serif body, blue underlined links, one column, no chrome. */
 
 :root {
-  --max-width: 38rem;
+  --max-width: 44rem;
   --font-body: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
@@ -153,6 +153,27 @@ main {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.25rem 5rem;
+}
+
+/* Floated headshot beside the intro */
+.headshot {
+  float: right;
+  width: 9rem;
+  margin: 0.25rem 0 1rem 1.5rem;
+}
+
+.headshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 30rem) {
+  .headshot {
+    float: none;
+    width: 7rem;
+    margin: 0 0 1rem;
+  }
 }
 
 /* Typography */
