@@ -58,25 +58,6 @@ export default function Index() {
         <a href={`mailto:${SITE.email}`}>send your thoughts over</a>.
       </p>
 
-      <h2>Elsewhere</h2>
-      <ul>
-        <li>
-          <a href={SITE.social.github}>GitHub</a> (code)
-        </li>
-        <li>
-          <a href={SITE.social.linkedin}>LinkedIn</a> (work history)
-        </li>
-        <li>
-          <a href={SITE.social.orcid}>ORCID</a> (publications)
-        </li>
-        <li>
-          <a href={`mailto:${SITE.email}`}>Email</a> (best way to reach me)
-        </li>
-        <li>
-          <a href={SITE.resumeUrl}>Resume (PDF)</a>
-        </li>
-      </ul>
-
       <h2>Pages</h2>
       <ul>
         <li>
