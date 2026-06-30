@@ -52,7 +52,7 @@ function drawRole(title, company, date, bullets, x, y, w) {
 
   // Meta line
   doc.font(FONT_REG).fontSize(9);
-  const metaText = company + "  \u00B7  " + date;
+  const metaText = company + "  |  " + date;
   doc.fillColor(STONE).text(metaText, x, y, { width: w });
   y += doc.heightOfString(metaText, { width: w }) + 3;
 
@@ -90,7 +90,7 @@ function main() {
     size: "LETTER",
     margins: MARGIN,
     info: {
-      Title: "Tom\u00e1s Pablo Korenblit \u2013 Resume",
+      Title: "Tom\u00e1s Pablo Korenblit - Resume",
       Author: "Tom\u00e1s Pablo Korenblit",
     },
   });
@@ -121,17 +121,19 @@ function main() {
 
   // ── CONTACT ──
   doc.font(FONT_REG).fontSize(8.5);
-  const contactPlain = "Buenos Aires, Argentina  \u00B7  tomaskorenblit@gmail.com  \u00B7  +54 11 2156 1770  \u00B7  GitHub  \u00B7  LinkedIn";
+  const contactPlain = "Buenos Aires, Argentina | tomaskorenblit@gmail.com | +54 11 2156 1770 | GitHub | LinkedIn | ORCID";
   const contactH = doc.heightOfString(contactPlain, { width: CONTENT_W });
   doc.fillColor(MIST).text("Buenos Aires, Argentina", MARGIN.left, y, { width: CONTENT_W, continued: true });
-  doc.fillColor(CLOUD).text("  \u00B7  ", { continued: true });
+  doc.fillColor(CLOUD).text(" | ", { continued: true });
   doc.fillColor(STONE).text("tomaskorenblit@gmail.com", { link: "mailto:tomaskorenblit@gmail.com", continued: true });
-  doc.fillColor(CLOUD).text("  \u00B7  ", { continued: true });
+  doc.fillColor(CLOUD).text(" | ", { continued: true });
   doc.fillColor(STONE).text("+54 11 2156 1770", { continued: true });
-  doc.fillColor(CLOUD).text("  \u00B7  ", { continued: true });
+  doc.fillColor(CLOUD).text(" | ", { continued: true });
   doc.fillColor(ACCENT).text("GitHub", { link: "https://github.com/korentomas", continued: true });
-  doc.fillColor(CLOUD).text("  \u00B7  ", { continued: true });
-  doc.fillColor(ACCENT).text("LinkedIn", { link: "https://www.linkedin.com/in/tomaskorenblit/" });
+  doc.fillColor(CLOUD).text(" | ", { continued: true });
+  doc.fillColor(ACCENT).text("LinkedIn", { link: "https://www.linkedin.com/in/tomaskorenblit/", continued: true });
+  doc.fillColor(CLOUD).text(" | ", { continued: true });
+  doc.fillColor(ACCENT).text("ORCID", { link: "https://orcid.org/0009-0002-5682-8475" });
   y += contactH + 10;
 
   // ── DIVIDER ──
@@ -148,10 +150,10 @@ function main() {
 
   lY = drawRole(
     "Partner, Data Scientist & Full-Stack Engineer",
-    "Ascendancy", "Jan 2026 \u2013 Present",
+    "Ascendancy", "Jan 2026 - Present",
     [
       "Architecting a network intelligence platform that maps and scores relationship paths for institutional clients targeting Fortune 500 events.",
-      "Designed the data ingestion backend (LinkedIn, email, investment data) powering the platform\u2019s relationship scoring engine.",
+      "Designed the data ingestion backend (LinkedIn, email, investment data) powering the platform's relationship scoring engine.",
       "Established CI/CD pipelines, development standards, and automated workflows as founding engineer of a greenfield team.",
     ],
     MARGIN.left, lY, LEFT_W,
@@ -159,7 +161,7 @@ function main() {
 
   lY = drawRole(
     "Software Engineer",
-    "Invisible Technologies", "Jun \u2013 Dec 2025",
+    "Invisible Technologies", "Jun - Dec 2025",
     [
       "Shipped an AI-assisted design platform for reinforcement learning from human feedback (RLHF), serving 4 major AI labs including Google, Meta, and Anthropic.",
       "Built versioning, self-healing pipelines, and GCP integration for batch data management across campaigns.",
@@ -169,9 +171,9 @@ function main() {
 
   lY = drawRole(
     "Coding QC Analyst & AI Data Trainer",
-    "Invisible Technologies", "Dec 2022 \u2013 Jun 2025",
+    "Invisible Technologies", "Dec 2022 - Jun 2025",
     [
-      "Created validation dashboards (Looker, Python, Apps Script) for coding training data\u2014adopted company-wide as daily QC tooling.",
+      "Created validation dashboards (Looker, Python, Apps Script) for coding training data, adopted company-wide as daily QC tooling.",
       "Oversaw data quality across 150+ annotators in coding quality operations.",
     ],
     MARGIN.left, lY, LEFT_W,
@@ -179,7 +181,7 @@ function main() {
 
   lY = drawRole(
     "Lead Generator & Data Scientist",
-    "Klouser (B2B lead generation)", "Nov 2021 \u2013 Oct 2022",
+    "Klouser (B2B lead generation)", "Nov 2021 - Oct 2022",
     [
       "Increased daily lead generation 5x (10 to 50) building a classification-driven prospect system (Python, PostgreSQL, Scikit-learn).",
       "Trained a text classifier on 6,000 client profiles for automated prospect scoring; integrated billing with Xero.",
@@ -190,8 +192,8 @@ function main() {
   lY = drawSection("Bayesian Projects", MARGIN.left, lY + 2, LEFT_W);
 
   lY = drawRole(
-    "Player Skill Estimation \u2014 V\u00e9lez Sarsfield",
-    "Argentine Football \u00B7 Hierarchical Bayesian Models \u00B7 PyMC", "2025",
+    "Player Skill Estimation: V\u00e9lez Sarsfield",
+    "Argentine Football | Hierarchical Bayesian Models | PyMC", "2025",
     [
       "Estimated player skill over time for a top-division football club using hierarchical Bayesian models; identified structural causes of a mid-season point collapse. Ported TrueSkillThroughTime rating library from Julia to PyMC.",
     ],
@@ -199,8 +201,8 @@ function main() {
   );
 
   lY = drawRole(
-    "Lineup Optimization \u2014 Portland Trail Blazers",
-    "NBA \u00B7 Thompson Sampling \u00B7 Live Experiment", "2025",
+    "Lineup Optimization: Portland Trail Blazers",
+    "NBA | Thompson Sampling | Live Experiment", "2025",
     [
       "Modeled young-player development minutes via Thompson sampling for an NBA team, producing stint-based lineup recommendations. Findings shared with media analyst Tom Haberstroh.",
     ],
@@ -211,7 +213,7 @@ function main() {
 
   lY = drawRole(
     "Not All Instructions Are Forgotten Equal",
-    "JAIIO 2026 (ASAID) \u00B7 Accepted, camera-ready in preparation", "2026",
+    "JAIIO 2026 (ASAID) | Accepted, camera-ready in preparation", "2026",
     [
       "Bayesian hierarchical ordered-logit study of how LLMs lose adherence to in-context instructions over long coding conversations; per-instruction effects span more than an order of magnitude. Open-source benchmark built on Inspect AI.",
     ],
@@ -226,11 +228,11 @@ function main() {
   rY = drawSection("Skills", RIGHT_X, rY, RIGHT_W);
 
   const skillGroups = [
-    ["Data Science", ["Statistical Modeling \u00B7 GLMs", "Causal Inference \u00B7 Bayesian", "Hierarchical Models \u00B7 PyMC", "Thompson Sampling", "Regression \u00B7 Hypothesis Testing"]],
-    ["Programming", ["Proficient: Python \u00B7 SQL", "Experienced: C++ \u00B7 JavaScript", "Node.js \u00B7 React \u00B7 Shell"]],
-    ["Libraries", ["PyMC \u00B7 Pandas \u00B7 NumPy", "Scikit-Learn \u00B7 StatsModels", "Matplotlib \u00B7 Plotly \u00B7 Flask"]],
-    ["Tools", ["Git \u00B7 Docker \u00B7 GCP", "GitHub Actions \u00B7 CI/CD", "PowerBI \u00B7 Vercel"]],
-    ["Languages", ["English \u2013 bilingual", "Spanish \u2013 native", "Hebrew \u2013 beginner"]],
+    ["Data Science", ["Statistical Modeling | GLMs", "Causal Inference | Bayesian", "Hierarchical Models | PyMC", "Thompson Sampling", "Regression | Hypothesis Testing"]],
+    ["Programming", ["Proficient: Python | SQL", "Experienced: C++ | JavaScript", "Node.js | React | Shell"]],
+    ["Libraries", ["PyMC | Pandas | NumPy", "Scikit-Learn | StatsModels", "Matplotlib | Plotly | Flask"]],
+    ["Tools", ["Git | Docker | GCP", "GitHub Actions | CI/CD", "PowerBI | Vercel"]],
+    ["Languages", ["English - bilingual", "Spanish - native", "Hebrew - beginner"]],
   ];
 
   for (const [label, items] of skillGroups) {
