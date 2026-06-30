@@ -1,0 +1,93 @@
+{
+  "name": "Tomás Pablo Korenblit",
+  "summary": "A maker drawn to AI safety by wanting to do good for humanity. Finishing my BSc in Data Science, focused on Bayesian inference and ML. I've already authored two papers because I cared about the problem too much to wait to start contributing. I'm always open to chat!",
+  "contact": [
+    { "text": "tomaskorenblit@gmail.com", "href": "mailto:tomaskorenblit@gmail.com" },
+    { "text": "+541121561770" },
+    { "text": "linkedin.com/in/tomaskorenblit", "href": "https://linkedin.com/in/tomaskorenblit" },
+    { "text": "tkoren.com", "href": "https://tkoren.com" },
+    { "text": "ORCID", "href": "https://orcid.org/0009-0002-5682-8475" },
+    { "text": "Buenos Aires" }
+  ],
+  "experience": [
+    {
+      "org": "AI Safety",
+      "role": "Independent Researcher",
+      "dates": "Apr 2026 - Present",
+      "bullets": [
+        "Working along with a team on a multilingual benchmark for LLM refusal in power-grabbing requests, to be submitted to AAAI 2027",
+        "Participating on BlueDot Impact Projects, self-studying ARENA"
+      ]
+    },
+    {
+      "org": "Ascendancy",
+      "role": "Partner & Founding Data Scientist",
+      "dates": "Jan 2026 - Apr 2026",
+      "bullets": [
+        "Built the data layer for the start-up, a 100K-person graph of investors, founders, and companies across the Americas, MENA, and Europe. Enabled warm-intro pathfinding and community detection over the graph",
+        "Built an assistant that turns plain English into Cypher, so non-technical users can query the graph directly"
+      ],
+      "stack": ["Python", "Neo4j", "PostgreSQL", "FastAPI", "GCP"]
+    },
+    {
+      "org": "Invisible Technologies",
+      "dates": "Dec 2022 - Dec 2025",
+      "roles": [
+        { "title": "Software Engineer", "when": "Jun 2025" },
+        { "title": "QC Data Analyst", "when": "Jun 2023" },
+        { "title": "AI Data Trainer", "when": "Dec 2022" }
+      ],
+      "bullets": [
+        "Built a RAG platform for creating annotation interfaces for RLHF. Used by thousands of trainers whose work produced training data for the largest AI companies.",
+        "Built validation tools and dashboards (Python, Looker) used team-wide. Oversaw output quality of 150+ agents training LLMs"
+      ]
+    },
+    {
+      "org": "Klouser",
+      "role": "Data Scientist / Data Engineer",
+      "dates": "Dec 2021 - Oct 2022",
+      "bullets": [
+        "Built a prospect-generation system that increased daily lead capacity 5x and trained a classifier on client profiles to qualify leads (Python, Pandas, PostgreSQL, Scikit-learn)"
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Not All Instructions Are Forgotten Equal",
+      "year": "2026",
+      "venue": "JAIIO 2026 (ASAID)",
+      "status": "In press. Sole author",
+      "links": [
+        { "text": "Link", "href": "https://github.com/korentomas/not-all-instructions" }
+      ],
+      "bullets": [
+        "Do LLMs forget some instructions faster than others? Per instruction effects span more than an order of magnitude where some can fail while mean compliance stays high",
+        "Used a Bayesian ordered-logistic model with hierarchical effects, fit in PyMC"
+      ]
+    },
+    {
+      "title": "PowerBench: LLM Refusal in Power-Grabbing Requests",
+      "year": "2026",
+      "venue": "Global South AI Safety Hackathon",
+      "status": "Coauthor (6 authors), in preparation for AAAI 2027",
+      "links": [
+        { "text": "Link", "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou" }
+      ],
+      "bullets": [
+        "First public benchmark for whether LLMs go along with requests to grab power from others. Varied by model, language, nationality, domain, and scale"
+      ]
+    }
+  ],
+  "education": [
+    { "degree": "BS Data Science", "school": "Universidad Nacional de San Martín", "dates": "2021 - 2026 (expected)" },
+    { "degree": "Technical AI Safety", "school": "BlueDot Impact", "dates": "2026" }
+  ],
+  "skills": [
+    { "label": "Bayesian & ML", "value": "Bayesian Stats, PyMC, PyTorch, Scikit-learn", "mono": true },
+    { "label": "LLM evaluation", "value": "Inspect AI, RAG, RLHF tooling", "mono": true },
+    { "label": "Languages", "value": "Python, R, Julia, SQL, Cypher, TypeScript", "mono": true },
+    { "label": "Data & Backend", "value": "Neo4j, PostgreSQL, Redis, Pandas, NumPy | FastAPI, Flask, Pydantic, SQLAlchemy", "mono": true },
+    { "label": "Infrastructure", "value": "GCP, Docker", "mono": true },
+    { "label": "Spoken", "value": "English & Spanish", "mono": false }
+  ]
+}

@@ -1,0 +1,58 @@
+% ─────────────────────────────────────────────────────────
+%  Tomás Pablo Korenblit — Resume
+%  Compile with: pdflatex korenblit-resume.tex
+% ─────────────────────────────────────────────────────────
+\documentclass[11pt,letterpaper]{article}
+
+% ─── Geometry ────────────────────────────────────────────
+\usepackage[top=0.5in, bottom=0.5in, left=0.6in, right=0.6in]{geometry}
+
+% ─── Fonts & Typography ─────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{XCharter}                       % serif body
+\usepackage[scaled=1.0]{inconsolata}        % mono for tech/numbers (matched to XCharter x-height)
+\usepackage{microtype}
+
+% ─── Font helper ─────────────────────────────────────────
+%  \mono{} — switch to mono for technical text (tools, metrics, contact data)
+\newcommand{\mono}[1]{{\ttfamily #1}}
+
+% ─── Color ───────────────────────────────────────────────
+\usepackage{xcolor}
+\definecolor{accent}{HTML}{555555}
+\definecolor{rulecolor}{HTML}{BBBBBB}
+
+% ─── Links ───────────────────────────────────────────────
+\usepackage[hidelinks]{hyperref}
+
+% ─── Graphics ───────────────────────────────────────────
+\usepackage{tikz}
+
+% ─── Circle Glyphs ──────────────────────────────────────
+%  ○  open circle  (U+25CB) — bullet points
+%  ●  filled circle (U+25CF) — inline separators
+\newcommand{\ocircle}{\tikz[baseline=-0.65ex]\draw[line width=0.45pt] (0,0) circle (1.6pt);}
+\newcommand{\fcircle}{\tikz[baseline=-0.65ex]\fill (0,0) circle (1.4pt);}
+\newcommand{\sep}{\enspace{\fcircle}\enspace}
+
+% ─── Lists ───────────────────────────────────────────────
+\usepackage{enumitem}
+\setlist[itemize]{%
+  nosep, leftmargin=12pt, label={\color{accent}\ocircle}, itemsep=2pt%
+}
+
+% ─── Section Headings ───────────────────────────────────
+\usepackage{titlesec}
+\titleformat{\section}%
+  {\normalsize\scshape}{}{0pt}{}%
+  [\vspace{-2pt}{\color{rulecolor}\hrule height 0.4pt}\vspace{2pt}]
+\titlespacing{\section}{0pt}{11pt}{5pt}
+
+% ─── Layout ──────────────────────────────────────────────
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ─── Helpers ─────────────────────────────────────────────
+\newcommand{\daterange}[1]{\textcolor{accent}{\small\mono{#1}}}
