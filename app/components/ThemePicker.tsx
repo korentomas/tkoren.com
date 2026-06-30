@@ -1,13 +1,6 @@
 import { useEffect, useState, Fragment } from "react";
 
-export const THEMES = [
-  "paper",
-  "ink",
-  "terminal",
-  "amber",
-  "blueprint",
-  "plum",
-] as const;
+export const THEMES = ["terminal", "paper", "amber"] as const;
 
 export type Theme = (typeof THEMES)[number];
 

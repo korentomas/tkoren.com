@@ -76,7 +76,7 @@ export default function Index() {
           <Link to="/now">Now</Link> (what I'm working on this month)
         </li>
         <li>
-          <Link to="/then">Then</Link> (archived /now snapshots)
+          <Link to="/then">Then</Link> (what I was working on before)
         </li>
       </ul>
     </main>
