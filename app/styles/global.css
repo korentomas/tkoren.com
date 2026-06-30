@@ -232,25 +232,46 @@ hr {
 .site-social {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.85rem;
   margin: 0.6rem 0 0;
 }
 
-.site-social a {
+.site-social a,
+.email-link {
   display: inline-flex;
+  align-items: center;
   color: var(--muted);
   transition: color 0.15s ease, transform 0.15s ease;
 }
 
-.site-social a:hover {
+.site-social a:hover,
+.email-link:hover {
   color: var(--link);
   transform: translateY(-1px);
+}
+
+/* email button reset + label */
+.email-link {
+  gap: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .site-social .pixel-icon {
   width: 1.15rem;
   height: 1.15rem;
   margin-right: 0;
+  vertical-align: middle;
+}
+
+.site-social .brand-icon {
+  width: 1.1rem;
+  height: 1.1rem;
   vertical-align: middle;
 }
 

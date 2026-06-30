@@ -3,6 +3,8 @@ import { SITE } from "~/utils/site-config";
 import { ThemePicker } from "./ThemePicker";
 import { SparkleText } from "./SparkleText";
 import { PixelIcon } from "./PixelIcon";
+import { BrandIcon } from "./BrandIcon";
+import { EmailLink } from "./EmailLink";
 
 export function TopNav({ current }: { current?: string }) {
   const links = [
@@ -54,17 +56,12 @@ export function SiteHeader() {
         <SparkleText text={SITE.bio} />
       </p>
       <p className="site-social">
-        <a href={`mailto:${SITE.email}`} aria-label="Email" title="Email">
-          <PixelIcon name="mail" />
-        </a>
+        <EmailLink />
         <a href={SITE.social.github} aria-label="GitHub" title="GitHub">
-          <PixelIcon name="github" />
+          <BrandIcon name="github" />
         </a>
         <a href={SITE.social.linkedin} aria-label="LinkedIn" title="LinkedIn">
-          <PixelIcon name="linkedin" />
-        </a>
-        <a href={SITE.social.orcid} aria-label="ORCID" title="ORCID">
-          <PixelIcon name="orcid" />
+          <BrandIcon name="linkedin" />
         </a>
       </p>
       <TopNav current={pathname} />
