@@ -58,27 +58,6 @@ export default function Index() {
         <a href={`mailto:${SITE.email}`}>send your thoughts over</a>.
       </p>
 
-      <h2>Pages</h2>
-      <ul>
-        <li>
-          <Link to="/research">Research</Link> (papers and open-source evals)
-        </li>
-        <li>
-          <Link to="/writing">Writing</Link> (fiction and non-fiction)
-        </li>
-        <li>
-          <Link to="/books">Books</Link> (what I've read and liked)
-        </li>
-        <li>
-          <Link to="/interests">Interests</Link> (what I keep returning to)
-        </li>
-        <li>
-          <Link to="/now">Now</Link> (what I'm working on this month)
-        </li>
-        <li>
-          <Link to="/then">Then</Link> (what I was working on before)
-        </li>
-      </ul>
     </main>
   );
 }
