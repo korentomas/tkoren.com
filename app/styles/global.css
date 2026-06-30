@@ -262,6 +262,12 @@ hr {
   cursor: pointer;
 }
 
+.email-link-copied,
+.email-link-copied:hover {
+  color: var(--sparkle);
+  transform: none;
+}
+
 .site-social .pixel-icon {
   width: 1.15rem;
   height: 1.15rem;
