@@ -207,6 +207,17 @@ function main() {
     MARGIN.left, lY, LEFT_W,
   );
 
+  lY = drawSection("Publications", MARGIN.left, lY + 2, LEFT_W);
+
+  lY = drawRole(
+    "Not All Instructions Are Forgotten Equal",
+    "JAIIO 2026 (ASAID) \u00B7 Accepted, camera-ready in preparation", "2026",
+    [
+      "Bayesian hierarchical ordered-logit study of how LLMs lose adherence to in-context instructions over long coding conversations; per-instruction effects span more than an order of magnitude. Open-source benchmark built on Inspect AI.",
+    ],
+    MARGIN.left, lY, LEFT_W,
+  );
+
   // ============================================================
   // RIGHT COLUMN
   // ============================================================
@@ -244,6 +255,18 @@ function main() {
   doc.font(FONT_REG).fontSize(8).fillColor(MIST);
   doc.text("Expected Jun 2027", RIGHT_X, rY, { width: RIGHT_W });
   rY += doc.heightOfString("Expected Jun 2027", { width: RIGHT_W }) + 6;
+
+  doc.font(FONT_BOLD).fontSize(9.5).fillColor(INK);
+  doc.text("BlueDot Impact", RIGHT_X, rY, { width: RIGHT_W });
+  rY += doc.heightOfString("BlueDot Impact", { width: RIGHT_W }) + 1;
+
+  doc.font(FONT_REG).fontSize(8.5).fillColor(STONE);
+  doc.text("Technical AI Safety course", RIGHT_X, rY, { width: RIGHT_W });
+  rY += doc.heightOfString("Technical AI Safety course", { width: RIGHT_W }) + 1;
+
+  doc.font(FONT_REG).fontSize(8).fillColor(MIST);
+  doc.text("2026", RIGHT_X, rY, { width: RIGHT_W });
+  rY += doc.heightOfString("2026", { width: RIGHT_W }) + 6;
 
   // Reference
   rY = drawSection("Reference", RIGHT_X, rY, RIGHT_W);
