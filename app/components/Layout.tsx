@@ -54,24 +54,17 @@ export function SiteHeader() {
         <SparkleText text={SITE.bio} />
       </p>
       <p className="site-social">
-        <a href={`mailto:${SITE.email}`}>
+        <a href={`mailto:${SITE.email}`} aria-label="Email" title="Email">
           <PixelIcon name="mail" />
-          {SITE.email}
-        </a>{" "}
-        ·{" "}
-        <a href={SITE.social.github}>
+        </a>
+        <a href={SITE.social.github} aria-label="GitHub" title="GitHub">
           <PixelIcon name="github" />
-          GitHub
-        </a>{" "}
-        ·{" "}
-        <a href={SITE.social.linkedin}>
+        </a>
+        <a href={SITE.social.linkedin} aria-label="LinkedIn" title="LinkedIn">
           <PixelIcon name="linkedin" />
-          LinkedIn
-        </a>{" "}
-        ·{" "}
-        <a href={SITE.social.orcid}>
+        </a>
+        <a href={SITE.social.orcid} aria-label="ORCID" title="ORCID">
           <PixelIcon name="orcid" />
-          ORCID
         </a>
       </p>
       <TopNav current={pathname} />
