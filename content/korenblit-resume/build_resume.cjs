@@ -97,7 +97,7 @@ function roleMeta(company, date) {
     spacing: { before: 20, after: 50 },
     children: [
       new TextRun({ text: company, size: 16, color: STONE, font: BODY_FONT }),
-      new TextRun({ text: `  \u00B7  ${date}`, size: 16, color: MIST, font: BODY_FONT }),
+      new TextRun({ text: `  |  ${date}`, size: 16, color: MIST, font: BODY_FONT }),
     ],
   });
 }
@@ -149,40 +149,40 @@ const leftContent = [
   sectionTitle("Experience", { first: true }),
 
   roleTitle("Partner, Data Scientist & Full-Stack Engineer"),
-  roleMeta("Ascendancy", "Jan 2026 \u2013 Present"),
+  roleMeta("Ascendancy", "Jan 2026 - Present"),
   bullet("Architecting a network intelligence platform that maps and scores relationship paths for institutional clients targeting Fortune 500 events."),
-  bullet("Designed the data ingestion backend (LinkedIn, email, investment data) powering the platform\u2019s relationship scoring engine."),
+  bullet("Designed the data ingestion backend (LinkedIn, email, investment data) powering the platform's relationship scoring engine."),
   bullet("Established CI/CD pipelines, development standards, and automated workflows as founding engineer of a greenfield team."),
 
   roleTitle("Software Engineer"),
-  roleMeta("Invisible Technologies", "Jun \u2013 Dec 2025"),
+  roleMeta("Invisible Technologies", "Jun - Dec 2025"),
   bullet("Shipped an AI-assisted design platform for reinforcement learning from human feedback (RLHF), serving 4 major AI labs including Google, Meta, and Anthropic."),
   bullet("Built versioning, self-healing pipelines, and GCP integration for batch data management across campaigns."),
 
   roleTitle("Coding QC Analyst & AI Data Trainer"),
-  roleMeta("Invisible Technologies", "Dec 2022 \u2013 Jun 2025"),
-  bullet("Created validation dashboards (Looker, Python, Apps Script) for coding training data\u2014adopted company-wide as daily QC tooling."),
+  roleMeta("Invisible Technologies", "Dec 2022 - Jun 2025"),
+  bullet("Created validation dashboards (Looker, Python, Apps Script) for coding training data, adopted company-wide as daily QC tooling."),
   bullet("Oversaw data quality across 150+ annotators in coding quality operations."),
 
   roleTitle("Lead Generator & Data Scientist"),
-  roleMeta("Klouser (B2B lead generation)", "Nov 2021 \u2013 Oct 2022"),
+  roleMeta("Klouser (B2B lead generation)", "Nov 2021 - Oct 2022"),
   bullet("Increased daily lead generation 5x (10 to 50) building a classification-driven prospect system (Python, PostgreSQL, Scikit-learn)."),
   bullet("Trained a text classifier on 6,000 client profiles for automated prospect scoring; integrated billing with Xero."),
 
   sectionTitle("Bayesian Projects"),
 
-  roleTitle("Player Skill Estimation \u2014 V\u00e9lez Sarsfield"),
-  roleMeta("Argentine Football \u00B7 Hierarchical Bayesian Models \u00B7 PyMC", "2025"),
+  roleTitle("Player Skill Estimation: V\u00e9lez Sarsfield"),
+  roleMeta("Argentine Football | Hierarchical Bayesian Models | PyMC", "2025"),
   bullet("Estimated player skill over time for a top-division football club using hierarchical Bayesian models; identified structural causes of a mid-season point collapse. Ported TrueSkillThroughTime rating library from Julia to PyMC."),
 
-  roleTitle("Lineup Optimization \u2014 Portland Trail Blazers"),
-  roleMeta("NBA \u00B7 Thompson Sampling \u00B7 Live Experiment", "2025"),
+  roleTitle("Lineup Optimization: Portland Trail Blazers"),
+  roleMeta("NBA | Thompson Sampling | Live Experiment", "2025"),
   bullet("Modeled young-player development minutes via Thompson sampling for an NBA team, producing stint-based lineup recommendations. Findings shared with media analyst Tom Haberstroh."),
 
   sectionTitle("Publications"),
 
   roleTitle("Not All Instructions Are Forgotten Equal"),
-  roleMeta("JAIIO 2026 (ASAID) \u00B7 Accepted, camera-ready in preparation", "2026"),
+  roleMeta("JAIIO 2026 (ASAID) | Accepted, camera-ready in preparation", "2026"),
   bullet("Bayesian hierarchical ordered-logit study of how LLMs lose adherence to in-context instructions over long coding conversations; per-instruction effects span more than an order of magnitude. Open-source benchmark built on Inspect AI."),
 ];
 
@@ -190,31 +190,31 @@ const rightContent = [
   sectionTitle("Skills", { first: true }),
 
   sidebarLabel("Data Science"),
-  sidebarText("Statistical Modeling \u00B7 GLMs"),
-  sidebarText("Causal Inference \u00B7 Bayesian"),
-  sidebarText("Hierarchical Models \u00B7 PyMC"),
+  sidebarText("Statistical Modeling | GLMs"),
+  sidebarText("Causal Inference | Bayesian"),
+  sidebarText("Hierarchical Models | PyMC"),
   sidebarText("Thompson Sampling"),
-  sidebarText("Regression \u00B7 Hypothesis Testing"),
+  sidebarText("Regression | Hypothesis Testing"),
 
   sidebarLabel("Programming"),
-  sidebarText("Proficient: Python \u00B7 SQL"),
-  sidebarText("Experienced: C++ \u00B7 JavaScript"),
-  sidebarText("Node.js \u00B7 React \u00B7 Shell"),
+  sidebarText("Proficient: Python | SQL"),
+  sidebarText("Experienced: C++ | JavaScript"),
+  sidebarText("Node.js | React | Shell"),
 
   sidebarLabel("Libraries"),
-  sidebarText("PyMC \u00B7 Pandas \u00B7 NumPy"),
-  sidebarText("Scikit-Learn \u00B7 StatsModels"),
-  sidebarText("Matplotlib \u00B7 Plotly \u00B7 Flask"),
+  sidebarText("PyMC | Pandas | NumPy"),
+  sidebarText("Scikit-Learn | StatsModels"),
+  sidebarText("Matplotlib | Plotly | Flask"),
 
   sidebarLabel("Tools"),
-  sidebarText("Git \u00B7 Docker \u00B7 GCP"),
-  sidebarText("GitHub Actions \u00B7 CI/CD"),
-  sidebarText("PowerBI \u00B7 Vercel"),
+  sidebarText("Git | Docker | GCP"),
+  sidebarText("GitHub Actions | CI/CD"),
+  sidebarText("PowerBI | Vercel"),
 
   sidebarLabel("Languages"),
-  sidebarText("English \u2013 bilingual"),
-  sidebarText("Spanish \u2013 native"),
-  sidebarText("Hebrew \u2013 beginner"),
+  sidebarText("English - bilingual"),
+  sidebarText("Spanish - native"),
+  sidebarText("Hebrew - beginner"),
 
   sectionTitle("Education"),
 
@@ -327,16 +327,16 @@ const doc = new Document({
           spacing: { after: 40 },
           children: [
             new TextRun({ text: "Buenos Aires, Argentina", size: 15, color: MIST, font: BODY_FONT }),
-            new TextRun({ text: "  \u00B7  ", size: 15, color: CLOUD, font: BODY_FONT }),
+            new TextRun({ text: "  |  ", size: 15, color: CLOUD, font: BODY_FONT }),
             new TextRun({ text: "tomaskorenblit@gmail.com", size: 15, color: STONE, font: BODY_FONT }),
-            new TextRun({ text: "  \u00B7  ", size: 15, color: CLOUD, font: BODY_FONT }),
+            new TextRun({ text: "  |  ", size: 15, color: CLOUD, font: BODY_FONT }),
             new TextRun({ text: "+54 11 2156 1770", size: 15, color: STONE, font: BODY_FONT }),
-            new TextRun({ text: "  \u00B7  ", size: 15, color: CLOUD, font: BODY_FONT }),
+            new TextRun({ text: "  |  ", size: 15, color: CLOUD, font: BODY_FONT }),
             new ExternalHyperlink({
               children: [new TextRun({ text: "GitHub", style: "Hyperlink", size: 15, font: BODY_FONT })],
               link: "https://github.com/korentomas",
             }),
-            new TextRun({ text: "  \u00B7  ", size: 15, color: CLOUD, font: BODY_FONT }),
+            new TextRun({ text: "  |  ", size: 15, color: CLOUD, font: BODY_FONT }),
             new ExternalHyperlink({
               children: [new TextRun({ text: "LinkedIn", style: "Hyperlink", size: 15, font: BODY_FONT })],
               link: "https://www.linkedin.com/in/tomaskorenblit/",
