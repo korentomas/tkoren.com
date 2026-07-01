@@ -68,7 +68,7 @@
     {
       "title": "PowerBench: LLM Refusal in Power-Grabbing Requests",
       "year": "2026",
-      "venue": "Global South AI Safety Hackathon",
+      "venue": "Apart Research Global South AI Safety Hackathon",
       "status": "Coauthor (6 authors), in preparation for AAAI 2027",
       "links": [
         { "text": "Link", "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou" }
@@ -79,7 +79,7 @@
     }
   ],
   "education": [
-    { "degree": "BS Data Science", "school": "Universidad Nacional de San Martín", "dates": "2021 - 2026 (expected)" },
+    { "degree": "BSc Data Science", "school": "Universidad Nacional de San Martín", "dates": "2021 - 2026 (expected)" },
     { "degree": "Technical AI Safety", "school": "BlueDot Impact", "dates": "2026" }
   ],
   "skills": [

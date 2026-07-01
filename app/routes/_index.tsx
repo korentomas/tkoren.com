@@ -53,9 +53,9 @@ export default function Index() {
       ))}
 
       <p>
-        I also write. I wrote a story about the myth of the Golem, it's about
-        AI really. I would love if you <Link to="/writing">read it</Link> and{" "}
-        <a href={`mailto:${SITE.email}`}>send your thoughts over</a>.
+        I also write. I wrote a story about the myth of the Golem (another
+        one), but oh surprise, it's about AI really. I would love if you{" "}
+        <Link to="/writing">read it</Link> and send your thoughts over.
       </p>
 
     </main>
