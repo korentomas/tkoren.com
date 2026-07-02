@@ -31,7 +31,7 @@ export const meta: MetaFunction = () => {
               "@context": "https://schema.org",
               "@type": "ShortStory",
               name: featured.title,
-              inLanguage: "es",
+              inLanguage: "en",
               datePublished: featured.year,
               url: `${SITE_URL}/writing`,
               about:
