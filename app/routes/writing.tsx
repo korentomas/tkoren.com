@@ -1,5 +1,12 @@
 import type { MetaFunction } from "@vercel/remix";
+import { useState } from "react";
 import { WRITING, SITE, SITE_URL } from "~/utils/site-config";
+
+const GOLEM_EN = WRITING.find((p) => p.title === "Out of Reach");
+const GOLEM_ES = WRITING.find((p) => p.title === "La amenaza del Golem");
+const OTHER_PIECES = WRITING.filter(
+  (p) => p !== GOLEM_EN && p !== GOLEM_ES,
+);
 
 export const meta: MetaFunction = () => {
   const featured = WRITING[0];
@@ -54,13 +61,62 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+function GolemStory() {
+  const [lang, setLang] = useState<"en" | "es">("en");
+  const piece = lang === "en" ? GOLEM_EN : GOLEM_ES;
+  if (!piece) return null;
+
+  return (
+    <article className="writing-piece">
+      <div className="writing-piece-header">
+        <h2>{piece.title}</h2>
+        <div className="lang-picker" role="group" aria-label="Language">
+          <button
+            type="button"
+            className={lang === "en" ? "active" : ""}
+            aria-pressed={lang === "en"}
+            onClick={() => setLang("en")}
+          >
+            EN
+          </button>
+          <button
+            type="button"
+            className={lang === "es" ? "active" : ""}
+            aria-pressed={lang === "es"}
+            onClick={() => setLang("es")}
+          >
+            ES
+          </button>
+        </div>
+      </div>
+      <p className="muted">
+        {piece.year}
+        {piece.note && ` · ${piece.note}`}
+      </p>
+      {piece.body.map((paragraph, i) => (
+        <p key={i}>{paragraph}</p>
+      ))}
+      {piece.coda && piece.coda.length > 0 && (
+        <>
+          <hr />
+          {piece.coda.map((paragraph, i) => (
+            <p key={i}>{paragraph}</p>
+          ))}
+        </>
+      )}
+    </article>
+  );
+}
+
 export default function Writing() {
   return (
     <main id="content">
       <h1>Writing</h1>
       <p className="lede">Fiction and non-fiction.</p>
 
-      {WRITING.map((piece) => (
+      <GolemStory />
+
+      {OTHER_PIECES.map((piece) => (
         <article key={piece.title} className="writing-piece">
           <h2>{piece.title}</h2>
           <p className="muted">

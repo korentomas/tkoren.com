@@ -228,6 +228,35 @@ hr {
   margin-top: 0.4rem;
 }
 
+.writing-piece-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.lang-picker {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.lang-picker button {
+  font: inherit;
+  font-size: 0.85rem;
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  padding: 0.15rem 0.55rem;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.lang-picker button.active {
+  color: var(--link);
+  border-color: var(--link);
+}
+
 /* Nav (the link row under the header) */
 .site-social {
   display: flex;
