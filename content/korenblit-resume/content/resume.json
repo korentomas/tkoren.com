@@ -53,9 +53,7 @@
         { "text": "repo", "href": "https://github.com/korentomas/not-all-instructions" }
       ],
       "bullets": [
-        "Aggregate compliance hides per-instruction failures. Per-instruction treatment effects span more than an order of magnitude, so a model can drop a stated preference while mean compliance stays high",
-        "Stating a preference a model already follows can backfire. Told not to add new imports, models added more. Explicit negation seems to push the model off a good default",
-        "Hierarchical Bayesian ordered-logistic model fit in PyMC. Scored with deterministic checkers, no LLM in the loop"
+        "Aggregate compliance hides per-instruction failures. Per-instruction treatment effects span more than an order of magnitude, so a model can drop a stated preference while mean compliance stays high"
       ]
     },
     {
@@ -67,9 +65,9 @@
         { "text": "paper", "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou" }
       ],
       "bullets": [
-        "Adding self-benefit to a harmful request lowers refusal. Models refuse pure disempowerment (harm to others) more than power-grabbing (harm plus self-gain). Holds across five models",
-        "Refusal of these requests does not correlate with model capability, so it reflects training choices",
-        "Multilingual, single-turn first-person requests, scored by an LLM judge not yet validated against human labels"
+        "Adding self-benefit to a harmful request lowers refusal. Models refuse pure disempowerment (harm to others) more than power-grabbing (harm plus self-gain)",
+        "Request refusal does not correlate with model capability",
+        "Multilingual, single-turn first-person requests, scored by an LLM judge"
       ]
     }
   ],
