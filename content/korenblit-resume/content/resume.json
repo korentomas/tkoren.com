@@ -16,7 +16,7 @@
       "role": "Data Scientist",
       "dates": "Jan 2026 - Apr 2026",
       "bullets": [
-        "Built a graph of investors, founders, and companies across the Americas, MENA, and Europe, with warm-intro pathfinding and community detection over it",
+        "Built a graph database of investors, founders, and companies across the Americas, MENA, and Europe, with warm-intro pathfinding and community detection",
         "Wrote an assistant to turn English into Cypher, so non-technical users can query the graph directly (Python, Neo4j, PostgreSQL, FastAPI, GCP)"
       ]
     },
@@ -53,7 +53,9 @@
         { "text": "repo", "href": "https://github.com/korentomas/not-all-instructions" }
       ],
       "bullets": [
-        "Aggregate compliance hides per-instruction failures. Per-instruction treatment effects span more than an order of magnitude, so a model can drop a stated preference while mean compliance stays high"
+        "Aggregate compliance hides per-instruction failures. Some instructions get dropped deep in a conversation while the mean still looks fine, so a guardrail set at the start can quietly stop holding. Argues for watching instructions one at a time, not in aggregate",
+        "Restating an instruction only helps for a handful of them. Most are already followed by default, so blanket repetition mostly wastes tokens",
+        "Scored with deterministic checkers instead of an LLM judge and the effects were estimated with a hierarchical Bayesian model"
       ]
     },
     {
