@@ -74,7 +74,7 @@
     }
   ],
   "education": [
-    { "degree": "BSc Data Science", "school": "Universidad Nacional de San Martín", "dates": "2021 - 2026 (expected)" }
+    { "degree": "BSc Data Science", "school": "Universidad Nacional de San Martín", "dates": "2022 - 2027 (expected)" }
   ],
   "skills": [
     { "label": "Bayesian & ML", "value": "Bayesian Stats, PyMC, PyTorch, Scikit-learn", "mono": true },
