@@ -1,6 +1,5 @@
 import type { MetaFunction } from "@vercel/remix";
-import { Link } from "@remix-run/react";
-import { SITE, SITE_URL } from "~/utils/site-config";
+import { RESEARCH, SITE, SITE_URL } from "~/utils/site-config";
 
 export const meta: MetaFunction = () => [
   { title: `${SITE.name} · ${SITE.title}` },
@@ -37,27 +36,57 @@ export const meta: MetaFunction = () => [
 export default function Index() {
   return (
     <main id="content">
-      <figure className="headshot">
-        <picture>
-          <source
-            srcSet="/optimized-images/tomas-400w-80q.webp 400w, /optimized-images/tomas-800w-90q.webp 800w"
-            sizes="9rem"
-            type="image/webp"
-          />
-          <img src="/tomas.png" alt="Tomás Korenblit" width={800} height={800} />
-        </picture>
-      </figure>
+      <header className="site-head">
+        <h1>{SITE.name}</h1>
+        <a className="cv-link" href={SITE.resumeUrl}>CV</a>
+      </header>
 
       {SITE.homeBio.split(/\n{2,}/).map((paragraph, i) => (
-        <p key={i}>{paragraph}</p>
+        <p key={i} className="bio">
+          {paragraph.split(/(\([^)]*\))/).map((chunk, j) =>
+            chunk.startsWith("(") && chunk.endsWith(")") ? (
+              <span key={j} className="nowrap">{chunk}</span>
+            ) : (
+              chunk
+            ),
+          )}
+        </p>
       ))}
 
-      <p>
-        I also write. I wrote a story about the myth of the Golem (another
-        one), but oh surprise, it's about AI really. I would love if you{" "}
-        <Link to="/writing">read it</Link> and send your thoughts over.
-      </p>
+      <section aria-labelledby="publications">
+        <h2 id="publications">Publications</h2>
+        <ul className="publications">
+          {RESEARCH.map((entry) => (
+            <li key={entry.title}>
+              <p className="pub-title">{entry.title}</p>
+              <p className="pub-meta">
+                {entry.venue}
+                {entry.status ? `, ${entry.status}` : null}
+              </p>
+              {entry.summary ? (
+                <p className="pub-summary">{entry.summary}</p>
+              ) : null}
+              {entry.note ? <p className="pub-note">{entry.note}</p> : null}
+              {entry.links && entry.links.length > 0 ? (
+                <p className="pub-links">
+                  {entry.links.map((link, i) => (
+                    <span key={link.href}>
+                      {i > 0 ? " / " : null}
+                      <a href={link.href}>{link.label}</a>
+                    </span>
+                  ))}
+                </p>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </section>
 
+      <p className="contact">
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> /{" "}
+        <a href={SITE.social.github}>GitHub</a> /{" "}
+        <a href={SITE.social.orcid}>ORCID</a>
+      </p>
     </main>
   );
 }

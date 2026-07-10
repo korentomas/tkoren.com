@@ -7,3 +7,5 @@
 *.synctex.gz
 # generated from resume.json + preamble.tex
 korenblit-resume.tex
+# generated from resume.json by build_html.cjs
+cv.html

@@ -5,7 +5,7 @@
   "bio": "Bayesian Data Scientist @ Buenos Aires.",
   "email": "tomaskorenblit@gmail.com",
   "image": "/optimized-images/tomas-800w-90q.webp",
-  "resumeUrl": "/resume/30-06-2026.pdf",
+  "resumeUrl": "/resume/10-07-2026.pdf",
   "description": "Tomás Korenblit, Bayesian Data Scientist. Notes on books, ideas, and what I'm working on.",
   "shortDescription": "Bayesian Data Scientist.",
   "knowsAbout": ["Causal Inference", "Bayesian Statistics", "Data Science", "AI Safety", "Software Engineering"],
@@ -14,5 +14,5 @@
     "linkedin": "https://linkedin.com/in/tomaskorenblit",
     "orcid": "https://orcid.org/0009-0002-5682-8475"
   },
-  "homeBio": "I work on AI safety. Lately that's meant measuring how well LLMs follow instructions (otherwise, I think we could, eventually, die): I have a paper on it accepted at JAIIO 2026, and I just finished BlueDot's Technical AI Safety course. I also work in causal inference and read a lot of history and philosophy of science.\n\nFeel free to send an email if you want to talk! I am quite whimsical."
+  "homeBio": "Researcher, AI Safety, Bayesian! \n (BSc. in Data Science, ECyT, UNSAM 2022-present) \n\nFeel free to send an email if you want to talk! I am quite whimsical."
 }

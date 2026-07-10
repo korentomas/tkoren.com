@@ -1,33 +1,24 @@
 {
   "name": "Tomás Pablo Korenblit",
-  "summary": "A maker drawn to AI safety by wanting to do good for humanity. Finishing my BSc in Data Science, focused on Bayesian inference and ML. I've already authored two papers because I cared about the problem too much to wait to start contributing. I'm always open to chat!",
-  "contact": [
-    { "text": "tomaskorenblit@gmail.com", "href": "mailto:tomaskorenblit@gmail.com" },
-    { "text": "+541121561770" },
-    { "text": "linkedin.com/in/tomaskorenblit", "href": "https://linkedin.com/in/tomaskorenblit" },
-    { "text": "tkoren.com", "href": "https://tkoren.com" },
-    { "text": "ORCID", "href": "https://orcid.org/0009-0002-5682-8475" },
-    { "text": "Buenos Aires" }
-  ],
+  "summary": "Finishing a BSc in Data Science focused on Bayesian inference. I build hierarchical Bayesian models of how LLM behavior degrades. My recent work shows that aggregate compliance metrics hide large per-instruction failures, and that stating a preference a model already follows can make it comply less.",
+  "contact": [],
   "experience": [
     {
-      "org": "AI Safety",
-      "role": "Independent Researcher",
+      "org": "Research",
       "dates": "Apr 2026 - Present",
       "bullets": [
-        "Working along with a team on a multilingual benchmark for LLM refusal in power-grabbing requests, to be submitted to AAAI 2027",
-        "Participating on BlueDot Impact Projects, self-studying ARENA"
+        "Studying LLM threat models. Extending the PowerBench work",
+        "Facilitating BlueDot's Technical AI Safety course, and taking their Projects course"
       ]
     },
     {
       "org": "Ascendancy",
-      "role": "Partner & Founding Data Scientist",
+      "role": "Data Scientist",
       "dates": "Jan 2026 - Apr 2026",
       "bullets": [
-        "Built the data layer for the start-up, a 100K-person graph of investors, founders, and companies across the Americas, MENA, and Europe. Enabled warm-intro pathfinding and community detection over the graph",
-        "Built an assistant that turns plain English into Cypher, so non-technical users can query the graph directly"
-      ],
-      "stack": ["Python", "Neo4j", "PostgreSQL", "FastAPI", "GCP"]
+        "Built a graph of investors, founders, and companies across the Americas, MENA, and Europe, with warm-intro pathfinding and community detection over it",
+        "Wrote an assistant to turn English into Cypher, so non-technical users can query the graph directly (Python, Neo4j, PostgreSQL, FastAPI, GCP)"
+      ]
     },
     {
       "org": "Invisible Technologies",
@@ -38,8 +29,8 @@
         { "title": "AI Data Trainer", "when": "Dec 2022" }
       ],
       "bullets": [
-        "Built a RAG platform for creating annotation interfaces for RLHF. Used by thousands of trainers whose work produced training data for the largest AI companies.",
-        "Built validation tools and dashboards (Python, Looker) used team-wide. Oversaw output quality of 150+ agents training LLMs"
+        "Designed a RAG platform to create almost all RLHF annotation interfaces",
+        "Wrote validation tools and dashboards (Python, Looker) used company-wide. Reviewed output quality for the LLM training teams"
       ]
     },
     {
@@ -47,7 +38,7 @@
       "role": "Data Scientist / Data Engineer",
       "dates": "Dec 2021 - Oct 2022",
       "bullets": [
-        "Built a prospect-generation system that increased daily lead capacity 5x and trained a classifier on client profiles to qualify leads (Python, Pandas, PostgreSQL, Scikit-learn)"
+        "Made a lead generation system and trained a classifier on client profiles to qualify them (Python, Pandas, PostgreSQL, Scikit-learn)"
       ]
     }
   ],
@@ -58,29 +49,32 @@
       "venue": "JAIIO 2026 (ASAID)",
       "status": "In press. Sole author",
       "links": [
-        { "text": "Link", "href": "https://github.com/korentomas/not-all-instructions" }
+        { "text": "paper", "href": "https://tkoren.com/papers/249_Korenblit_NotAllInstructions.pdf" },
+        { "text": "repo", "href": "https://github.com/korentomas/not-all-instructions" }
       ],
       "bullets": [
-        "Do LLMs forget some instructions faster than others? Per instruction effects span more than an order of magnitude where some can fail while mean compliance stays high",
-        "Used a Bayesian ordered-logistic model with hierarchical effects, fit in PyMC"
+        "Aggregate compliance hides per-instruction failures. Per-instruction treatment effects span more than an order of magnitude, so a model can drop a stated preference while mean compliance stays high",
+        "Stating a preference a model already follows can backfire. Told not to add new imports, models added more. Explicit negation seems to push the model off a good default",
+        "Hierarchical Bayesian ordered-logistic model fit in PyMC. Scored with deterministic checkers, no LLM in the loop"
       ]
     },
     {
       "title": "PowerBench: LLM Refusal in Power-Grabbing Requests",
       "year": "2026",
       "venue": "Apart Research Global South AI Safety Hackathon",
-      "status": "Coauthor (6 authors), in preparation for AAAI 2027",
+      "status": "Coauthor. In preparation",
       "links": [
-        { "text": "Link", "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou" }
+        { "text": "paper", "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou" }
       ],
       "bullets": [
-        "First public benchmark for whether LLMs go along with requests to grab power from others. Varied by model, language, nationality, domain, and scale"
+        "Adding self-benefit to a harmful request lowers refusal. Models refuse pure disempowerment (harm to others) more than power-grabbing (harm plus self-gain). Holds across five models",
+        "Refusal of these requests does not correlate with model capability, so it reflects training choices",
+        "Multilingual, single-turn first-person requests, scored by an LLM judge not yet validated against human labels"
       ]
     }
   ],
   "education": [
-    { "degree": "BSc Data Science", "school": "Universidad Nacional de San Martín", "dates": "2021 - 2026 (expected)" },
-    { "degree": "Technical AI Safety", "school": "BlueDot Impact", "dates": "2026" }
+    { "degree": "BSc Data Science", "school": "Universidad Nacional de San Martín", "dates": "2021 - 2026 (expected)" }
   ],
   "skills": [
     { "label": "Bayesian & ML", "value": "Bayesian Stats, PyMC, PyTorch, Scikit-learn", "mono": true },

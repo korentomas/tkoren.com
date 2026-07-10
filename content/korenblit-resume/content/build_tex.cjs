@@ -1,5 +1,6 @@
 // Build korenblit-resume.tex from resume.json + preamble.tex.
-// Edit content in resume.json (and styling in preamble.tex), then run:
+// Minimal academic style (no summary, no color). Edit content in
+// resume.json (and styling in preamble.tex), then run:
 //   node build_tex.cjs && pdflatex korenblit-resume.tex
 const fs = require("fs");
 
@@ -7,7 +8,6 @@ const data = JSON.parse(fs.readFileSync(`${__dirname}/resume.json`, "utf8"));
 const preamble = fs.readFileSync(`${__dirname}/preamble.tex`, "utf8").trimEnd();
 
 // ── text escaping ────────────────────────────────────────
-// `backticks` -> \mono{}, → -> $\to$, and LaTeX specials escaped.
 function escPlain(t) {
   return t
     .replace(/([&%#_])/g, "\\$1")
@@ -24,31 +24,40 @@ function tex(s) {
     )
     .join("");
 }
-// "Jan 2026 - Present" -> "Jan 2026\,--\,Present" (thin-spaced en dash)
+// "Jan 2026 - Present" -> "Jan 2026\,--\,Present"
 const dateRange = (d) => d.replace(/ - /g, "\\,--\\,");
-// stack chip: thin-space multi-word items ("Python 3.13" -> "Python\,3.13")
-const chip = (s) => escPlain(s).replace(/ /g, "\\,");
 
-// ── header ───────────────────────────────────────────────
+// ── header (name + contact, no summary) ──────────────────
 const contact = data.contact
   .map((c) => (c.href ? `\\href{${c.href}}{${tex(c.text)}}` : tex(c.text)))
-  .join("%\n  \\sep\n  ");
+  .join("\\sep ");
 
 let body = "";
-body += `{\\fontsize{26}{30}\\selectfont ${tex(data.name)}}\\par\n`;
-body += `\\vspace{6pt}\n{\\small\\color{accent}\\mono{%\n  ${contact}%\n}}\\par\n`;
-body += `\\vspace{8pt}\n{\\color{accent}%\n  ${tex(data.summary)}%\n}\\par\n\n`;
+body += contact
+  ? `\\headerblock{${tex(data.name)}}{${contact}}\n\n`
+  : `\\headeronly{${tex(data.name)}}\n\n`;
+
+// ── education ────────────────────────────────────────────
+body += `\\section{Education}\n`;
+data.education.forEach((ed, i) => {
+  if (i > 0) body += `\\vspace{2pt}\n\n`;
+  body += `\\textbf{${tex(ed.school)}}\\hfill\\daterange{${dateRange(ed.dates)}}\\\\\n`;
+  body += `${tex(ed.degree)}`;
+  if (ed.note) body += ` ({\\small ${tex(ed.note)}})`;
+  body += `\\par\n`;
+});
+body += `\n`;
 
 // ── publications ─────────────────────────────────────────
 if (data.publications && data.publications.length) {
-  body += `\\section{Publications}\n\n`;
+  body += `\\section{Publications}\n`;
   data.publications.forEach((p, i) => {
-    if (i > 0) body += `\\vspace{4pt}\n\n`;
-    body += `\\textbf{${tex(p.title)}}%\n\\hfill\\daterange{${p.year}}\\\\\n`;
-    let meta = `\\textit{${tex(p.venue)}}\\sep ${tex(p.status)}`;
+    if (i > 0) body += `\\vspace{3pt}\n\n`;
+    body += `\\textbf{${tex(p.title)}}\\hfill\\daterange{${p.year}}\\\\\n`;
+    let meta = `\\textit{${tex(p.venue)}}. ${tex(p.status)}`;
     if (p.links) {
       const linkStr = p.links
-        .map((l) => `{\\small\\color{accent}\\mono{\\href{${l.href}}{${escPlain(l.text)}}}}`)
+        .map((l) => `{\\small \\href{${l.href}}{${escPlain(l.text)}}}`)
         .join("\\enspace ");
       meta += `\\hfill ${linkStr}`;
     }
@@ -60,44 +69,21 @@ if (data.publications && data.publications.length) {
 }
 
 // ── experience ───────────────────────────────────────────
-body += `\\section{Experience}\n\n`;
+body += `\\section{Experience}\n`;
 data.experience.forEach((e, i) => {
-  if (i > 0) body += `\\vspace{4pt}\n\n`;
+  if (i > 0) body += `\\vspace{2pt}\n\n`;
   if (e.roles) {
-    body += `\\textbf{${tex(e.org)}}%\n\\hfill\\daterange{${dateRange(e.dates)}}\\\\\n`;
+    body += `\\textbf{${tex(e.org)}}\\hfill\\daterange{${dateRange(e.dates)}}\\\\\n`;
     body += e.roles
-      .map((r) => `\\textit{${tex(r.title)}}\\,{\\small\\mono{(${tex(r.when)})}}`)
-      .join("%\n\\sep\n") + "\n";
+      .map((r) => `\\textit{${tex(r.title)}} ({\\small ${tex(r.when)}})`)
+      .join("\\sep ") + "\n";
   } else {
-    body += `\\textbf{${tex(e.org)}}\\sep ${tex(e.role)}%\n\\hfill\\daterange{${dateRange(e.dates)}}\n`;
+    const roleStr = e.role ? `\\sep \\textit{${tex(e.role)}}` : "";
+    body += `\\textbf{${tex(e.org)}}${roleStr}\\hfill\\daterange{${dateRange(e.dates)}}\n`;
   }
-  if ((e.bullets && e.bullets.length) || e.stack) {
-    body += `\\begin{itemize}\n`;
-    (e.bullets || []).forEach((b) => (body += `  \\item ${tex(b)}\n`));
-    if (e.stack) {
-      body += `  \\item {\\small\\color{accent}\\mono{%\n        ${e.stack.map(chip).join("\\sep ")}}}\n`;
-    }
-    body += `\\end{itemize}\n\n`;
-  } else {
-    body += `\n`;
-  }
-});
-
-// ── education ────────────────────────────────────────────
-body += `\\section{Education}\n\n`;
-data.education.forEach((ed, i) => {
-  if (i > 0) body += `\\vspace{2pt}\n`;
-  body += `\\textbf{${tex(ed.degree)}}\\sep\n${tex(ed.school)}%\n\\hfill\\daterange{${dateRange(ed.dates)}}\\par\n`;
-  if (ed.note) body += `{\\small\\color{accent}${tex(ed.note)}}\\par\n`;
-});
-body += `\n`;
-
-// ── skills ───────────────────────────────────────────────
-body += `\\section{Skills}\n\n`;
-data.skills.forEach((s, i) => {
-  const sep = i < data.skills.length - 1 ? "\\\\[2pt]" : "";
-  const val = s.mono ? `\\mono{${escPlain(s.value)}}` : tex(s.value);
-  body += `{\\color{accent}${tex(s.label)}\\,:}\\enspace\n${val}${sep}\n`;
+  body += `\\begin{itemize}\n`;
+  (e.bullets || []).forEach((b) => (body += `  \\item ${tex(b)}\n`));
+  body += `\\end{itemize}\n\n`;
 });
 
 const out = `${preamble}\n\n% ═════════════════════════════════════════════════════════\n\\begin{document}\n\n${body}\n\\end{document}\n`;

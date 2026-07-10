@@ -1,6 +1,6 @@
 import { SITE_URL } from "~/utils/site-config";
 
-const PAGES = ["/", "/research", "/writing", "/books", "/interests", "/now", "/then"];
+const PAGES = ["/"];
 
 export const loader = () => {
   const urls = PAGES.map(

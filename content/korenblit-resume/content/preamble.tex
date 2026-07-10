@@ -1,58 +1,59 @@
 % ─────────────────────────────────────────────────────────
-%  Tomás Pablo Korenblit — Resume
-%  Compile with: pdflatex korenblit-resume.tex
+%  Tomás Pablo Korenblit — CV
+%  Minimal academic style: black only, left-margin section
+%  labels, serif body. Compile with: pdflatex korenblit-resume.tex
 % ─────────────────────────────────────────────────────────
 \documentclass[11pt,letterpaper]{article}
 
-% ─── Geometry ────────────────────────────────────────────
-\usepackage[top=0.5in, bottom=0.5in, left=0.6in, right=0.6in]{geometry}
+% ─── Geometry: wide left margin holds the section labels ──
+\usepackage[top=0.7in, bottom=0.45in, left=1.9in, right=0.65in]{geometry}
+\linespread{0.98}
+\newlength{\labelcol}\setlength{\labelcol}{1.0in}    % label box width (fits "Publications")
+\newlength{\labelgap}\setlength{\labelgap}{0.25in}   % gap label -> text
+\newlength{\leftpull}\setlength{\leftpull}{1.25in}   % labelcol + labelgap
 
-% ─── Fonts & Typography ─────────────────────────────────
+% ─── Fonts ───────────────────────────────────────────────
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{XCharter}                       % serif body
-\usepackage[scaled=1.0]{inconsolata}        % mono for tech/numbers (matched to XCharter x-height)
+\usepackage{lmodern}           % Latin Modern serif (classic academic look)
 \usepackage{microtype}
 
-% ─── Font helper ─────────────────────────────────────────
-%  \mono{} — switch to mono for technical text (tools, metrics, contact data)
-\newcommand{\mono}[1]{{\ttfamily #1}}
-
-% ─── Color ───────────────────────────────────────────────
-\usepackage{xcolor}
-\definecolor{accent}{HTML}{555555}
-\definecolor{rulecolor}{HTML}{BBBBBB}
-
-% ─── Links ───────────────────────────────────────────────
+% ─── Links (no color) ────────────────────────────────────
 \usepackage[hidelinks]{hyperref}
-
-% ─── Graphics ───────────────────────────────────────────
-\usepackage{tikz}
-
-% ─── Circle Glyphs ──────────────────────────────────────
-%  ○  open circle  (U+25CB) — bullet points
-%  ●  filled circle (U+25CF) — inline separators
-\newcommand{\ocircle}{\tikz[baseline=-0.65ex]\draw[line width=0.45pt] (0,0) circle (1.6pt);}
-\newcommand{\fcircle}{\tikz[baseline=-0.65ex]\fill (0,0) circle (1.4pt);}
-\newcommand{\sep}{\enspace{\fcircle}\enspace}
-
-% ─── Lists ───────────────────────────────────────────────
-\usepackage{enumitem}
-\setlist[itemize]{%
-  nosep, leftmargin=12pt, label={\color{accent}\ocircle}, itemsep=2pt%
-}
-
-% ─── Section Headings ───────────────────────────────────
-\usepackage{titlesec}
-\titleformat{\section}%
-  {\normalsize\scshape}{}{0pt}{}%
-  [\vspace{-2pt}{\color{rulecolor}\hrule height 0.4pt}\vspace{2pt}]
-\titlespacing{\section}{0pt}{11pt}{5pt}
 
 % ─── Layout ──────────────────────────────────────────────
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 
+% ─── Section: label sits in the left margin (llap), text
+%     flows in the main column. Page-break safe. ───────────
+\renewcommand{\section}[1]{%
+  \par\addvspace{5pt}%
+  \noindent\llap{\smash{\parbox[t]{\labelcol}{\raggedright\scshape #1}}\hspace{\labelgap}}%
+  \nopagebreak\ignorespaces}
+
+% ─── Lists: plain dash bullets, tight ────────────────────
+\usepackage{enumitem}
+\setlist[itemize]{nosep, leftmargin=11pt, label={\textendash}, itemsep=1pt, topsep=1pt}
+
 % ─── Helpers ─────────────────────────────────────────────
-\newcommand{\daterange}[1]{\textcolor{accent}{\small\mono{#1}}}
+\newcommand{\daterange}[1]{{\small #1}}          % dates, plain
+\newcommand{\sep}{\,\textbar\,}                   % inline separator: thin bar
+\newcommand{\mono}[1]{#1}                          % no mono font; identity
+
+% ─── Full-width header block (name + rule) pulled to the
+%     far-left label column. ────────────────────────────────
+\newcommand{\headerblock}[2]{%
+  \noindent\hspace*{-\leftpull}%
+  \begin{minipage}{\dimexpr\textwidth+\leftpull\relax}%
+    {\fontsize{15}{18}\selectfont\textbf{#1}}\\[2pt]%
+    {\small #2}\par\vspace{3pt}%
+    \hrule height 0.4pt%
+  \end{minipage}\par\vspace{2pt}}
+\newcommand{\headeronly}[1]{%
+  \noindent\hspace*{-\leftpull}%
+  \begin{minipage}{\dimexpr\textwidth+\leftpull\relax}%
+    {\fontsize{14}{17}\selectfont\textbf{#1}}\par\vspace{7pt}%
+    \hrule height 0.4pt%
+  \end{minipage}\par\vspace{2pt}}

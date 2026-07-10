@@ -1,8 +1,0 @@
-{
-  "date": "2026-06-09",
-  "sections": [
-    { "heading": "Work", "body": "Right now I'm finishing the camera-ready for Not All Instructions Are Forgotten Equal (JAIIO 2026). Reviewers asked for baselines on every model and a check on whether negation phrasing is what makes one instruction type degrade. Both runs are going now, and the benchmark goes public as an Inspect AI eval once they're done.", "link": { "href": "/research", "label": "More on the paper" } },
-    { "heading": "Writing", "body": "I wrote a short story about the myth of the Golem drawing a parallel to AI. I'm not the most original but it's my own take. It's in Spanish for now, English translation coming.", "link": { "href": "/writing", "label": "Read it" } },
-    { "heading": "Learning", "body": "I'm also starting BlueDot's Technical AI Safety Projects Sprint." }
-  ]
-}

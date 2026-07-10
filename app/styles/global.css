@@ -1,444 +1,152 @@
-/* Minimal, early-internet aesthetic.
-   Serif body, blue underlined links, one column, no chrome. */
+/* Single dark theme. Accent green: #58c288 (change here to retheme). */
 
 :root {
-  --max-width: 44rem;
-  --font-body: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-
-/* Themes ──────────────────────────────────────────── */
-
-:root,
-[data-theme="terminal"] {
-  --bg: #0a1b0a;
-  --bg-deep: #0d220d;
-  --text: #6fe06a;
-  --muted: #3d9a38;
-  --rule: #1c3a1c;
-  --link: #b0ff7d;
-  --link-visited: #70c040;
-  --sparkle: #d8ff55;
-  --grain: none;
-}
-
-[data-theme="paper"] {
-  --bg: #f4efe4;
-  --bg-deep: #ebe3d1;
-  --text: #1f1a15;
-  --muted: #6a5f50;
-  --rule: #d8cfbc;
-  --link: #a8431a;
-  --link-visited: #8a5a2a;
-  --sparkle: #c9751c;
-  /* Chunkier, more visible grain: larger tile (400), lower baseFrequency
-     (bigger noise blobs), 3 octaves, higher alpha. Reads as real paper. */
-  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.35' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.32 0 0 0 0 0.22 0 0 0 0 0.14 0 0 0 0.28 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
-}
-
-[data-theme="amber"] {
-  --bg: #1a1208;
-  --bg-deep: #22190d;
-  --text: #e8a340;
-  --muted: #a07030;
-  --rule: #3a2a18;
-  --link: #ffc870;
-  --link-visited: #c88030;
-  --sparkle: #ffe6a0;
-  --grain: none;
+  --bg: #14161a;
+  --text: #e7e8e3;
+  --muted: #97a09a;
+  --accent: #58c288; /* green accent (readable on dark) */
+  --accent-hover: #7ad3a3;
+  --rule: #2a2e2b;
 }
 
 * {
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.55;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+  max-width: 40rem;
+  background: var(--bg);
   color: var(--text);
-  background-color: var(--bg);
-  background-image: var(--grain);
-  background-repeat: repeat;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  font-family: Charter, "Bitstream Charter", "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
 }
 
-/* Keyboard focus: crisp, accessible, paper-friendly */
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--link);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-/* Remove focus ring when clicking (mouse users), keep for keyboard */
-a:focus:not(:focus-visible),
-button:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.site-header {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 2.5rem 1.25rem 0;
-}
-
-.site-name {
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.site-name a,
-.site-name a:visited {
-  color: inherit;
-  text-decoration: none;
-}
-
-.site-name a:hover {
-  text-decoration: underline;
-}
-
-.site-tagline {
-  color: var(--muted);
-  font-style: italic;
-  margin: 0.25rem 0 0;
-}
-
-main {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 1.25rem 5rem;
-}
-
-/* Floated headshot beside the intro */
-.headshot {
-  float: right;
-  width: 9rem;
-  margin: 0.25rem 0 1rem 1.5rem;
-}
-
-.headshot img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-@media (max-width: 30rem) {
-  .headshot {
-    float: none;
-    width: 7rem;
-    margin: 0 0 1rem;
-  }
-}
-
-/* Pixel glyphs beside social links */
-.pixel-icon {
-  width: 0.95em;
-  height: 0.95em;
-  vertical-align: -0.12em;
-  margin-right: 0.3em;
-  image-rendering: pixelated;
-}
-
-/* Typography */
 h1,
-h2,
-h3 {
+h2 {
+  color: var(--accent);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 h1 {
   font-size: 1.6rem;
-  margin: 0 0 0.25rem;
+  margin: 0;
 }
 
 h2 {
   font-size: 1.2rem;
-  margin: 2.25rem 0 0.5rem;
-}
-
-h3 {
-  font-size: 1rem;
-  margin: 1.5rem 0 0.25rem;
+  margin: 2.5rem 0 1rem;
 }
 
 p {
   margin: 0 0 1rem;
 }
 
-small {
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
-/* Links */
 a {
-  color: var(--link);
+  color: var(--accent);
   text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-a:visited {
-  color: var(--link-visited);
+  text-underline-offset: 0.15em;
 }
 
 a:hover {
-  text-decoration: none;
+  color: var(--accent-hover);
 }
 
-/* Lists */
-ul {
-  padding-left: 1.1rem;
-  margin: 0 0 1rem;
+/* Header: name left, CV + square photo right */
+.site-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
 }
 
-li {
-  margin: 0.3rem 0;
+.cv-link {
+  font-size: 0.95rem;
+  flex-shrink: 0;
 }
 
-/* Horizontal rule */
-hr {
-  border: none;
-  border-top: 1px solid var(--rule);
-  margin: 2rem 0;
+/* Bio: keep parentheticals from splitting across lines */
+.nowrap {
+  white-space: nowrap;
 }
 
-/* Small helpers */
-.lede {
+/* Publications */
+.publications {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.publications li {
+  margin: 0 0 2rem;
+}
+
+.publications li p {
+  margin: 0 0 0.4rem;
+}
+
+.pub-title {
+  font-weight: 700;
+}
+
+.pub-meta {
   color: var(--muted);
-  font-style: italic;
-  margin: 0 0 1.75rem;
+  font-size: 0.95rem;
+}
+
+.pub-summary {
+  font-size: 0.98rem;
+}
+
+.pub-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.pub-links {
+  font-size: 0.95rem;
+}
+
+/* Contact line */
+.contact {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
 }
 
 .muted {
   color: var(--muted);
-}
-
-.stack > * + * {
-  margin-top: 0.4rem;
-}
-
-.writing-piece-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.lang-picker {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.lang-picker button {
-  font: inherit;
-  font-size: 0.85rem;
-  background: none;
-  border: 1px solid var(--rule);
-  color: var(--muted);
-  padding: 0.15rem 0.55rem;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-.lang-picker button.active {
-  color: var(--link);
-  border-color: var(--link);
-}
-
-/* Nav (the link row under the header) */
-.site-social {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-  margin: 0.6rem 0 0;
-}
-
-.site-social a,
-.email-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--muted);
-  transition: color 0.15s ease, transform 0.15s ease;
-}
-
-.site-social a:hover,
-.email-link:hover {
-  color: var(--link);
-  transform: translateY(-1px);
-}
-
-/* email button reset + label */
-.email-link {
-  gap: 0.4rem;
-  padding: 0;
-  border: 0;
-  background: none;
-  font: inherit;
   font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.email-link-copied,
-.email-link-copied:hover {
-  color: var(--sparkle);
-  transform: none;
-}
-
-.site-social .pixel-icon {
-  width: 1.15rem;
-  height: 1.15rem;
-  margin-right: 0;
-  vertical-align: middle;
-}
-
-.site-social .brand-icon {
-  width: 1.1rem;
-  height: 1.1rem;
-  vertical-align: middle;
-}
-
-.topnav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  font-size: 0.95rem;
-  margin: 1.25rem 0 2.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.topnav a {
-  color: var(--link);
-}
-
-/* Book list */
-.book {
-  margin: 0.9rem 0;
-}
-
-.book-title {
-  font-style: italic;
-}
-
-.book-author {
-  color: var(--muted);
-}
-
-.book-note {
-  display: block;
-  margin-top: 0.15rem;
-  color: var(--text);
-}
-
-.book-rating {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-left: 0.35rem;
-}
-
-/* Footer */
-footer {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 1.25rem 2.5rem;
-  color: var(--muted);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--rule);
-  padding-top: 1.25rem;
 }
 
 /* Accessibility */
 .skip-link {
   position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateY(-110%);
-  background: var(--text);
-  color: var(--bg);
-  padding: 0.5rem 0.75rem;
-  text-decoration: none;
-  z-index: 100;
+  left: -9999px;
 }
 
 .skip-link:focus {
-  transform: translateY(0);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* Error page */
-.error-container {
-  max-width: var(--max-width);
-  margin: 4rem auto;
-  padding: 0 1.25rem;
-}
-
-/* Sparkle accent: a theme-colored glyph for emphasis.
-   Write ✦ in any content string wrapped by <SparkleText> and it
-   gets this color automatically. */
-.sparkle {
-  color: var(--sparkle);
-  font-size: 0.9em;
+  position: static;
   display: inline-block;
-  transform: translateY(-0.05em);
-  padding: 0 0.1em;
+  padding: 0.25rem 0.5rem;
 }
 
-/* Theme picker (row of text buttons in the footer) */
-.theme-picker {
-  margin: 0.5rem 0 0;
+/* Error boundary */
+.error-container {
+  padding: 2rem 0;
+}
+
+.error-container pre {
+  overflow-x: auto;
+  background: #1e2126;
+  padding: 0.75rem;
   font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.theme-btn {
-  background: none;
-  border: 0;
-  padding: 0;
-  font: inherit;
-  color: var(--link);
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.theme-btn:hover {
-  text-decoration: none;
-}
-
-.theme-btn-active {
-  color: var(--text);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* Respect user motion prefs (nothing animated, but just in case) */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
 }
