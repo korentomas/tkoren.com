@@ -5,8 +5,7 @@
     "status": "Accepted, camera-ready in preparation",
     "summary": "For an autonomous LLM agent, a safety guardrail is just another instruction given at the start of a run, and as context grows, the agent keeps some instructions while dropping others. Because a mean compliance rate aggregates across instructions, it cannot reveal which one was dropped. We measure retention one instruction at a time by conducting 25-turn coding sessions on five instruction-following models and three open-source Python codebases. In these sessions, we plant twelve ordinary coding preferences as casual inline requests, score the resulting code with deterministic checkers on a 0 to 3 ordinal scale, and fit a Bayesian ordered-logistic model with hierarchical effects per decision type to 244 observations. Treatment effects span -2.4 to +5.4 on the log-odds scale (group-level standard deviation 2.1), showing considerable variation across preferences. Most preferences are already followed by default, and only three of twelve benefit from being restated (two under a single-model robustness check). Since these preferences stand in for guardrails, this unevenness is a safety concern. Because a guardrail must hold on every turn, aggregate compliance can remain high even after the one rule that matters is skipped. As a result, a deployed agent needs per-instruction monitoring to catch it.",
     "links": [
-      { "href": "/papers/249_Korenblit_NotAllInstructions.pdf", "label": "Paper (PDF)" },
-      { "href": "https://orcid.org/0009-0002-5682-8475", "label": "ORCID" }
+      { "href": "/papers/249_Korenblit_NotAllInstructions.pdf", "label": "Paper (PDF)" }
     ]
   },
   {

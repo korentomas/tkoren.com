@@ -28,7 +28,7 @@ export const meta: MetaFunction = () => [
       email: SITE.email,
       jobTitle: SITE.title,
       knowsAbout: [...SITE.knowsAbout],
-      sameAs: [SITE.social.github, SITE.social.linkedin, SITE.social.orcid],
+      sameAs: [SITE.social.github, SITE.social.linkedin],
     },
   },
 ];
@@ -84,8 +84,7 @@ export default function Index() {
 
       <p className="contact">
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a> /{" "}
-        <a href={SITE.social.github}>GitHub</a> /{" "}
-        <a href={SITE.social.orcid}>ORCID</a>
+        <a href={SITE.social.github}>GitHub</a>
       </p>
     </main>
   );
