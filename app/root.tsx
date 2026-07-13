@@ -12,7 +12,7 @@ import { SITE } from "~/utils/site-config";
 export const links = () => [
   { rel: "stylesheet", href: styles },
   { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
-  { rel: "apple-touch-icon", href: "/me.png" },
+  { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
 ];
 
 export const meta = () => [
