@@ -54,7 +54,9 @@ if (data.publications && data.publications.length) {
   data.publications.forEach((p, i) => {
     if (i > 0) body += `\\vspace{3pt}\n\n`;
     body += `\\textbf{${tex(p.title)}}\\hfill\\daterange{${p.year}}\\\\\n`;
-    let meta = `\\textit{${tex(p.venue)}}. ${tex(p.status)}`;
+    if (p.authors) body += `{\\small ${tex(p.authors)}}\\\\\n`;
+    let meta = `\\textit{${tex(p.venue)}}`;
+    if (p.status) meta += `. ${tex(p.status)}`;
     if (p.links) {
       const linkStr = p.links
         .map((l) => `{\\small \\href{${l.href}}{${escPlain(l.text)}}}`)

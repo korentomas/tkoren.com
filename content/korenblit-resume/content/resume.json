@@ -47,7 +47,7 @@
       "title": "Not All Instructions Are Forgotten Equal",
       "year": "2026",
       "venue": "JAIIO 2026 (ASAID)",
-      "status": "Sole author",
+      "authors": "T. P. Korenblit",
       "links": [
         { "text": "paper", "href": "https://tkoren.com/papers/249_Korenblit_NotAllInstructions.pdf" },
         { "text": "repo", "href": "https://github.com/korentomas/not-all-instructions" }
@@ -62,7 +62,8 @@
       "title": "PowerBench: LLM Refusal in Power-Grabbing Requests",
       "year": "2026",
       "venue": "Apart Research Global South AI Safety Hackathon",
-      "status": "Coauthor. In preparation",
+      "authors": "W. Brau, T. Gimenez Molina, G. A. Heredia, T. P. Korenblit, G. Labastie, N. Martorell",
+      "status": "In preparation",
       "links": [
         { "text": "paper", "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou" }
       ],

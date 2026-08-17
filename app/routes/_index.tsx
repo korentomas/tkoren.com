@@ -60,6 +60,7 @@ export default function Index() {
             <li key={entry.title}>
               <p className="pub-title">{entry.title}</p>
               <p className="pub-meta">
+                {entry.authors ? `${entry.authors}. ` : null}
                 {entry.venue}
                 {entry.status ? `, ${entry.status}` : null}
               </p>

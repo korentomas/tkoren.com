@@ -25,6 +25,7 @@ export type Site = z.infer<typeof SiteSchema>;
 const ResearchEntrySchema = z.object({
   title: z.string().min(1),
   venue: z.string().min(1),
+  authors: z.string().optional(),
   status: z.string().optional(),
   summary: z.string().min(1),
   note: z.string().optional(),

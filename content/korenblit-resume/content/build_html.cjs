@@ -23,7 +23,8 @@ function eduEntry(ed) {
 function pubEntry(p) {
   return `<div class="entry" draggable="true" data-key="${esc(p.title)}">
     <div class="head"><span class="l"><b>${esc(p.title)}</b></span><span class="r">${esc(p.year)}</span></div>
-    <div class="sub"><i>${esc(p.venue)}</i>. ${esc(p.status)}</div>
+    ${p.authors ? `<div class="sub">${esc(p.authors)}</div>` : ""}
+    <div class="sub"><i>${esc(p.venue)}</i>${p.status ? `. ${esc(p.status)}` : ""}</div>
     ${bullets(p.bullets)}</div>`;
 }
 function expEntry(e) {
