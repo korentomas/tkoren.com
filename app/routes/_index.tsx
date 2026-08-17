@@ -2,19 +2,19 @@ import type { MetaFunction } from "@vercel/remix";
 import { RESEARCH, SITE, SITE_URL } from "~/utils/site-config";
 
 export const meta: MetaFunction = () => [
-  { title: `${SITE.name} · ${SITE.title}` },
+  { title: SITE.name },
   { name: "description", content: SITE.description },
   { tagName: "link", rel: "canonical", href: SITE_URL },
   { property: "og:type", content: "website" },
   { property: "og:url", content: SITE_URL },
-  { property: "og:title", content: `${SITE.name} · ${SITE.title}` },
+  { property: "og:title", content: SITE.name },
   { property: "og:description", content: SITE.description },
   { property: "og:image", content: `${SITE_URL}/og-image.png` },
   { property: "og:image:width", content: "1200" },
   { property: "og:image:height", content: "630" },
   { property: "og:site_name", content: SITE.name },
   { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: `${SITE.name} · ${SITE.title}` },
+  { name: "twitter:title", content: SITE.name },
   { name: "twitter:description", content: SITE.shortDescription },
   { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
   {
