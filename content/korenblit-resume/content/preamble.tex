@@ -6,8 +6,8 @@
 \documentclass[11pt,letterpaper]{article}
 
 % ─── Geometry: wide left margin holds the section labels ──
-\usepackage[top=0.7in, bottom=0.45in, left=1.9in, right=0.65in]{geometry}
-\linespread{0.98}
+\usepackage[top=0.8in, bottom=0.6in, left=1.9in, right=0.65in]{geometry}
+\linespread{1.04}
 \newlength{\labelcol}\setlength{\labelcol}{1.0in}    % label box width (fits "Publications")
 \newlength{\labelgap}\setlength{\labelgap}{0.25in}   % gap label -> text
 \newlength{\leftpull}\setlength{\leftpull}{1.25in}   % labelcol + labelgap
@@ -29,13 +29,13 @@
 % ─── Section: label sits in the left margin (llap), text
 %     flows in the main column. Page-break safe. ───────────
 \renewcommand{\section}[1]{%
-  \par\addvspace{5pt}%
+  \par\addvspace{14pt}%
   \noindent\llap{\smash{\parbox[t]{\labelcol}{\raggedright\scshape #1}}\hspace{\labelgap}}%
   \nopagebreak\ignorespaces}
 
 % ─── Lists: plain dash bullets, tight ────────────────────
 \usepackage{enumitem}
-\setlist[itemize]{nosep, leftmargin=11pt, label={\textendash}, itemsep=1pt, topsep=1pt}
+\setlist[itemize]{nosep, leftmargin=11pt, label={\textendash}, itemsep=2.5pt, topsep=3pt}
 
 % ─── Helpers ─────────────────────────────────────────────
 \newcommand{\daterange}[1]{{\small #1}}          % dates, plain
@@ -47,13 +47,12 @@
 \newcommand{\headerblock}[2]{%
   \noindent\hspace*{-\leftpull}%
   \begin{minipage}{\dimexpr\textwidth+\leftpull\relax}%
-    {\fontsize{15}{18}\selectfont\textbf{#1}}\\[2pt]%
-    {\small #2}\par\vspace{3pt}%
+    {\fontsize{15}{18}\selectfont\textbf{#1}}\hfill{\footnotesize #2}\par\vspace{9pt}%
     \hrule height 0.4pt%
-  \end{minipage}\par\vspace{2pt}}
+  \end{minipage}\par\vspace{6pt}}
 \newcommand{\headeronly}[1]{%
   \noindent\hspace*{-\leftpull}%
   \begin{minipage}{\dimexpr\textwidth+\leftpull\relax}%
-    {\fontsize{14}{17}\selectfont\textbf{#1}}\par\vspace{7pt}%
+    {\fontsize{14}{17}\selectfont\textbf{#1}}\par\vspace{9pt}%
     \hrule height 0.4pt%
-  \end{minipage}\par\vspace{2pt}}
+  \end{minipage}\par\vspace{6pt}}

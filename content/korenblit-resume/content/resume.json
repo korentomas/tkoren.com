@@ -1,14 +1,25 @@
 {
   "name": "Tomás Pablo Korenblit",
   "summary": "Finishing a BSc in Data Science focused on Bayesian inference. I build hierarchical Bayesian models of how LLM behavior degrades. My recent work shows that aggregate compliance metrics hide large per-instruction failures, and that stating a preference a model already follows can make it comply less.",
-  "contact": [],
+  "contact": [
+    {
+      "text": "tomaskorenblit at gmail.com"
+    },
+    {
+      "text": "tomas at baish.com.ar"
+    },
+    {
+      "text": "tkoren.com",
+      "href": "https://tkoren.com"
+    }
+  ],
   "experience": [
     {
-      "org": "Research",
+      "org": "Independent Research",
       "dates": "Apr 2026 - Present",
       "bullets": [
-        "Studying LLM threat models. Extending the PowerBench work",
-        "Facilitating BlueDot's Technical AI Safety course, and taking their Projects course"
+        "Research on AI Safety. Interests: scalable oversight, interpretability.",
+        "Facilitator for BlueDot Impact's Technical AI Safety course"
       ]
     },
     {
@@ -24,13 +35,22 @@
       "org": "Invisible Technologies",
       "dates": "Dec 2022 - Dec 2025",
       "roles": [
-        { "title": "Software Engineer", "when": "Jun 2025" },
-        { "title": "QC Data Analyst", "when": "Jun 2023" },
-        { "title": "AI Data Trainer", "when": "Dec 2022" }
+        {
+          "title": "Software Engineer",
+          "when": "Jun 2025"
+        },
+        {
+          "title": "QC Data Analyst",
+          "when": "Jun 2023"
+        },
+        {
+          "title": "AI Data Trainer",
+          "when": "Dec 2022"
+        }
       ],
       "bullets": [
         "Designed a RAG platform to create almost all RLHF annotation interfaces",
-        "Wrote validation tools and dashboards (Python, Looker) used company-wide. Reviewed output quality for the LLM training teams"
+        "Wrote validation scripts and dashboards (Python, Looker) used company-wide. Reviewed output quality for the RLHF data teams"
       ]
     },
     {
@@ -38,24 +58,49 @@
       "role": "Data Scientist / Data Engineer",
       "dates": "Dec 2021 - Oct 2022",
       "bullets": [
-        "Made a lead generation system and trained a classifier on client profiles to qualify them (Python, Pandas, PostgreSQL, Scikit-learn)"
+        "Made a lead generation system and trained a classifier for client profiles (Python, Pandas, PostgreSQL, Scikit-learn)"
       ]
     }
   ],
   "publications": [
+    {
+      "title": "Counterfactual Resampling to Analyse Model Behaviour",
+      "year": "2026",
+      "venue": "BlueDot Impact Technical AI Safety sprint, facilitated by BAISH",
+      "authors": "T. P. Korenblit",
+      "links": [
+        {
+          "text": "writeup",
+          "href": "https://tpk22.substack.com/p/counterfactual-resampling-to-analyse"
+        },
+        {
+          "text": "repo",
+          "href": "https://github.com/korentomas/value-leakage-resampling"
+        }
+      ],
+      "bullets": [
+        "Extends Betley et al.'s Value Leakage introducing per-conversation measurements by resampling truncations of the CoT under a flipped prompt",
+        "CoTs that deny being influenced do not concentrate on the influenced traces, against the hypothesis that the model selectively covers its tracks"
+      ]
+    },
     {
       "title": "Not All Instructions Are Forgotten Equal",
       "year": "2026",
       "venue": "JAIIO 2026 (ASAID)",
       "authors": "T. P. Korenblit",
       "links": [
-        { "text": "paper", "href": "https://tkoren.com/papers/249_Korenblit_NotAllInstructions.pdf" },
-        { "text": "repo", "href": "https://github.com/korentomas/not-all-instructions" }
+        {
+          "text": "paper",
+          "href": "https://tkoren.com/papers/249_Korenblit_NotAllInstructions.pdf"
+        },
+        {
+          "text": "repo",
+          "href": "https://github.com/korentomas/not-all-instructions"
+        }
       ],
       "bullets": [
-        "Aggregate compliance hides per-instruction failures. Some instructions get dropped deep in a conversation while the mean still looks fine, so a guardrail set at the start can quietly stop holding. Argues for watching instructions one at a time, not in aggregate",
-        "Restating an instruction only helps for a handful of them. Most are already followed by default, so blanket repetition mostly wastes tokens",
-        "Scored with deterministic checkers instead of an LLM judge and the effects were estimated with a hierarchical Bayesian model"
+        "Measures retention of in-context instructions individually in multi-turn coding sessions",
+        "Per-instruction effects range from -2.4 to +5.4 log-odds and only three of twelve instructions benefit from being restated"
       ]
     },
     {
@@ -65,24 +110,55 @@
       "authors": "W. Brau, T. Gimenez Molina, G. A. Heredia, T. P. Korenblit, G. Labastie, N. Martorell",
       "status": "In preparation",
       "links": [
-        { "text": "paper", "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou" }
+        {
+          "text": "paper",
+          "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou"
+        }
       ],
       "bullets": [
-        "Adding self-benefit to a harmful request lowers refusal. Models refuse pure disempowerment (harm to others) more than power-grabbing (harm plus self-gain)",
-        "Request refusal does not correlate with model capability",
-        "Multilingual, single-turn first-person requests, scored by an LLM judge"
+        "Multilingual benchmark measuring refusal to power-grabbing requests",
+        "Refusal of power-grabbing ranges from 8.4% to 70.2% and is lower than refusal of disempowerment in every model"
       ]
     }
   ],
   "education": [
-    { "degree": "BSc Data Science", "school": "Universidad Nacional de San Martín", "dates": "2022 - 2027 (expected)" }
+    {
+      "degree": "BSc Data Science",
+      "school": "Universidad Nacional de San Martín",
+      "dates": "2022 - 2027 (expected)",
+      "note": "GPA 8.64 / 10"
+    }
   ],
   "skills": [
-    { "label": "Bayesian & ML", "value": "Bayesian Stats, PyMC, PyTorch, Scikit-learn", "mono": true },
-    { "label": "LLM evaluation", "value": "Inspect AI, RAG, RLHF tooling", "mono": true },
-    { "label": "Languages", "value": "Python, R, Julia, SQL, Cypher, TypeScript", "mono": true },
-    { "label": "Data & Backend", "value": "Neo4j, PostgreSQL, Redis, Pandas, NumPy | FastAPI, Flask, Pydantic, SQLAlchemy", "mono": true },
-    { "label": "Infrastructure", "value": "GCP, Docker", "mono": true },
-    { "label": "Spoken", "value": "English & Spanish", "mono": false }
+    {
+      "label": "Bayesian & ML",
+      "value": "Bayesian Stats, PyMC, PyTorch, Scikit-learn",
+      "mono": true
+    },
+    {
+      "label": "LLM evaluation",
+      "value": "Inspect AI, RAG, RLHF tooling",
+      "mono": true
+    },
+    {
+      "label": "Languages",
+      "value": "Python, R, Julia, SQL, Cypher, TypeScript",
+      "mono": true
+    },
+    {
+      "label": "Data & Backend",
+      "value": "Neo4j, PostgreSQL, Redis, Pandas, NumPy | FastAPI, Flask, Pydantic, SQLAlchemy",
+      "mono": true
+    },
+    {
+      "label": "Infrastructure",
+      "value": "GCP, Docker",
+      "mono": true
+    },
+    {
+      "label": "Spoken",
+      "value": "English & Spanish",
+      "mono": false
+    }
   ]
 }

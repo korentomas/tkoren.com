@@ -40,7 +40,7 @@ body += contact
 // ── education ────────────────────────────────────────────
 body += `\\section{Education}\n`;
 data.education.forEach((ed, i) => {
-  if (i > 0) body += `\\vspace{2pt}\n\n`;
+  if (i > 0) body += `\\vspace{8pt}\n\n`;
   body += `\\textbf{${tex(ed.school)}}\\hfill\\daterange{${dateRange(ed.dates)}}\\\\\n`;
   body += `${tex(ed.degree)}`;
   if (ed.note) body += ` ({\\small ${tex(ed.note)}})`;
@@ -52,7 +52,7 @@ body += `\n`;
 if (data.publications && data.publications.length) {
   body += `\\section{Publications}\n`;
   data.publications.forEach((p, i) => {
-    if (i > 0) body += `\\vspace{3pt}\n\n`;
+    if (i > 0) body += `\\vspace{9pt}\n\n`;
     body += `\\textbf{${tex(p.title)}}\\hfill\\daterange{${p.year}}\\\\\n`;
     if (p.authors) body += `{\\small ${tex(p.authors)}}\\\\\n`;
     let meta = `\\textit{${tex(p.venue)}}`;
@@ -73,7 +73,7 @@ if (data.publications && data.publications.length) {
 // ── experience ───────────────────────────────────────────
 body += `\\section{Experience}\n`;
 data.experience.forEach((e, i) => {
-  if (i > 0) body += `\\vspace{2pt}\n\n`;
+  if (i > 0) body += `\\vspace{8pt}\n\n`;
   if (e.roles) {
     body += `\\textbf{${tex(e.org)}}\\hfill\\daterange{${dateRange(e.dates)}}\\\\\n`;
     body += e.roles
