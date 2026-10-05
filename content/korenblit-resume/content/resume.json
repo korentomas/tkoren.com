@@ -64,6 +64,22 @@
   ],
   "publications": [
     {
+      "title": "PowerBench: Measuring Language Model Bias in Power-shifting Requests",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2610.02303",
+      "authors": "N. Martorell, W. Brau, G. A. Heredia, T. P. Korenblit, G. Labastié, T. Gimenez Molina",
+      "links": [
+        {
+          "text": "Preprint",
+          "href": "https://arxiv.org/abs/2610.02303"
+        }
+      ],
+      "bullets": [
+        "Evaluates 24 models across eight languages and human/AI-agent requesters",
+        "Finds nationality biases and greater refusal when AI agents seek power"
+      ]
+    },
+    {
       "title": "Counterfactual Resampling to Analyse Model Behaviour",
       "year": "2026",
       "venue": "BlueDot Impact Technical AI Safety sprint, facilitated by BAISH",
@@ -86,12 +102,12 @@
     {
       "title": "Not All Instructions Are Forgotten Equal",
       "year": "2026",
-      "venue": "JAIIO 2026 (ASAID)",
+      "venue": "Memorias de las 55 JAIIO (ASAID)",
       "authors": "T. P. Korenblit",
       "links": [
         {
           "text": "paper",
-          "href": "https://tkoren.com/papers/249_Korenblit_NotAllInstructions.pdf"
+          "href": "https://55jaiio.sadio.org.ar/wp-content/uploads/2026/07/249.pdf"
         },
         {
           "text": "repo",
@@ -101,22 +117,6 @@
       "bullets": [
         "Measures retention of in-context instructions individually in multi-turn coding sessions",
         "Per-instruction effects range from -2.4 to +5.4 log-odds and only three of twelve instructions benefit from being restated"
-      ]
-    },
-    {
-      "title": "PowerBench: Measuring Language Model Bias in Power-shifting Requests",
-      "year": "2026",
-      "venue": "arXiv preprint arXiv:2610.02303",
-      "authors": "N. Martorell, W. Brau, G. A. Heredia, T. P. Korenblit, G. Labastié, T. Gimenez Molina",
-      "links": [
-        {
-          "text": "paper",
-          "href": "https://arxiv.org/abs/2610.02303"
-        }
-      ],
-      "bullets": [
-        "Evaluates 24 models across eight languages and human/AI-agent requesters",
-        "Finds nationality biases and greater refusal when AI agents seek power"
       ]
     }
   ],
