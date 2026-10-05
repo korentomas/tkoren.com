@@ -1,5 +1,21 @@
 [
   {
+    "title": "PowerBench: Measuring Language Model Bias in Power-shifting Requests",
+    "venue": "arXiv preprint arXiv:2610.02303 (2026)",
+    "authors": "N. Martorell, W. Brau, G. A. Heredia, T. P. Korenblit, G. Labastié, T. Gimenez Molina",
+    "summary": "Language models increasingly assist people with power-related requests, so systematic differences in whom they help could shift the distribution of power at scale, or be exploited by users who learn which identities are refused less. We introduce PowerBench, an evaluation of power-shifting requests that distinguishes self-empowerment, disempowerment, and power grabbing, plus a control of refusal-inducing requests that shift no power. We build, curate, and open-source a dataset of such requests varying the power domain, the context, the scale of the affected party, and the prior power standing of the user, and evaluate 24 models (12 from US and 12 from Chinese developers) under three experimental conditions: reciprocal nationalities of user and affected party, an AI agent as the user, and 8 request languages. Models refuse power grabbing more than disempowerment, and disempowerment more than self-empowerment. Refusal of power grabbing rises with the scale of the affected party, from an individual to a society. Models are biased toward helping others take power from the US and against helping US users take power from others, but favor the US when it gains power and nobody loses it. When the user is an AI agent, refusal of power-shifting requests increases, especially in power grabbing against an individual. Finally, language biases refusal, but in model-specific ways that largely cancel on average. We release PowerBench to make these asymmetries measurable in current and future models.",
+    "links": [
+      {
+        "href": "https://arxiv.org/abs/2610.02303",
+        "label": "Paper (arXiv)"
+      },
+      {
+        "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou",
+        "label": "Earlier hackathon project"
+      }
+    ]
+  },
+  {
     "title": "Counterfactual Resampling to Analyse Model Behaviour",
     "venue": "Writeup, BlueDot Impact Technical AI Safety sprint, facilitated by BAISH",
     "authors": "T. P. Korenblit",
@@ -24,22 +40,6 @@
       {
         "href": "/papers/249_Korenblit_NotAllInstructions.pdf",
         "label": "Paper (PDF)"
-      }
-    ]
-  },
-  {
-    "title": "PowerBench: Measuring Language Model Bias in Power-shifting Requests",
-    "venue": "arXiv preprint arXiv:2610.02303 (2026)",
-    "authors": "N. Martorell, W. Brau, G. A. Heredia, T. P. Korenblit, G. Labastié, T. Gimenez Molina",
-    "summary": "Language models increasingly assist people with power-related requests, so systematic differences in whom they help could shift the distribution of power at scale, or be exploited by users who learn which identities are refused less. We introduce PowerBench, an evaluation of power-shifting requests that distinguishes self-empowerment, disempowerment, and power grabbing, plus a control of refusal-inducing requests that shift no power. We build, curate, and open-source a dataset of such requests varying the power domain, the context, the scale of the affected party, and the prior power standing of the user, and evaluate 24 models (12 from US and 12 from Chinese developers) under three experimental conditions: reciprocal nationalities of user and affected party, an AI agent as the user, and 8 request languages. Models refuse power grabbing more than disempowerment, and disempowerment more than self-empowerment. Refusal of power grabbing rises with the scale of the affected party, from an individual to a society. Models are biased toward helping others take power from the US and against helping US users take power from others, but favor the US when it gains power and nobody loses it. When the user is an AI agent, refusal of power-shifting requests increases, especially in power grabbing against an individual. Finally, language biases refusal, but in model-specific ways that largely cancel on average. We release PowerBench to make these asymmetries measurable in current and future models.",
-    "links": [
-      {
-        "href": "https://arxiv.org/abs/2610.02303",
-        "label": "Paper (arXiv)"
-      },
-      {
-        "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou",
-        "label": "Earlier hackathon project"
       }
     ]
   }
