@@ -53,7 +53,7 @@ if (data.publications && data.publications.length) {
   body += `\\section{Publications}\n`;
   data.publications.forEach((p, i) => {
     if (i > 0) body += `\\vspace{9pt}\n\n`;
-    body += `\\textbf{${tex(p.title)}}\\hfill\\daterange{${p.year}}\\\\\n`;
+    body += `\\parbox[t]{\\dimexpr\\linewidth-3em\\relax}{\\textbf{${tex(p.title)}}}\\hfill\\daterange{${p.year}}\\\\\n`;
     if (p.authors) body += `{\\small ${tex(p.authors)}}\\\\\n`;
     let meta = `\\textit{${tex(p.venue)}}`;
     if (p.status) meta += `. ${tex(p.status)}`;

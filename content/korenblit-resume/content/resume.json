@@ -104,20 +104,19 @@
       ]
     },
     {
-      "title": "PowerBench: LLM Refusal in Power-Grabbing Requests",
+      "title": "PowerBench: Measuring Language Model Bias in Power-shifting Requests",
       "year": "2026",
-      "venue": "Apart Research Global South AI Safety Hackathon",
-      "authors": "W. Brau, T. Gimenez Molina, G. A. Heredia, T. P. Korenblit, G. Labastie, N. Martorell",
-      "status": "In preparation",
+      "venue": "arXiv preprint arXiv:2610.02303",
+      "authors": "N. Martorell, W. Brau, G. A. Heredia, T. P. Korenblit, G. Labastié, T. Gimenez Molina",
       "links": [
         {
           "text": "paper",
-          "href": "https://apartresearch.com/project/powerbench-a-multilingual-study-of-large-language-model-refusal-in-powergrabbing-requests-gkou"
+          "href": "https://arxiv.org/abs/2610.02303"
         }
       ],
       "bullets": [
-        "Multilingual benchmark measuring refusal to power-grabbing requests",
-        "Refusal of power-grabbing ranges from 8.4% to 70.2% and is lower than refusal of disempowerment in every model"
+        "Evaluates 24 models across eight languages and human/AI-agent requesters",
+        "Finds nationality biases and greater refusal when AI agents seek power"
       ]
     }
   ],
