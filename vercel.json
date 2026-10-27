@@ -7,6 +7,11 @@
   "regions": ["iad1"],
   "redirects": [
     {
+      "source": "/papers/249_Korenblit_NotAllInstructions.pdf",
+      "destination": "https://55jaiio.sadio.org.ar/wp-content/uploads/2026/07/249.pdf",
+      "statusCode": 301
+    },
+    {
       "source": "/blog",
       "destination": "/",
       "statusCode": 301
