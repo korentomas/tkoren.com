@@ -75,7 +75,7 @@ a:hover {
 
 /* Bio: keep parentheticals from splitting across lines */
 .nowrap {
-  white-space: nowrap;
+  white-space: normal;
 }
 
 /* Publications */
@@ -149,4 +149,22 @@ a:hover {
   background: #1e2126;
   padding: 0.75rem;
   font-size: 0.85rem;
+}
+
+/* Portrait and personal photographs */
+.introduction { display: grid; grid-template-columns: 1fr 176px; gap: 1.75rem; align-items: center; }
+.introduction > div { grid-column: 1; grid-row: 1; }
+.portrait { grid-column: 2; width: 176px; height: 176px; object-fit: cover; border-radius: 4px; }
+.full-name { margin-bottom: .65rem; }
+.introduction .bio:last-child { margin-bottom: 0; }
+.photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.photo-pair figure { margin: 0; }
+.photo-pair img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.photo-pair figcaption { color: var(--muted); font-size: .9rem; line-height: 1.45; margin-top: .65rem; }
+.personal { border-top: 1px solid var(--rule); margin-top: 2.5rem; }
+@media (max-width: 480px) {
+  body { padding-top: 2rem; }
+  .introduction { grid-template-columns: 1fr 132px; gap: 1rem; align-items: start; }
+  .portrait { width: 132px; height: 132px; }
+  .photo-pair { grid-template-columns: 1fr; gap: 1.5rem; }
 }

@@ -4,31 +4,42 @@ import { RESEARCH, SITE, SITE_URL } from "~/utils/site-config";
 export const meta: MetaFunction = () => [
   { title: SITE.name },
   { name: "description", content: SITE.description },
-  { tagName: "link", rel: "canonical", href: SITE_URL },
+  { name: "author", content: SITE.name },
+  { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+  { tagName: "link", rel: "canonical", href: `${SITE_URL}/` },
   { property: "og:type", content: "website" },
   { property: "og:url", content: SITE_URL },
   { property: "og:title", content: SITE.name },
   { property: "og:description", content: SITE.description },
-  { property: "og:image", content: `${SITE_URL}/og-image.png` },
-  { property: "og:image:width", content: "1200" },
-  { property: "og:image:height", content: "630" },
+  { property: "og:image", content: `${SITE_URL}${SITE.image}` },
+  { property: "og:image:alt", content: `${SITE.name}, ${SITE.title}` },
+  { property: "og:image:width", content: "440" },
+  { property: "og:image:height", content: "440" },
   { property: "og:site_name", content: SITE.name },
-  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:card", content: "summary" },
   { name: "twitter:title", content: SITE.name },
   { name: "twitter:description", content: SITE.shortDescription },
-  { name: "twitter:image", content: `${SITE_URL}/og-image.png` },
+  { name: "twitter:image", content: `${SITE_URL}${SITE.image}` },
+  { name: "twitter:image:alt", content: `${SITE.name}, ${SITE.title}` },
   {
     "script:ld+json": {
       "@context": "https://schema.org",
-      "@type": "Person",
-      name: SITE.name,
-      alternateName: SITE.alternateName,
-      url: SITE_URL,
-      image: `${SITE_URL}${SITE.image}`,
-      email: SITE.email,
-      jobTitle: SITE.title,
-      knowsAbout: [...SITE.knowsAbout],
-      sameAs: [SITE.social.github, SITE.social.linkedin],
+      "@type": "ProfilePage",
+      "@id": `${SITE_URL}/#profile`,
+      url: `${SITE_URL}/`,
+      mainEntity: {
+        "@type": "Person",
+        "@id": `${SITE_URL}/#person`,
+        name: SITE.name,
+        alternateName: [SITE.alternateName, "Tomas Korenblit", "Tomas Pablo Korenblit"],
+        url: `${SITE_URL}/`,
+        image: `${SITE_URL}${SITE.image}`,
+        description: SITE.description,
+        email: SITE.email,
+        jobTitle: SITE.title,
+        knowsAbout: [...SITE.knowsAbout],
+        sameAs: [SITE.social.github, SITE.social.linkedin, SITE.social.orcid],
+      },
     },
   },
 ];
@@ -41,6 +52,13 @@ export default function Index() {
         <a className="cv-link" href={SITE.resumeUrl}>CV</a>
       </header>
 
+      <div className="introduction">
+      <img className="portrait" src={SITE.image}
+        srcSet="/images/tomas-korenblit-river-320.jpg 320w, /images/tomas-korenblit-river-440.jpg 440w"
+        sizes="(max-width: 480px) 132px, 176px" width="440" height="440"
+        alt="Tomás Korenblit in a black fleece beside a river" />
+      <div>
+      <p className="full-name">I'm Tomás Pablo Korenblit.</p>
       {SITE.homeBio.split(/\n{2,}/).map((paragraph, i) => (
         <p key={i} className="bio">
           {paragraph.split(/(\([^)]*\))/).map((chunk, j) =>
@@ -52,6 +70,9 @@ export default function Index() {
           )}
         </p>
       ))}
+
+      </div>
+      </div>
 
       <section aria-labelledby="publications">
         <h2 id="publications">Publications</h2>
@@ -81,6 +102,32 @@ export default function Index() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="personal" aria-labelledby="personal-photos">
+        <h2 id="personal-photos">i am a real human</h2>
+        <div className="photo-pair">
+          <figure>
+            <a href="/images/tomas-korenblit-garden-768.jpg" aria-label="View the garden photo at full size">
+              <img src="/images/tomas-korenblit-garden-768.jpg"
+                srcSet="/images/tomas-korenblit-garden-384.jpg 384w, /images/tomas-korenblit-garden-768.jpg 768w"
+                sizes="(max-width: 480px) calc(100vw - 40px), 288px"
+                width="768" height="1024" loading="lazy" decoding="async"
+                alt="Tomás Korenblit smiling in a white football shirt beside a garden pond" />
+            </a>
+            <figcaption>prague</figcaption>
+          </figure>
+          <figure>
+            <a href="/images/tomas-korenblit-mascot-768.jpg" aria-label="View the mascot photo at full size">
+              <img src="/images/tomas-korenblit-mascot-768.jpg"
+                srcSet="/images/tomas-korenblit-mascot-384.jpg 384w, /images/tomas-korenblit-mascot-768.jpg 768w"
+                sizes="(max-width: 480px) calc(100vw - 40px), 288px"
+                width="768" height="1024" loading="lazy" decoding="async"
+                alt="Tomás Korenblit standing beside a large orange mascot" />
+            </a>
+            <figcaption>With the Austrian Parliament's mascot.</figcaption>
+          </figure>
+        </div>
       </section>
 
       <p className="contact">
