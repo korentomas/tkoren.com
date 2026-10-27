@@ -125,7 +125,7 @@ export default function Index() {
                 width="768" height="1024" loading="lazy" decoding="async"
                 alt="Tomás Korenblit standing beside a large orange mascot" />
             </a>
-            <figcaption>With the Austrian Parliament's mascot.</figcaption>
+            <figcaption>With the <a href="https://www.parlament.gv.at/erleben/demokratiebildung/parlament-kommt-zu-dir/index.html">Austrian Parliament's mascot</a>.</figcaption>
           </figure>
         </div>
       </section>
