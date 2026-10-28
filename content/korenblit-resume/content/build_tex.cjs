@@ -74,14 +74,15 @@ if (data.publications && data.publications.length) {
 body += `\\section{Experience}\n`;
 data.experience.forEach((e, i) => {
   if (i > 0) body += `\\vspace{8pt}\n\n`;
+  const org = e.href ? `\\href{${e.href}}{${tex(e.org)}}` : tex(e.org);
   if (e.roles) {
-    body += `\\textbf{${tex(e.org)}}\\hfill\\daterange{${dateRange(e.dates)}}\\\\\n`;
+    body += `\\textbf{${org}}\\hfill\\daterange{${dateRange(e.dates)}}\\\\\n`;
     body += e.roles
       .map((r) => `\\textit{${tex(r.title)}} ({\\small ${tex(r.when)}})`)
       .join("\\sep ") + "\n";
   } else {
     const roleStr = e.role ? `\\sep \\textit{${tex(e.role)}}` : "";
-    body += `\\textbf{${tex(e.org)}}${roleStr}\\hfill\\daterange{${dateRange(e.dates)}}\n`;
+    body += `\\textbf{${org}}${roleStr}\\hfill\\daterange{${dateRange(e.dates)}}\n`;
   }
   body += `\\begin{itemize}\n`;
   (e.bullets || []).forEach((b) => (body += `  \\item ${tex(b)}\n`));

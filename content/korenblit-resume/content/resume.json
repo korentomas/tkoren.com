@@ -15,11 +15,26 @@
   ],
   "experience": [
     {
+      "org": "AISAR",
+      "href": "https://scholarship.aisafety.ar/",
+      "dates": "Oct 2026 - Present",
+      "roles": [
+        {
+          "title": "Research Fellow",
+          "when": "part-time"
+        }
+      ],
+      "bullets": [
+        "Research on white-box AI control."
+      ]
+    },
+    {
       "org": "Independent Research",
       "dates": "Apr 2026 - Present",
       "bullets": [
         "Research on AI Safety. Interests: scalable oversight, interpretability.",
-        "Facilitator for BlueDot Impact's Technical AI Safety course"
+        "Facilitator for BlueDot Impact's Technical AI Safety course",
+        "Contributor to Alineados, BAISH's Spanish-language AI safety newsletter."
       ]
     },
     {
