@@ -35,7 +35,10 @@
         "Research on AI Safety. Interests: scalable oversight, interpretability.",
         "Facilitator for BlueDot Impact's Technical AI Safety course",
         "Contributor to Alineados, BAISH's Spanish-language AI safety newsletter."
-      ]
+      ],
+      "bulletLinks": {
+        "Alineados": "https://baish.substack.com/"
+      }
     },
     {
       "org": "Ascendancy",

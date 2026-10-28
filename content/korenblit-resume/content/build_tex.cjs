@@ -85,7 +85,13 @@ data.experience.forEach((e, i) => {
     body += `\\textbf{${org}}${roleStr}\\hfill\\daterange{${dateRange(e.dates)}}\n`;
   }
   body += `\\begin{itemize}\n`;
-  (e.bullets || []).forEach((b) => (body += `  \\item ${tex(b)}\n`));
+  (e.bullets || []).forEach((b) => {
+    let text = tex(b);
+    for (const [label, href] of Object.entries(e.bulletLinks || {})) {
+      text = text.replace(tex(label), `\\href{${href}}{${tex(label)}}`);
+    }
+    body += `  \\item ${text}\n`;
+  });
   body += `\\end{itemize}\n\n`;
 });
 

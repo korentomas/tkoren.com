@@ -59,7 +59,7 @@ export default function Index() {
         alt="Tomás Korenblit in a black fleece beside a river" />
       <div>
       <p className="full-name">I'm Tomás Pablo Korenblit.</p>
-      <p>I'm an <a href="https://scholarship.aisafety.ar/">AISAR</a> Research Fellow working on white-box AI control. I also contribute to Alineados, BAISH's Spanish-language AI safety newsletter.</p>
+      <p>I'm an <a href="https://scholarship.aisafety.ar/">AISAR</a> Research Fellow working on white-box AI control. I also contribute to <a href="https://baish.substack.com/">Alineados</a>, BAISH's Spanish-language AI safety newsletter.</p>
       {SITE.homeBio.split(/\n{2,}/).map((paragraph, i) => (
         <p key={i} className="bio">
           {paragraph.split(/(\([^)]*\))/).map((chunk, j) =>
